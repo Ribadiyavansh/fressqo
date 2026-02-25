@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: var(--page-primary);
+    --color-charcoal: #1F2937;
+    --color-background-light: var(--page-bg-light);
+    --color-background-dark: var(--page-bg-dark);
+
+    --color-mint: #D9F99D;
+    --color-peach: #FED7AA;
+    --color-beige: #FAF3E0;
+    --color-card-dark: #242C37;
+
+    --color-accent: #90F162;
+    --color-brand-dark: #1A2E26;
+    --color-brand-light: #E8F5E9;
+
+    --color-freshqo-beige: #F5F5F0;
+    --color-freshqo-charcoal: #1A1A1A;
+
+    --color-soft-mint: #E6F4F1;
+    --color-warm-beige: #FAF3E0;
+
+    --font-display: var(--page-font-display);
+    --font-serif: "Playfair Display", serif;
+    --font-sans: "Plus Jakarta Sans", sans-serif;
+    --font-outfit: "Outfit", sans-serif;
+
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-lg: 12px;
+    --radius-xl: 24px;
+    --radius-2xl: 32px;
+    --radius: 12px;
+}
+
+@layer base {
+    :root {
+        --page-primary: #A3E635;
+        /* Fresh Lime fallback */
+        --page-bg-light: #FFFDF7;
+        --page-bg-dark: #111827;
+        --page-font-display: "Plus Jakarta Sans", sans-serif;
+    }
+
+    /* Page-specific variable overrides applied to body tags */
+    .page-home {
+        --page-primary: #A3E635;
+        /* Fresh Lime */
+        --page-bg-light: #FFFDF7;
+        --page-bg-dark: #111827;
+        --page-font-display: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .page-shop {
+        --page-primary: #36B37E;
+        /* Mint Green */
+        --page-bg-light: #F9FBFA;
+        --page-bg-dark: #0F171A;
+        --page-font-display: "Outfit", sans-serif;
+    }
+
+    .page-dashboard {
+        --page-primary: #A3E635;
+        /* Lime Green */
+        --page-bg-light: #FAFAF9;
+        --page-bg-dark: #0C0C0C;
+        --page-font-display: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .page-blog {
+        --page-primary: #3E4095;
+        /* Deep indigo */
+        --page-bg-light: #FFFFFF;
+        --page-bg-dark: #0F172A;
+        --page-font-display: "Playfair Display", serif;
+    }
+}
+
+@layer utilities {
+    .glass-nav {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 253, 247, 0.8);
+    }
+
+    .dark .glass-nav {
+        background-color: rgba(17, 24, 39, 0.8);
+    }
+
+    .hero-gradient {
+        background: linear-gradient(135deg, #D9F99D 0%, #FAF3E0 100%);
+    }
+
+    .dark .hero-gradient {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    }
+
+    .product-card:hover .pre-order-btn {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(163, 230, 53, 0.3);
+    }
+
+    .glass-effect {
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .dark .glass-effect {
+        background: rgba(15, 23, 26, 0.8);
+    }
+
+    .product-card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    .sidebar-active {
+        background-color: var(--page-primary);
+        color: #1A1A1A;
+    }
+
+    .blog-card-mint {
+        background-color: #E6F4F1;
+    }
+
+    .dark .blog-card-mint {
+        background-color: #1E293B;
+        border: 1px solid #334155;
+    }
+
+    .blog-card-beige {
+        background-color: #FAF3E0;
+    }
+
+    .dark .blog-card-beige {
+        background-color: #1E293B;
+        border: 1px solid #334155;
+    }
+
+    details>summary {
+        list-style: none;
+    }
+
+    details>summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details[open] summary .expand-icon {
+        transform: rotate(180deg);
+    }
+}
