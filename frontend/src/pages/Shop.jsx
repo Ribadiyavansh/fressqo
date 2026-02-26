@@ -18,8 +18,8 @@ function Shop() {
                     </p>
                 </header>
 
-                <div className="flex flex-col lg:flex-row gap-12">
-                    <aside className="w-full lg:w-64 space-y-8 flex-shrink-0">
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                    <aside className="w-full lg:w-64 space-y-8 flex-shrink-0 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 lg:bg-transparent lg:p-0 lg:border-none">
                         <section>
                             <h3 className="font-display font-bold text-lg mb-4 flex items-center gap-2">
                                 Price Range

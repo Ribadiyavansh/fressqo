@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 function Layout() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     useEffect(() => {
         // Automatically apply dark mode based on system preference
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -42,15 +44,32 @@ function Layout() {
                             <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/about">About</Link>
                             <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/contact">Contact</Link>
                         </div>
-                        <div className="flex items-center space-x-5">
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/">Login</Link>
+                        <div className="flex items-center space-x-4">
+                            <Link className="hidden md:block text-sm font-semibold hover:text-primary transition-colors" to="/">Login</Link>
                             <button className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
                                 <span className="material-symbols-outlined text-charcoal dark:text-white">shopping_cart</span>
                                 <span className="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white dark:border-gray-900">3</span>
                             </button>
+                            <button className="md:hidden p-2 text-charcoal dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                                <span className="material-symbols-outlined">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                {/* Mobile Navigation Menu */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark px-4 pt-2 pb-6 space-y-1 shadow-lg">
+                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/">Home</Link>
+                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/shop">Shop</Link>
+                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/dashboard">Dashboard</Link>
+                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/blog">Blog</Link>
+                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/about">About</Link>
+                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/contact">Contact</Link>
+                        <hr className="my-2 border-gray-100 dark:border-gray-800" />
+                        <Link className="block px-3 py-2 rounded-md text-base font-bold text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/">Login</Link>
+                    </div>
+                )}
             </nav>
 
             <div className="flex-grow">

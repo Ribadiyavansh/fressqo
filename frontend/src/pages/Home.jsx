@@ -12,7 +12,7 @@ function Home() {
 
     return (
         <div className="min-h-screen">
-            
+
 
             <header className="relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
@@ -22,19 +22,19 @@ function Home() {
                                 <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
                                 <span className="text-xs font-bold uppercase tracking-wider text-charcoal dark:text-primary">Now Available: Variety Pack</span>
                             </div>
-                            <h1 className="text-6xl lg:text-8xl font-serif font-black leading-tight">
+                            <h1 className="text-5xl md:text-6xl lg:text-8xl font-serif font-black leading-tight">
                                 Drop. <br />
                                 <span className="text-primary italic">Fizz.</span> <br />
                                 Sip.
                             </h1>
-                            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed">
+                            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed">
                                 Elevate your sparkling water with artisanal drink bombs. Natural ingredients, zero sugar, and an explosion of flavor in every glass.
                             </p>
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <button className="px-8 py-4 bg-primary text-white font-bold rounded shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all">
+                            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                                <button className="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all">
                                     Shop Now
                                 </button>
-                                <button className="px-8 py-4 bg-charcoal text-white font-bold rounded shadow-lg hover:bg-gray-800 hover:-translate-y-1 transition-all">
+                                <button className="w-full sm:w-auto px-8 py-4 bg-charcoal text-white font-bold rounded shadow-lg hover:bg-gray-800 hover:-translate-y-1 transition-all">
                                     Learn More
                                 </button>
                             </div>
