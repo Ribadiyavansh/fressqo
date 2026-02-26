@@ -75,6 +75,20 @@
         --page-bg-dark: #0F172A;
         --page-font-display: "Playfair Display", serif;
     }
+
+    .page-about {
+        --page-primary: #95e534;
+        --page-bg-light: #f7f8f6;
+        --page-bg-dark: #1a2111;
+        --page-font-display: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .page-contact {
+        --page-primary: #95e534;
+        --page-bg-light: #f7f8f6;
+        --page-bg-dark: #1a2111;
+        --page-font-display: "Plus Jakarta Sans", sans-serif;
+    }
 }
 
 @layer utilities {

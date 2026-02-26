@@ -2,43 +2,12 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Blog() {
-    const toggleDarkTheme = () => {
-        document.documentElement.classList.toggle('dark');
-    };
-
     useEffect(() => {
         document.body.className = "bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300 page-blog min-h-screen";
     }, []);
 
     return (
-        <>
-            <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center py-4">
-                        <div className="flex items-center gap-2">
-                            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">F</div>
-                            <Link to="/" className="text-2xl font-display font-bold text-primary">Freshqo</Link>
-                        </div>
-                        <nav className="hidden md:flex space-x-8">
-                            <Link className="text-sm font-medium hover:text-primary transition-colors" to="/shop">Shop</Link>
-                            <Link className="text-sm font-medium hover:text-primary transition-colors" to="/dashboard">Dashboard</Link>
-                            <Link className="text-sm font-medium text-primary border-b-2 border-primary pb-1" to="/blog">Blog</Link>
-                            <Link className="text-sm font-medium hover:text-primary transition-colors" to="/">Recipes</Link>
-                            <Link className="text-sm font-medium hover:text-primary transition-colors" to="/">About Us</Link>
-                        </nav>
-                        <div className="flex items-center gap-4">
-                            <button className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onClick={toggleDarkTheme}>
-                                <span className="material-symbols-outlined block dark:hidden">dark_mode</span>
-                                <span className="material-symbols-outlined hidden dark:block">light_mode</span>
-                            </button>
-                            <button className="bg-primary text-white px-5 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">
-                                Order Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
+        <div className="flex-1 w-full">
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-6xl font-display font-bold mb-4">Freshqo Blog Feed</h1>
@@ -196,60 +165,7 @@ function Blog() {
                     </button>
                 </div>
             </main>
-
-            <footer className="bg-primary text-white mt-24 py-16 transition-colors">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                        <div className="col-span-1 md:col-span-1">
-                            <div className="flex items-center gap-2 mb-6">
-                                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary font-bold">F</div>
-                                <span className="text-2xl font-display font-bold">Freshqo</span>
-                            </div>
-                            <p className="text-indigo-100 text-sm leading-relaxed mb-6">
-                                Revolutionizing the way you enjoy cocktails. Premium ingredients, instant convenience, unforgettable moments.
-                            </p>
-                            <div className="flex gap-4">
-                                <Link className="hover:text-indigo-200" to="/"><span className="material-symbols-outlined">public</span></Link>
-                                <Link className="hover:text-indigo-200" to="/"><span className="material-symbols-outlined">mail</span></Link>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-6 text-lg">Quick Links</h4>
-                            <ul className="space-y-4 text-indigo-100 text-sm">
-                                <li><Link className="hover:text-white transition-colors" to="/">Privacy Policy</Link></li>
-                                <li><Link className="hover:text-white transition-colors" to="/">Terms and Conditions</Link></li>
-                                <li><Link className="hover:text-white transition-colors" to="/">Shipping Policy</Link></li>
-                                <li><Link className="hover:text-white transition-colors" to="/">Refund and Return Policy</Link></li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-6 text-lg">Information</h4>
-                            <ul className="space-y-4 text-indigo-100 text-sm">
-                                <li><Link className="hover:text-white transition-colors" to="/">Home Page</Link></li>
-                                <li><Link className="hover:text-white transition-colors" to="/shop">Shop</Link></li>
-                                <li><Link className="hover:text-white transition-colors" to="/">Contact Us</Link></li>
-                                <li><Link className="hover:text-white transition-colors" to="/">Recipes</Link></li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold mb-6 text-lg">Newsletter</h4>
-                            <p className="text-indigo-100 text-sm mb-4">Stay updated with our latest cocktail secrets.</p>
-                            <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                                <input className="bg-indigo-800/50 border-transparent rounded-lg text-white text-sm focus:ring-2 focus:ring-white flex-grow" placeholder="Email" type="email" />
-                                <button className="bg-white text-primary px-4 py-2 rounded-lg font-bold text-sm">Join</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div className="pt-8 border-t border-indigo-500 text-center text-sm text-indigo-200">
-                        © 2023 Freshqo. All rights reserved. Designed for tasteful enthusiasts.
-                    </div>
-                </div>
-            </footer>
-        </>
+        </div>
     );
 }
 

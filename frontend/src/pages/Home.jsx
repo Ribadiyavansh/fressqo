@@ -12,37 +12,7 @@ function Home() {
 
     return (
         <div className="min-h-screen">
-            <nav className="sticky top-0 z-50 glass-nav border-b border-gray-100 dark:border-gray-800 transition-colors">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center h-20">
-                        <div className="flex-shrink-0 flex items-center gap-2">
-                            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                                <span className="material-symbols-outlined text-white font-bold">bubble_chart</span>
-                            </div>
-                            <span className="text-2xl font-extrabold tracking-tight text-charcoal dark:text-white">Freshqo</span>
-                        </div>
-                        <div className="hidden md:flex items-center space-x-8">
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/">Home</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/shop">Shop</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/dashboard">Dashboard</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/blog">Blog</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/about">About</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/contact">Contact</Link>
-                        </div>
-                        <div className="flex items-center space-x-5">
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/login">Login</Link>
-                            <button className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
-                                <span className="material-symbols-outlined text-charcoal dark:text-white">shopping_cart</span>
-                                <span className="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">3</span>
-                            </button>
-                            <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors" onClick={toggleDarkTheme}>
-                                <span className="material-symbols-outlined dark:hidden">dark_mode</span>
-                                <span className="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            
 
             <header className="relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
