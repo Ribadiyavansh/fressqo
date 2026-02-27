@@ -41,11 +41,7 @@ function OrderTracking() {
         <main className="max-w-7xl mx-auto px-6 py-10 font-display">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
                 <div>
-                    <nav className="flex items-center gap-2 text-sm text-slate-500 mb-2 font-medium">
-                        <Link to="/dashboard" className="hover:text-primary transition-colors">Orders</Link>
-                        <span className="material-icons text-xs">chevron_right</span>
-                        <span className="text-slate-900 font-bold">Track Order</span>
-                    </nav>
+
                     <h1 className="text-4xl font-bold mb-2 text-slate-900">Order FQ-98234</h1>
                     <p className="text-slate-500 font-medium">Placed on Oct 20, 2023 • 12:45 PM</p>
                 </div>
