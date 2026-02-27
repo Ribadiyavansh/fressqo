@@ -31,10 +31,8 @@ function Layout() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
                         <div className="flex-shrink-0 flex items-center gap-2">
-                            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                                <span className="material-symbols-outlined text-white font-bold">bubble_chart</span>
-                            </div>
-                            <span className="text-2xl font-extrabold tracking-tight text-charcoal dark:text-white">Freshqo</span>
+                            <img src="/fresqo-logo.svg" alt="Fresqo Logo" className="w-10 h-10" />
+                            <span className="text-2xl font-extrabold tracking-tight text-charcoal dark:text-white">Fresqo</span>
                         </div>
                         <div className="hidden md:flex items-center space-x-8">
                             <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/">Home</Link>
@@ -81,10 +79,8 @@ function Layout() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                         <div className="space-y-6">
                             <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-white text-lg">bubble_chart</span>
-                                </div>
-                                <span className="text-xl font-extrabold tracking-tight">Freshqo</span>
+                                <img src="/fresqo-logo.svg" alt="Fresqo Logo" className="w-8 h-8" />
+                                <span className="text-xl font-extrabold tracking-tight">Fresqo</span>
                             </div>
                             <p className="text-gray-400 leading-relaxed">
                                 Reinventing the way you drink. Better flavors, cleaner ingredients, zero waste.
@@ -117,7 +113,7 @@ function Layout() {
                         </div>
                     </div>
                     <div className="border-t border-gray-800 pt-6 flex justify-center">
-                        <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">© 2026 Freshqo. All rights reserved.</p>
+                        <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">© 2026 Fresqo. All rights reserved.</p>
                     </div>
                 </div>
             </footer>

@@ -27,7 +27,7 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-charcoal dark:text-slate-100">Email Us</h3>
-                                    <p className="text-sage dark:text-slate-400">support@freshqo.com</p>
+                                    <p className="text-sage dark:text-slate-400">support@fresqo.com</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4 p-5 rounded-xl border border-border-light bg-white dark:bg-slate-900/50 hover:shadow-md transition-shadow">

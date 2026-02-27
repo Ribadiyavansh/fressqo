@@ -29,7 +29,7 @@ function Blog() {
         <div className="flex-1 w-full">
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="text-center mb-16">
-                    <h1 className="text-4xl md:text-6xl font-display font-bold mb-4">Freshqo Blog Feed</h1>
+                    <h1 className="text-4xl md:text-6xl font-display font-bold mb-4">Fresqo Blog Feed</h1>
                     <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
                         Discover the art of mixology, cocktail tips, and stories behind our favorite flavors. Elevate your home bar experience.
                     </p>

@@ -33,16 +33,16 @@ function About() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="flex flex-col gap-6">
               <span className="text-primary font-bold tracking-widest uppercase text-sm">Founded 2021</span>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-charcoal dark:text-slate-100">The Freshqo Journey</h2>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-charcoal dark:text-slate-100">The Fresqo Journey</h2>
               <div className="space-y-4 text-sage dark:text-slate-400 text-lg leading-relaxed">
                 <p>
-                  Born from a passion for premium refreshments, Freshqo was created to bring the art of the perfect fizz to your home. We realized that the beverage industry was cluttered with artificial syrups and excessive waste.
+                  Born from a passion for premium refreshments, Fresqo was created to bring the art of the perfect fizz to your home. We realized that the beverage industry was cluttered with artificial syrups and excessive waste.
                 </p>
                 <p>
                   Our mission was simple: create a drink bomb that transforms ordinary water into a gourmet experience. We believe that every sip should be an experience, combining convenience with uncompromised quality.
                 </p>
                 <p>
-                  After two years of intensive research into botanical extracts and natural carbonation, we perfected the Freshqo formula—a burst of happiness in every single drop.
+                  After two years of intensive research into botanical extracts and natural carbonation, we perfected the Fresqo formula—a burst of happiness in every single drop.
                 </p>
               </div>
             </div>
@@ -91,7 +91,7 @@ function About() {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
               <div>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-charcoal dark:text-slate-100 mb-4">The Minds Behind the Fizz</h2>
-                <p className="text-sage dark:text-slate-400 max-w-xl">Meet the innovators, flavorists, and dreamers making Freshqo happen.</p>
+                <p className="text-sage dark:text-slate-400 max-w-xl">Meet the innovators, flavorists, and dreamers making Fresqo happen.</p>
               </div>
               <button className="text-primary font-bold flex items-center gap-2 hover:underline">
                 See all positions <span className="material-symbols-outlined">arrow_forward</span>

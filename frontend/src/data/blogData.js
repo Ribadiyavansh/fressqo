@@ -49,7 +49,7 @@ export const BLOG_POSTS = [
         category: "Recipes",
         date: "September 15, 2023",
         title: "Fresh Ingredients: The Heart of Every Sip",
-        excerpt: "Exploring why we prioritize natural extracts and real fruit flavors in every Freshqo product we create...",
+        excerpt: "Exploring why we prioritize natural extracts and real fruit flavors in every Fresqo product we create...",
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBYRK1XgFU5YBcbo645kGc9l9ssgmQW3gLlJfutlgxetjn4MKQt3cDXLSwBzzt2m_sce_qC1KSOehx3kUpeJE7RZIjO_vP5xIGPaFxcH0PK0i1pBkKVdehULuinsU8UGIDpg3sAtHnUfjT3486nMtZx_RqiYEgQqt8-RLI09wCk9RMve2z7lHwYe3voCjbENO6C_G7RK9uKZq8KMvvSQbnjh5C_CXRKc1tfeIx5kL3BSMR7mtduCjEd3KrG8gqMGZAlil9ERjPMuwTx",
         colorClass: "blog-card-beige"
     },

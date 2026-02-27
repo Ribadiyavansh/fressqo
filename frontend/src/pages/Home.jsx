@@ -50,7 +50,7 @@ function Home() {
                         <div className="relative group">
                             <div className="absolute inset-0 hero-gradient rounded-3xl -rotate-2 scale-105 transition-transform group-hover:rotate-0"></div>
                             <div className="relative p-8 lg:p-12">
-                                <img alt="Freshqo Fizz Bomb in glass" fetchpriority="high" className="rounded-2xl shadow-2xl transform transition-transform group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtC5Aft7uHs33AY1g9OsnoraITYTIH--A28RMdBAQp16nyuXvWRnOwRUSWeKIJpXsFHrAqe52lYiUczyRW1kF_BTJBkvSc55_ipNAJLjwgJ1Ka--3Mh4FphlTErPsjVBuL0V2BM24N0A8G4vgL7d9RITDP9CkIXrU0BvxOqhl8A-Imcd__CUQkOfvuhZUTdj3OfpUXNdYCHlVdQ0994p5zzbvFdNEPalFLx07dMbcu8LuuJZRjhkI4DRNqXjc8YcSmW_00TLJuLzg7" />
+                                <img alt="Fresqo Fizz Bomb in glass" fetchpriority="high" className="rounded-2xl shadow-2xl transform transition-transform group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtC5Aft7uHs33AY1g9OsnoraITYTIH--A28RMdBAQp16nyuXvWRnOwRUSWeKIJpXsFHrAqe52lYiUczyRW1kF_BTJBkvSc55_ipNAJLjwgJ1Ka--3Mh4FphlTErPsjVBuL0V2BM24N0A8G4vgL7d9RITDP9CkIXrU0BvxOqhl8A-Imcd__CUQkOfvuhZUTdj3OfpUXNdYCHlVdQ0994p5zzbvFdNEPalFLx07dMbcu8LuuJZRjhkI4DRNqXjc8YcSmW_00TLJuLzg7" />
                                 <div className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 p-6 rounded shadow-xl border border-gray-100 dark:border-gray-700">
                                     <p className="text-3xl font-black text-primary">0%</p>
                                     <p className="text-xs font-bold uppercase text-gray-400">Added Sugar</p>
@@ -190,7 +190,7 @@ function Home() {
             <section className="py-24 bg-charcoal dark:bg-gray-900 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl lg:text-5xl font-serif font-black text-white mb-4">Why Freshqo</h2>
+                        <h2 className="text-4xl lg:text-5xl font-serif font-black text-white mb-4">Why Fresqo</h2>
                         <div className="w-24 h-1 bg-primary mx-auto"></div>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -225,11 +225,11 @@ function Home() {
                     <div className="space-y-4">
                         <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
                             <summary className="flex justify-between items-center cursor-pointer py-4 focus:outline-none">
-                                <h3 className="text-xl font-bold hover:text-primary transition-colors">Are Freshqo bombs sugar-free?</h3>
+                                <h3 className="text-xl font-bold hover:text-primary transition-colors">Are Fresqo bombs sugar-free?</h3>
                                 <span className="material-symbols-outlined expand-icon transition-transform duration-300">expand_more</span>
                             </summary>
                             <div className="pt-2 text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Yes! All Freshqo bombs are crafted with 100% natural sweeteners and fruit extracts, containing zero added sugars or artificial flavors.
+                                Yes! All Fresqo bombs are crafted with 100% natural sweeteners and fruit extracts, containing zero added sugars or artificial flavors.
                             </div>
                         </details>
                         <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
@@ -238,7 +238,7 @@ function Home() {
                                 <span className="material-symbols-outlined expand-icon transition-transform duration-300">expand_more</span>
                             </summary>
                             <div className="pt-2 text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Typically, a Freshqo bomb takes about 30-45 seconds to fully dissolve in sparkling water, creating a perfectly mixed, effervescent drink.
+                                Typically, a Fresqo bomb takes about 30-45 seconds to fully dissolve in sparkling water, creating a perfectly mixed, effervescent drink.
                             </div>
                         </details>
                         <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
