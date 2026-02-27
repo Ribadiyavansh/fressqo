@@ -4,16 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 function Checkout() {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Enforce light mode for checkout flow
-        document.documentElement.classList.remove('dark');
-        document.body.className = "bg-slate-50 text-slate-900 font-sans min-h-screen";
 
-        // Cleanup function if needed when leaving checkout
-        return () => {
-            document.body.className = "bg-background-light dark:bg-background-dark text-fresqo-charcoal dark:text-gray-100 transition-colors duration-200";
-        }
-    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();

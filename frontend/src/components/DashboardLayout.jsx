@@ -7,10 +7,6 @@ function DashboardLayout() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // The dark mode toggle used to be on the dashboard page directly.
-    const toggleDarkTheme = () => {
-        document.documentElement.classList.toggle('dark');
-    };
 
     useEffect(() => {
         // Set page-wide classes for the dashboard area
@@ -31,32 +27,32 @@ function DashboardLayout() {
                     {/* Shared Sidebar Navigation */}
                     <aside className="w-full md:w-64 flex-shrink-0 md:sticky md:top-28 md:self-start max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
                         <nav className="space-y-1">
-                            <Link 
-                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard/profile') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`} 
+                            <Link
+                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard/profile') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                                 to="/dashboard/profile"
                             >
                                 <span className="material-icons mr-3 text-xl">person</span>
                                 My Profile
                             </Link>
-                            
-                            <Link 
-                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard') && !location.pathname.includes('/profile') && !location.pathname.includes('/address') && !location.pathname.includes('/wishlist') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`} 
+
+                            <Link
+                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard') && !location.pathname.includes('/profile') && !location.pathname.includes('/address') && !location.pathname.includes('/wishlist') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                                 to="/dashboard"
                             >
                                 <span className="material-icons mr-3 text-xl">shopping_bag</span>
                                 My Orders
                             </Link>
 
-                            <Link 
-                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard/address') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`} 
+                            <Link
+                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard/address') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                                 to="/dashboard/address"
                             >
                                 <span className="material-icons mr-3 text-xl">location_on</span>
                                 My Address
                             </Link>
 
-                            <Link 
-                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard/wishlist') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`} 
+                            <Link
+                                className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard/wishlist') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                                 to="/dashboard/wishlist"
                             >
                                 <span className="material-icons mr-3 text-xl">favorite_border</span>
@@ -92,9 +88,6 @@ function DashboardLayout() {
                 </div>
             </div>
 
-            <button className="fixed bottom-6 right-6 bg-fresqo-charcoal dark:bg-white text-white dark:text-fresqo-charcoal p-3 rounded-full shadow-2xl flex items-center justify-center z-50 transition-colors" onClick={toggleDarkTheme}>
-                <span className="material-icons">dark_mode</span>
-            </button>
         </>
     );
 }

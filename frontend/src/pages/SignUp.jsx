@@ -7,19 +7,18 @@ function SignUp() {
     const { login } = useAuth();
 
     useEffect(() => {
-        // Automatically apply dark mode based on system preference if not set
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         const applyTheme = (e) => {
-            if (!document.documentElement.classList.contains('dark') && e.matches) {
+            if (e.matches) {
                 document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
             }
         };
         applyTheme(mediaQuery);
+        mediaQuery.addEventListener('change', applyTheme);
+        return () => mediaQuery.removeEventListener('change', applyTheme);
     }, []);
-
-    const toggleTheme = () => {
-        document.documentElement.classList.toggle('dark');
-    };
 
     return (
         <div className="bg-[#f0fdf4] dark:bg-[#0f172a] min-h-screen flex items-center justify-center p-4 transition-colors duration-300 font-display">

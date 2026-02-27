@@ -12,12 +12,7 @@ function OrderTracking() {
     const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
 
     useEffect(() => {
-        // Enforce light mode for tracking flow
-        document.documentElement.classList.remove('dark');
-        document.body.className = "bg-slate-50 text-slate-900 font-sans min-h-screen";
-
         return () => {
-            document.body.className = "bg-background-light dark:bg-background-dark text-fresqo-charcoal dark:text-gray-100 transition-colors duration-200";
             // Clean up overflow in case we unmount while a modal is open
             document.body.style.overflow = 'auto';
         }

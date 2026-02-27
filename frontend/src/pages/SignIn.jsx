@@ -10,16 +10,16 @@ function SignIn() {
     useEffect(() => {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         const applyTheme = (e) => {
-            if (!document.documentElement.classList.contains('dark') && e.matches) {
+            if (e.matches) {
                 document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
             }
         };
         applyTheme(mediaQuery);
+        mediaQuery.addEventListener('change', applyTheme);
+        return () => mediaQuery.removeEventListener('change', applyTheme);
     }, []);
-
-    const toggleTheme = () => {
-        document.documentElement.classList.toggle('dark');
-    };
 
     return (
         <div className="bg-[#F9FAFB] dark:bg-[#111827] min-h-screen flex items-center justify-center p-4 transition-colors duration-200 font-display">

@@ -2,15 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function OrderSuccess() {
-    useEffect(() => {
-        // Enforce light mode for checkout flow
-        document.documentElement.classList.remove('dark');
-        document.body.className = "bg-slate-50 text-slate-900 font-sans min-h-screen";
 
-        return () => {
-            document.body.className = "bg-background-light dark:bg-background-dark text-fresqo-charcoal dark:text-gray-100 transition-colors duration-200";
-        }
-    }, []);
 
     return (
         <main className="font-display text-slate-900 min-h-screen flex items-center justify-center p-6 py-12">
