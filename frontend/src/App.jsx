@@ -6,7 +6,11 @@ import { AuthProvider } from './context/AuthContext';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
+const DashboardLayout = lazy(() => import('./components/DashboardLayout'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Profile = lazy(() => import('./pages/dashboard/Profile'));
+const AddressBook = lazy(() => import('./pages/dashboard/AddressBook'));
+const Wishlist = lazy(() => import('./pages/dashboard/Wishlist'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const About = lazy(() => import('./pages/About'));
@@ -14,6 +18,13 @@ const Contact = lazy(() => import('./pages/Contact'));
 const SignUp = lazy(() => import('./pages/SignUp'));
 const SignIn = lazy(() => import('./pages/SignIn'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
+
+// Checkout Flow Routes
+const Checkout = lazy(() => import('./pages/checkout/Checkout'));
+const Payment = lazy(() => import('./pages/checkout/Payment'));
+const OrderReview = lazy(() => import('./pages/checkout/OrderReview'));
+const OrderSuccess = lazy(() => import('./pages/checkout/OrderSuccess'));
+const OrderTracking = lazy(() => import('./pages/OrderTracking'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,11 +50,21 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="shop" element={<Shop />} />
-              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="dashboard" element={<DashboardLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="profile" element={<Profile />} />
+                <Route path="address" element={<AddressBook />} />
+                <Route path="wishlist" element={<Wishlist />} />
+              </Route>
               <Route path="blog" element={<Blog />} />
               <Route path="blog/:id" element={<BlogPost />} />
               <Route path="about" element={<About />} />
               <Route path="contact" element={<Contact />} />
+              <Route path="checkout" element={<Checkout />} />
+              <Route path="checkout/payment" element={<Payment />} />
+              <Route path="checkout/review" element={<OrderReview />} />
+              <Route path="checkout/success" element={<OrderSuccess />} />
+              <Route path="order-tracking" element={<OrderTracking />} />
             </Route>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
