@@ -34,6 +34,7 @@ function BlogPost() {
             {/* Hero Section */}
             <div className="relative w-full h-[60vh] bg-slate-900 overflow-hidden">
                 <img
+                    fetchpriority="high"
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover opacity-60 mix-blend-overlay"
@@ -98,7 +99,7 @@ function BlogPost() {
                         <Link to={`/blog/${suggestedPost.id}`} key={suggestedPost.id} className="block group cursor-pointer h-full">
                             <article className={`${suggestedPost.colorClass} rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1 hover:shadow-xl h-full`}>
                                 <div className="relative h-48 overflow-hidden">
-                                    <img alt={suggestedPost.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={suggestedPost.image} />
+                                    <img alt={suggestedPost.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={suggestedPost.image} />
                                     <div className="absolute top-4 left-4">
                                         <span className="bg-white/90 dark:bg-slate-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-primary">
                                             {suggestedPost.category}

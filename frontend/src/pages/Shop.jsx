@@ -86,7 +86,7 @@ function Shop() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
                             <div className="product-card-hover bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 group">
                                 <div className="relative aspect-square overflow-hidden">
-                                    <img alt="Variety Pack of 4" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS26s_J-TFEwI1jWbDQ1fwHQtjY9F6t8LBXqktBfVLY8XZ_Tew3p9xkLS_C9mAaCFrpVGmYxkaKtjkHhBZ3N83mNugzGMuXvYjOZgSN0FMzbOT02lFrkfu9ON9VthDsc98RX0sAPrWWWF_mQ3yJV_R7UxoPzGafued0LTtbW0-5yhd8h9v9gW34d41eOBiLtzwKYMMFl8k7h3CD0u4pb-matnJEpi7bcrL24lVB-O85Y0YvOMEUuhgsIQ8_-228g6v6p-3zbpzdZzm" />
+                                    <img alt="Variety Pack of 4" loading="lazy" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS26s_J-TFEwI1jWbDQ1fwHQtjY9F6t8LBXqktBfVLY8XZ_Tew3p9xkLS_C9mAaCFrpVGmYxkaKtjkHhBZ3N83mNugzGMuXvYjOZgSN0FMzbOT02lFrkfu9ON9VthDsc98RX0sAPrWWWF_mQ3yJV_R7UxoPzGafued0LTtbW0-5yhd8h9v9gW34d41eOBiLtzwKYMMFl8k7h3CD0u4pb-matnJEpi7bcrL24lVB-O85Y0YvOMEUuhgsIQ8_-228g6v6p-3zbpzdZzm" />
                                     <span className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Bestseller</span>
                                 </div>
                                 <div className="p-6">
@@ -112,7 +112,7 @@ function Shop() {
                             </div>
                             <div className="product-card-hover bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 group">
                                 <div className="relative aspect-square overflow-hidden">
-                                    <img alt="Cosmopolitan Bomb" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35W357N0GqFe2yNpzLmCB9jiBoTDIXV5DrphIeVbaMdEuqsCcE25RXHx-lhoj-2OJe-R8uQOXM710hhlzNHe8f6E6qNYG271xHhqDJLAEQturjkF3Bxuu4AEHAILTkoZr2UmpUOqst6yLv_FbvndJMpP6OPjLlO4p-X-YnueSIDpDb5ktAly13KpsrQ-tND32JwSv5vlol1lnY3vZVsSNkYSzgZQbs87RhUAKjVo0IXq20vr_d8d6lOxAdEsQVQYI7gxq3nruRL6z" />
+                                    <img alt="Cosmopolitan Bomb" loading="lazy" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35W357N0GqFe2yNpzLmCB9jiBoTDIXV5DrphIeVbaMdEuqsCcE25RXHx-lhoj-2OJe-R8uQOXM710hhlzNHe8f6E6qNYG271xHhqDJLAEQturjkF3Bxuu4AEHAILTkoZr2UmpUOqst6yLv_FbvndJMpP6OPjLlO4p-X-YnueSIDpDb5ktAly13KpsrQ-tND32JwSv5vlol1lnY3vZVsSNkYSzgZQbs87RhUAKjVo0IXq20vr_d8d6lOxAdEsQVQYI7gxq3nruRL6z" />
                                 </div>
                                 <div className="p-6">
                                     <div className="flex items-center mb-2">
@@ -137,7 +137,7 @@ function Shop() {
                             </div>
                             <div className="product-card-hover bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 group">
                                 <div className="relative aspect-square overflow-hidden">
-                                    <img alt="Orange Mimosa Bomb" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpa9ZYkms3DqmFFSn_Qq1Z5MEMBDogxU38LdWk79l0_FtUIUvdHHm18i77oMybgZqh3BS8zXQBAxajLkyOkVGs2alBk8iu6b-5hXydIUg5XpF9GaZjm4yJwdOrwVBpCtrA_rKj47yni6Vir7N9c0ge3T7ug3JeMR6i_9wsIsM2PTi82YVbpzrHHvcbWG6wru8KlPjcqfBRUhWe4sRB0ppUDFEfbboriKFSni-7xzjgyd9177xNfOiclGb5ITxsIx84-l3QW0yP2FPw" />
+                                    <img alt="Orange Mimosa Bomb" loading="lazy" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpa9ZYkms3DqmFFSn_Qq1Z5MEMBDogxU38LdWk79l0_FtUIUvdHHm18i77oMybgZqh3BS8zXQBAxajLkyOkVGs2alBk8iu6b-5hXydIUg5XpF9GaZjm4yJwdOrwVBpCtrA_rKj47yni6Vir7N9c0ge3T7ug3JeMR6i_9wsIsM2PTi82YVbpzrHHvcbWG6wru8KlPjcqfBRUhWe4sRB0ppUDFEfbboriKFSni-7xzjgyd9177xNfOiclGb5ITxsIx84-l3QW0yP2FPw" />
                                     <span className="absolute top-4 left-4 bg-accent text-brand-dark text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">New</span>
                                 </div>
                                 <div className="p-6">
@@ -163,7 +163,7 @@ function Shop() {
                             </div>
                             <div className="product-card-hover bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 group">
                                 <div className="relative aspect-square overflow-hidden">
-                                    <img alt="Margarita Bomb" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ6vzpgMkTdd5yURclxu4Nla640I1WC6aya_9R5IOnMth5woi7bVYYT6VJ4OdFuNi1RdVA8njsZW2YVMr9r3W4Abu0V4CjTOw1LYhUhK1Kq-8z116xWv8QVRmxKe9PG1C75-A3PL89EOYHutYKnFFcGDJfWPk7dJfnPa-M2EapTEasglt96IADLm_7_7ztw5ViO0GBzdIhw4oNPJ7XIMFvyLeY6uAONec1UKp1-15UHBswuW_CxFvWf-U-DgRx1VYjHvv-ONMmsCtq" />
+                                    <img alt="Margarita Bomb" loading="lazy" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ6vzpgMkTdd5yURclxu4Nla640I1WC6aya_9R5IOnMth5woi7bVYYT6VJ4OdFuNi1RdVA8njsZW2YVMr9r3W4Abu0V4CjTOw1LYhUhK1Kq-8z116xWv8QVRmxKe9PG1C75-A3PL89EOYHutYKnFFcGDJfWPk7dJfnPa-M2EapTEasglt96IADLm_7_7ztw5ViO0GBzdIhw4oNPJ7XIMFvyLeY6uAONec1UKp1-15UHBswuW_CxFvWf-U-DgRx1VYjHvv-ONMmsCtq" />
                                 </div>
                                 <div className="p-6">
                                     <div className="flex items-center mb-2">
@@ -188,7 +188,7 @@ function Shop() {
                             </div>
                             <div className="product-card-hover bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 group">
                                 <div className="relative aspect-square overflow-hidden">
-                                    <img alt="Purple Rain" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaPBXwWxvpRSnR3bYxhLmklgvMlnPoEWU9TKvhZUvUTvAEO-3yIhfWGzNfsVYKnJHnZfOZ18UpKNMVIpmGfKhme2LwRKHi2jw13DRZhv9MTE0l8khPpIU9JkLdsxJxRB4iB6Ifc1XDb0AbR7ez27jVua-dhrs_JfwcWoq24MsjS_leTioGx5WafUN3q-RGWuZbYSt-Lhyaw6adR7-MNPByHE2aZ_F2VTm0B6L2fyB1DAcxvatul1PJZIAFNyQonVCLUZc4T1lvKROf" />
+                                    <img alt="Purple Rain" loading="lazy" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaPBXwWxvpRSnR3bYxhLmklgvMlnPoEWU9TKvhZUvUTvAEO-3yIhfWGzNfsVYKnJHnZfOZ18UpKNMVIpmGfKhme2LwRKHi2jw13DRZhv9MTE0l8khPpIU9JkLdsxJxRB4iB6Ifc1XDb0AbR7ez27jVua-dhrs_JfwcWoq24MsjS_leTioGx5WafUN3q-RGWuZbYSt-Lhyaw6adR7-MNPByHE2aZ_F2VTm0B6L2fyB1DAcxvatul1PJZIAFNyQonVCLUZc4T1lvKROf" />
                                 </div>
                                 <div className="p-6">
                                     <div className="flex items-center mb-2">
@@ -213,7 +213,7 @@ function Shop() {
                             </div>
                             <div className="product-card-hover bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 group">
                                 <div className="relative aspect-square overflow-hidden">
-                                    <img alt="Watermelon Fizz" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBParfUWvUMXx_6QAryRnPo68RyDYfL1UlNLpGnjcN7dmCYfu6CLHkPN7VBH6T1erydSNHqVUESvn6sRVjMYrvjJtUJDaleUD6uOXIc3c-33srByiQl1roXz38oDqDAle35YE8iPOnqjxpiqTsKXV67e54DtM_rt83-el3rfrfSO-IbH62056sfYJ5qMwpwJZom0AJ8GCRuDbkfR2B9_FDPEM8JwbplCQErjaxzMfQ3_8TrNauxIFi561Ou02w2vIXpTAFlx_MsU-PD" />
+                                    <img alt="Watermelon Fizz" loading="lazy" className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBParfUWvUMXx_6QAryRnPo68RyDYfL1UlNLpGnjcN7dmCYfu6CLHkPN7VBH6T1erydSNHqVUESvn6sRVjMYrvjJtUJDaleUD6uOXIc3c-33srByiQl1roXz38oDqDAle35YE8iPOnqjxpiqTsKXV67e54DtM_rt83-el3rfrfSO-IbH62056sfYJ5qMwpwJZom0AJ8GCRuDbkfR2B9_FDPEM8JwbplCQErjaxzMfQ3_8TrNauxIFi561Ou02w2vIXpTAFlx_MsU-PD" />
                                 </div>
                                 <div className="p-6">
                                     <div className="flex items-center mb-2">

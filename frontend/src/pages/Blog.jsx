@@ -57,7 +57,7 @@ function Blog() {
                         <Link to={`/blog/${post.id}`} key={post.id} className="block group cursor-pointer">
                             <article className={`${post.colorClass} rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1 hover:shadow-xl h-full`}>
                                 <div className="relative h-64 overflow-hidden">
-                                    <img alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={post.image} />
+                                    <img alt={post.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={post.image} />
                                     <div className="absolute top-4 left-4">
                                         <span className="bg-white/90 dark:bg-slate-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-primary">
                                             {post.category}
