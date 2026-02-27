@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import CartSidebar from './CartSidebar';
 
 function Layout() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
     const { totalItems } = useCart();
+    const { user, logout } = useAuth();
 
     const getNavLinkClass = (path) => {
         const isActive = path !== '/' && location.pathname.startsWith(path);
@@ -63,8 +67,39 @@ function Layout() {
                             <Link className={getNavLinkClass('/about')} to="/about">About</Link>
                             <Link className={getNavLinkClass('/contact')} to="/contact">Contact</Link>
                         </div>
-                        <div className="flex items-center space-x-4">
-                            <Link className="hidden md:block text-sm font-semibold hover:text-primary transition-colors" to="/">Login</Link>
+                        <div className="flex items-center space-x-3 md:space-x-4 pr-1">
+                            {user ? (
+                                <div className="relative">
+                                    <button
+                                        onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                                        className="w-10 h-10 rounded-full bg-primary text-slate-900 flex items-center justify-center font-bold shadow-sm hover:scale-105 transition-transform"
+                                    >
+                                        {user.name.charAt(0).toUpperCase()}
+                                    </button>
+
+                                    {isUserMenuOpen && (
+                                        <div className="absolute right-0 mt-3 w-56 rounded-xl shadow-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 py-2 animate-fade-in z-50">
+                                            <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
+                                                <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
+                                                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+                                            </div>
+                                            <button
+                                                onClick={() => {
+                                                    logout();
+                                                    setIsUserMenuOpen(false);
+                                                    navigate('/');
+                                                }}
+                                                className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors flex items-center gap-2 mt-1"
+                                            >
+                                                <span className="material-symbols-outlined text-sm">logout</span>
+                                                Log Out
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <Link className="hidden md:block text-sm font-semibold hover:text-primary transition-colors" to="/login">Login</Link>
+                            )}
                             <button
                                 onClick={() => setIsCartOpen(true)}
                                 className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center"
@@ -91,7 +126,21 @@ function Layout() {
                         <Link className={getMobileNavLinkClass('/about')} to="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
                         <Link className={getMobileNavLinkClass('/contact')} to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
                         <hr className="border-gray-100 dark:border-gray-800 my-4" />
-                        <Link className="block px-3 py-2 rounded-md text-base font-medium text-charcoal dark:text-gray-100 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" to="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+                        {user ? (
+                            <button
+                                onClick={() => {
+                                    logout();
+                                    setIsMobileMenuOpen(false);
+                                    navigate('/');
+                                }}
+                                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 dark:text-red-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
+                            >
+                                <span className="material-symbols-outlined">logout</span>
+                                Log Out
+                            </button>
+                        ) : (
+                            <Link className="block px-3 py-2 rounded-md text-base font-medium text-charcoal dark:text-gray-100 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" to="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+                        )}
                     </div>
                 )}
             </nav>

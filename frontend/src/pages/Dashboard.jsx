@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function Dashboard() {
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
+
     const toggleDarkTheme = () => {
         document.documentElement.classList.toggle('dark');
     };
@@ -38,10 +42,23 @@ function Dashboard() {
                                 Saved Cards
                             </Link>
                             <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-800">
-                                <Link className="flex items-center px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all" to="/">
-                                    <span className="material-icons mr-3 text-xl">logout</span>
-                                    Logout
-                                </Link>
+                                {user ? (
+                                    <button
+                                        className="w-full flex items-center px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all"
+                                        onClick={() => {
+                                            logout();
+                                            navigate('/');
+                                        }}
+                                    >
+                                        <span className="material-icons mr-3 text-xl">logout</span>
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <Link className="flex items-center px-4 py-3 text-sm font-medium text-primary hover:bg-primary/10 rounded-lg transition-all" to="/login">
+                                        <span className="material-icons mr-3 text-xl">login</span>
+                                        Sign In
+                                    </Link>
+                                )}
                             </div>
                         </nav>
                     </aside>

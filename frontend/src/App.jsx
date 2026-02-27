@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
@@ -10,6 +11,9 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
+const SignUp = lazy(() => import('./pages/SignUp'));
+const SignIn = lazy(() => import('./pages/SignIn'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,26 +27,31 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <CartProvider>
-      <ScrollToTop />
-      <Suspense fallback={
-        <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark">
-          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      }>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="shop" element={<Shop />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="blog" element={<Blog />} />
-            <Route path="blog/:id" element={<BlogPost />} />
-            <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <ScrollToTop />
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark">
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="shop" element={<Shop />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="blog" element={<Blog />} />
+              <Route path="blog/:id" element={<BlogPost />} />
+              <Route path="about" element={<About />} />
+              <Route path="contact" element={<Contact />} />
+            </Route>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<SignIn />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+          </Routes>
+        </Suspense>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

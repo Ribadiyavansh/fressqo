@@ -34,12 +34,12 @@ function Home() {
                                 Elevate your sparkling water with artisanal drink bombs. Natural ingredients, zero sugar, and an explosion of flavor in every glass.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                                <button className="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all">
+                                <Link to="/shop" className="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all text-center">
                                     Shop Now
-                                </button>
-                                <button className="w-full sm:w-auto px-8 py-4 bg-charcoal text-white font-bold rounded shadow-lg hover:bg-gray-800 hover:-translate-y-1 transition-all">
+                                </Link>
+                                <Link to="/blog" className="w-full sm:w-auto px-8 py-4 bg-charcoal text-white font-bold rounded shadow-lg hover:bg-gray-800 hover:-translate-y-1 transition-all text-center">
                                     Learn More
-                                </button>
+                                </Link>
                             </div>
                             <div className="flex items-center space-x-4 pt-4">
                                 <div className="flex -space-x-2">
