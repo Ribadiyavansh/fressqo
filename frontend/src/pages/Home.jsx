@@ -225,7 +225,7 @@ function Home() {
                     <div className="space-y-4">
                         <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
                             <summary className="flex justify-between items-center cursor-pointer py-4 focus:outline-none">
-                                <h3 className="text-xl font-bold text-primary">Are Freshqo bombs sugar-free?</h3>
+                                <h3 className="text-xl font-bold hover:text-primary transition-colors">Are Freshqo bombs sugar-free?</h3>
                                 <span className="material-symbols-outlined expand-icon transition-transform duration-300">expand_more</span>
                             </summary>
                             <div className="pt-2 text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -241,7 +241,7 @@ function Home() {
                                 Typically, a Freshqo bomb takes about 30-45 seconds to fully dissolve in sparkling water, creating a perfectly mixed, effervescent drink.
                             </div>
                         </details>
-                        <details className="group border-b border-gray-100 dark:border-gray-800 pb-4" open>
+                        <details className="group border-b border-gray-100 dark:border-gray-800 pb-4">
                             <summary className="flex justify-between items-center cursor-pointer py-4 focus:outline-none">
                                 <h3 className="text-xl font-bold hover:text-primary transition-colors">Do you ship internationally?</h3>
                                 <span className="material-symbols-outlined expand-icon transition-transform duration-300">expand_more</span>
