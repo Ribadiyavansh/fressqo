@@ -5,6 +5,12 @@ function OrderTracking() {
     const [showFAQ, setShowFAQ] = useState(false);
     const [showReviewSuccess, setShowReviewSuccess] = useState(false);
 
+    const [rating, setRating] = useState(0);
+    const [hoverRating, setHoverRating] = useState(0);
+    const [reviewText, setReviewText] = useState('');
+    const [reviewError, setReviewError] = useState('');
+    const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
+
     useEffect(() => {
         // Enforce light mode for tracking flow
         document.documentElement.classList.remove('dark');
@@ -28,6 +34,17 @@ function OrderTracking() {
     };
 
     const submitReview = () => {
+        if (rating === 0) {
+            setReviewError("Please select a star rating before submitting.");
+            return;
+        }
+        if (reviewText.trim() === '') {
+            setReviewError("Please share your thoughts before submitting.");
+            return;
+        }
+
+        setReviewError('');
+        setIsReviewSubmitted(true);
         setShowReviewSuccess(true);
         document.body.style.overflow = 'hidden';
     };
@@ -158,19 +175,47 @@ function OrderTracking() {
                     <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
                         <h3 className="text-lg font-bold mb-2 font-display text-slate-900">How was your Freshqo experience?</h3>
                         <p className="text-sm text-slate-500 mb-6 font-medium">Your feedback helps us grow fresher every day.</p>
-                        <div className="flex justify-between mb-8 cursor-pointer">
-                            <span className="material-icons text-4xl text-slate-300 hover:text-primary transition-colors">star</span>
-                            <span className="material-icons text-4xl text-slate-300 hover:text-primary transition-colors">star</span>
-                            <span className="material-icons text-4xl text-slate-300 hover:text-primary transition-colors">star</span>
-                            <span className="material-icons text-4xl text-slate-300 hover:text-primary transition-colors">star</span>
-                            <span className="material-icons text-4xl text-slate-300 hover:text-primary transition-colors">star</span>
-                        </div>
-                        <div className="space-y-4">
-                            <textarea className="w-full bg-slate-50 border border-slate-300 rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all min-h-[100px] resize-none" placeholder="Share your thoughts..."></textarea>
-                            <button onClick={submitReview} className="w-full py-4 bg-primary text-fresqo-charcoal font-bold rounded-xl hover:shadow-lg hover:shadow-primary/20 transition-all uppercase tracking-widest text-sm">
-                                Submit Review
-                            </button>
-                        </div>
+
+                        {isReviewSubmitted ? (
+                            <div className="flex flex-col items-center justify-center p-6 bg-primary/10 rounded-xl border border-primary/20 text-center animate-fade-in">
+                                <span className="material-icons text-primary text-5xl mb-3">verified</span>
+                                <h4 className="text-lg font-bold text-slate-900 mb-1">Review Submitted Successfully!</h4>
+                                <p className="text-sm text-slate-600">Thank you for sharing your thoughts on this order.</p>
+                            </div>
+                        ) : (
+                            <>
+                                {reviewError && (
+                                    <p className="text-red-500 text-sm mb-4 font-bold bg-red-50 p-2 rounded border border-red-100">{reviewError}</p>
+                                )}
+
+                                <div className="flex justify-between mb-8 cursor-pointer">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <span
+                                            key={star}
+                                            className={`material-icons text-4xl transition-colors ${(hoverRating || rating) >= star ? 'text-primary' : 'text-slate-300 hover:text-primary/70'
+                                                }`}
+                                            onClick={() => setRating(star)}
+                                            onMouseEnter={() => setHoverRating(star)}
+                                            onMouseLeave={() => setHoverRating(0)}
+                                        >
+                                            star
+                                        </span>
+                                    ))}
+                                </div>
+                                <div className="space-y-4">
+                                    <textarea
+                                        className={`w-full bg-slate-50 border ${reviewError && reviewText.trim() === '' ? 'border-red-400 focus:ring-red-500 focus:border-red-500' : 'border-slate-300 focus:ring-primary focus:border-primary'
+                                            } rounded-lg p-4 text-sm outline-none transition-all min-h-[100px] resize-none`}
+                                        placeholder="Share your thoughts..."
+                                        value={reviewText}
+                                        onChange={(e) => setReviewText(e.target.value)}
+                                    ></textarea>
+                                    <button onClick={submitReview} className="w-full py-4 bg-primary text-fresqo-charcoal font-bold rounded-xl hover:shadow-lg hover:shadow-primary/20 transition-all uppercase tracking-widest text-sm active:scale-[0.98]">
+                                        Submit Review
+                                    </button>
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm relative overflow-hidden">
