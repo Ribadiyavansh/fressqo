@@ -12,39 +12,10 @@ function Dashboard() {
 
     return (
         <>
-            <header className="sticky top-0 z-50 bg-white dark:bg-fresqo-charcoal border-b border-gray-200 dark:border-gray-800 transition-colors">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center h-16">
-                        <div className="flex items-center">
-                            <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-fresqo-charcoal dark:text-white">
-                                <img src="/fresqo-logo.svg" alt="Fresqo Logo" className="w-8 h-8" />
-                                FRESQO<span className="text-primary">.</span>
-                            </Link>
-                        </div>
-
-                        <div className="hidden md:flex items-center space-x-8">
-                            <Link className="text-sm font-medium hover:text-primary transition-colors" to="/">Home</Link>
-                            <Link className="text-sm font-medium hover:text-primary transition-colors" to="/shop">Shop</Link>
-                            <Link className="text-sm font-bold text-primary" to="/dashboard">Dashboard</Link>
-                            <Link className="text-sm font-medium hover:text-primary transition-colors" to="/blog">Blog</Link>
-                        </div>
-
-                        <div className="flex items-center space-x-4">
-                            <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 transition-colors">
-                                <span className="material-icons">notifications</span>
-                            </button>
-                            <div className="flex items-center space-x-2 pl-4 border-l border-gray-200 dark:border-gray-700">
-                                <img alt="User avatar" className="h-8 w-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaIJ3ej1JyDZDvOM8t_IKDVX4PEeuCOcF9cPJTwDoDri83yTv1RIEVaTuYuA3fSgqIq4PZxuNaFPPT3XkbNdXEtjjv3T8PihSMI2O8e2l7i2bTaLEcHSJqmDG8lx_Hq9TRvepj8dbLYHVwA8JvLO0WFRI5V1N3H5yIAODw87DL8iPhM-qU0HTZF1k9NCv8hUgQjJnYnoRdXZzTv9ycTli-tZLJJquiLegG_UthYHKVL_6WlrMvKTF13X5_1SiSOhS3jbRcmecWaV9w" />
-                                <span className="text-sm font-medium hidden md:block">Alex Johnson</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="flex flex-col md:flex-row gap-8">
-                    <aside className="w-full md:w-64 flex-shrink-0">
+                    <aside className="w-full md:w-64 flex-shrink-0 md:sticky md:top-28 md:self-start max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
                         <nav className="space-y-1">
                             <Link className="flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" to="/dashboard">
                                 <span className="material-icons mr-3 text-xl">person</span>

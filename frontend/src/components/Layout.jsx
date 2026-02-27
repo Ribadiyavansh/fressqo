@@ -1,8 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import CartSidebar from './CartSidebar';
 
 function Layout() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    const location = useLocation();
+    const { totalItems } = useCart();
+
+    const getNavLinkClass = (path) => {
+        const isActive = path !== '/' && location.pathname.startsWith(path);
+        return `text-sm font-semibold transition-colors ${isActive
+            ? 'text-primary'
+            : 'text-charcoal dark:text-gray-100 hover:text-primary'
+            }`;
+    };
+
+    const getMobileNavLinkClass = (path) => {
+        const isActive = path !== '/' && location.pathname.startsWith(path);
+        return `block px-3 py-2 rounded-md text-base font-medium transition-colors ${isActive
+            ? 'bg-primary/10 text-primary font-bold'
+            : 'text-charcoal dark:text-gray-100 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800'
+            }`;
+    };
 
     useEffect(() => {
         // Automatically apply dark mode based on system preference
@@ -35,18 +56,23 @@ function Layout() {
                             <span className="text-2xl font-extrabold tracking-tight text-charcoal dark:text-white">Fresqo</span>
                         </div>
                         <div className="hidden md:flex items-center space-x-8">
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/">Home</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/shop">Shop</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/dashboard">Dashboard</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/blog">Blog</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/about">About</Link>
-                            <Link className="text-sm font-semibold hover:text-primary transition-colors" to="/contact">Contact</Link>
+                            <Link className={getNavLinkClass('/')} to="/">Home</Link>
+                            <Link className={getNavLinkClass('/shop')} to="/shop">Shop</Link>
+                            <Link className={getNavLinkClass('/dashboard')} to="/dashboard">Dashboard</Link>
+                            <Link className={getNavLinkClass('/blog')} to="/blog">Blog</Link>
+                            <Link className={getNavLinkClass('/about')} to="/about">About</Link>
+                            <Link className={getNavLinkClass('/contact')} to="/contact">Contact</Link>
                         </div>
                         <div className="flex items-center space-x-4">
                             <Link className="hidden md:block text-sm font-semibold hover:text-primary transition-colors" to="/">Login</Link>
-                            <button className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center">
+                            <button
+                                onClick={() => setIsCartOpen(true)}
+                                className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center"
+                            >
                                 <span className="material-symbols-outlined text-charcoal dark:text-white">shopping_cart</span>
-                                <span className="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white dark:border-gray-900">3</span>
+                                {totalItems > 0 && (
+                                    <span className="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white dark:border-gray-900">{totalItems}</span>
+                                )}
                             </button>
                             <button className="md:hidden p-2 text-charcoal dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                                 <span className="material-symbols-outlined">{isMobileMenuOpen ? 'close' : 'menu'}</span>
@@ -58,21 +84,23 @@ function Layout() {
                 {/* Mobile Navigation Menu */}
                 {isMobileMenuOpen && (
                     <div className="md:hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark px-4 pt-2 pb-6 space-y-1 shadow-lg">
-                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/">Home</Link>
-                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/shop">Shop</Link>
-                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/dashboard">Dashboard</Link>
-                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/blog">Blog</Link>
-                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/about">About</Link>
-                        <Link className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/contact">Contact</Link>
-                        <hr className="my-2 border-gray-100 dark:border-gray-800" />
-                        <Link className="block px-3 py-2 rounded-md text-base font-bold text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={() => setIsMobileMenuOpen(false)} to="/">Login</Link>
+                        <Link className={getMobileNavLinkClass('/')} to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+                        <Link className={getMobileNavLinkClass('/shop')} to="/shop" onClick={() => setIsMobileMenuOpen(false)}>Shop</Link>
+                        <Link className={getMobileNavLinkClass('/dashboard')} to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>Dashboard</Link>
+                        <Link className={getMobileNavLinkClass('/blog')} to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+                        <Link className={getMobileNavLinkClass('/about')} to="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+                        <Link className={getMobileNavLinkClass('/contact')} to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+                        <hr className="border-gray-100 dark:border-gray-800 my-4" />
+                        <Link className="block px-3 py-2 rounded-md text-base font-medium text-charcoal dark:text-gray-100 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" to="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                     </div>
                 )}
             </nav>
 
-            <div className="flex-grow pt-20">
+            <main className="flex-grow pt-20">
                 <Outlet />
-            </div>
+            </main>
+
+            <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
             <footer className="bg-charcoal text-white pt-12 pb-6 mt-auto">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

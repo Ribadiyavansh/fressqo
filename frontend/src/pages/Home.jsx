@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 function Home() {
+    const { addToCart } = useCart();
+
     const toggleDarkTheme = () => {
         document.documentElement.classList.toggle('dark');
     };
@@ -124,9 +127,11 @@ function Home() {
                                 </div>
                                 <h3 className="text-lg font-bold mb-1">Lime Zest Blast</h3>
                                 <p className="text-primary font-black text-xl mb-4">$24.00 <span className="text-xs text-gray-400 font-normal">/ Pack of 6</span></p>
-                                <button className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all">
-                                    Pre-Order
-                                    <span className="material-symbols-outlined text-sm">local_shipping</span>
+                                <button
+                                    onClick={() => addToCart({ id: 3, name: "Lime Zest Blast", price: 24.00, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCV55y0YHzvSDkFxLyDuFwDwO1BgXxu5-6koZusgyq31rmq7cKKENz5cZJ5hzlz5nOa7wpSy8zZkKDF5JAfxBy6P9aMp2yhdplF7DC-jaq9GLl6kUZbn9UWt1f1uFSCHOF0PZLbmnX2TkWhEdyN6juMnOFfRAAZXWjBNhwPRHFlxYQEpFpBvqS8W8IU2TP31YBNOxFE_IeJGh-pgplPrJPTCqmb6RIwCPWNVC6yXFwOljQ_Z4yPWotRYptTaLWGApeV_F8kdVCm1Bbm", description: "Pack of 6" })}
+                                    className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all"
+                                >
+                                    Add to Cart
                                 </button>
                             </div>
                         </div>
@@ -142,9 +147,11 @@ function Home() {
                                 </div>
                                 <h3 className="text-lg font-bold mb-1">Peach Dream</h3>
                                 <p className="text-primary font-black text-xl mb-4">$24.00 <span className="text-xs text-gray-400 font-normal">/ Pack of 6</span></p>
-                                <button className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all">
-                                    Pre-Order
-                                    <span className="material-symbols-outlined text-sm">local_shipping</span>
+                                <button
+                                    onClick={() => addToCart({ id: 4, name: "Peach Dream", price: 24.00, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtWMsCdV1D7Osg4jWuQlCiEP4CKkoT-cU9Wphd2LQDf1dCkTBmCKg-5TDD2oKtpGDwIVzdMyW3ylclO0PnjP8_5LxuAHuCw7cTBhqQYmoRTCrJYNn9wW3EtnmMkUYLTABmE17AdGJwDhRgAzLi9VC5JYh4jRLPwqX-77U0pK4VRPxBn3gtK6tBIrRS5RJaeAmX2kcY2eZYJEFJQkGD0uBYVkui47H02tKP00RolhZ7F_Ndx6XMWOWxoRHQprXAIR0FuVLR4gxa-_0P", description: "Pack of 6" })}
+                                    className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all"
+                                >
+                                    Add to Cart
                                 </button>
                             </div>
                         </div>
@@ -159,9 +166,11 @@ function Home() {
                                 </div>
                                 <h3 className="text-lg font-bold mb-1">Wild Berry Bliss</h3>
                                 <p className="text-primary font-black text-xl mb-4">$26.00 <span className="text-xs text-gray-400 font-normal">/ Pack of 6</span></p>
-                                <button className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all">
-                                    Pre-Order
-                                    <span className="material-symbols-outlined text-sm">local_shipping</span>
+                                <button
+                                    onClick={() => addToCart({ id: 5, name: "Wild Berry Bliss", price: 26.00, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA-h_rwVmBqr4HyXVx4v3pMsxKg9TvRbi6qUcNLyMU1cg5u9fUOGc9EOwjhJCTAUubTXXlTzLUNNuzhiBmE_xiP-CX9JOWbFiRI_HBAojZnvLpkC-b5vU8lOqnpVZKc0HFJlr7bcV5tyrUIzgAhHW7bhXmFrzCyL8RfYkENPyEXWmRHLUbeLbpcrYS0mmxHogGF5Dgbhb-CwfaHdaq0ZSrNQdgROI4yczKrnOznzWil8Sn2aKLG7pfHq_2_RNA-scrNj5gHJBEFtPUM", description: "Pack of 6" })}
+                                    className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all"
+                                >
+                                    Add to Cart
                                 </button>
                             </div>
                         </div>
@@ -177,9 +186,11 @@ function Home() {
                                 </div>
                                 <h3 className="text-lg font-bold mb-1">Classic Variety Pack</h3>
                                 <p className="text-primary font-black text-xl mb-4">$45.00 <span className="text-xs text-gray-400 font-normal">/ Pack of 12</span></p>
-                                <button className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all">
-                                    Pre-Order
-                                    <span className="material-symbols-outlined text-sm">local_shipping</span>
+                                <button
+                                    onClick={() => addToCart({ id: 6, name: "Classic Variety Pack", price: 45.00, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBl18XUZ3jT3jPmXTpsipMcH_-oIPUEqyTjOMv4gXMAeAkKrArlT1WSdn7orv5raMSUSJ196NCHyAtlNg8Re25yOwZcb9KwMM7wkS22YNcDFi13YEaArp8qFSAJ73s9kk7h27Mr-qdoZniyRoJ7Zy_KQ7KJRISigFhDWljEudg0PTQ2_YEJLEoZvAdPHft-soyC13Hmvf_38XYQlJkppCWDBbg5HiUGEXzaLQvx9qgu-4b8Z2kX0pFciu4qZ_5vculDCYkFW9vZpuRo", description: "Pack of 12" })}
+                                    className="pre-order-btn w-full py-3 bg-charcoal text-white font-bold rounded flex items-center justify-center gap-2 transition-all"
+                                >
+                                    Add to Cart
                                 </button>
                             </div>
                         </div>
