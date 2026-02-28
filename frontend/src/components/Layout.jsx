@@ -122,14 +122,14 @@ function Layout() {
 
                 {/* Mobile Navigation Menu */}
                 {isMobileMenuOpen && (
-                    <div className="md:hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark px-4 pt-2 pb-6 space-y-1 shadow-lg">
+                    <div className="md:hidden absolute top-[100%] left-0 w-full h-[calc(100vh-80px)] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-gray-100 dark:border-gray-800 px-4 pt-6 pb-20 space-y-2 shadow-2xl overflow-y-auto">
                         <Link className={getMobileNavLinkClass('/')} to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
                         <Link className={getMobileNavLinkClass('/shop')} to="/shop" onClick={() => setIsMobileMenuOpen(false)}>Shop</Link>
                         <Link className={getMobileNavLinkClass('/dashboard')} to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>Dashboard</Link>
                         <Link className={getMobileNavLinkClass('/blog')} to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
                         <Link className={getMobileNavLinkClass('/about')} to="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
                         <Link className={getMobileNavLinkClass('/contact')} to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
-                        <hr className="border-gray-100 dark:border-gray-800 my-4" />
+                        <hr className="border-gray-100 dark:border-gray-800 my-6" />
                         {user ? (
                             <button
                                 onClick={() => {
@@ -137,13 +137,13 @@ function Layout() {
                                     setIsMobileMenuOpen(false);
                                     navigate('/');
                                 }}
-                                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 dark:text-red-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
+                                className="w-full text-left px-3 py-3 rounded-xl text-base font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all flex items-center gap-3"
                             >
                                 <span className="material-symbols-outlined">logout</span>
                                 Log Out
                             </button>
                         ) : (
-                            <Link className="block px-3 py-2 rounded-md text-base font-medium text-charcoal dark:text-gray-100 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" to="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+                            <Link className="block px-3 py-3 rounded-xl text-base font-bold text-charcoal dark:text-white bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all text-center" to="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                         )}
                     </div>
                 )}

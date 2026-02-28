@@ -26,6 +26,16 @@ const OrderReview = lazy(() => import('./pages/checkout/OrderReview'));
 const OrderSuccess = lazy(() => import('./pages/checkout/OrderSuccess'));
 const OrderTracking = lazy(() => import('./pages/OrderTracking'));
 
+// Admin Routes
+const AdminAuth = lazy(() => import('./pages/admin/AdminAuth'));
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const AdminOrders = lazy(() => import('./pages/admin/AdminOrders'));
+const AdminProducts = lazy(() => import('./pages/admin/AdminProducts'));
+const AdminUsers = lazy(() => import('./pages/admin/AdminUsers'));
+const AdminBlog = lazy(() => import('./pages/admin/AdminBlog'));
+const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -69,6 +79,17 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+
+            {/* Admin Portal */}
+            <Route path="/admin-auth" element={<AdminAuth />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="orders" element={<AdminOrders />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="users" element={<AdminUsers />} />
+              <Route path="blog" element={<AdminBlog />} />
+              <Route path="settings" element={<AdminSettings />} />
+            </Route>
           </Routes>
         </Suspense>
       </CartProvider>

@@ -112,51 +112,121 @@ function Dashboard() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="group bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-                        <div className="relative h-48 overflow-hidden">
-                            <img alt="Cocktail Mix" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANdmVyt6OXLBlgsOKPEQ6boL2nr2Fq0ofpVtMqWqE47vRu0DQYbMCZKJX7zGFT59Kihrdcb1AwhOBC6GFly6DKltJ7QIjrwEdAoz3T8mm5JFSKhzQtP6oYvG2ONB7l0k52VZStwSthVzFRMjQ02KYe2pkQvRMKb3wPX-lYPKmPt0oeasCKj8jSQTLzpV4qbwjGzAX5jUyyDQZv7_YUjiQ1mK4CTNey6ghpGodJeKxmUmER6hzUURjuthN0PEGDrtQKwKckz8kvcgWu" />
-                            <span className="absolute top-2 left-2 bg-fresqo-charcoal text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Best Seller</span>
+                    {/* Rec 1 */}
+                    <div className="group bg-white rounded-[28px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full relative border border-slate-100 dark:border-slate-800">
+                        <div className="relative">
+                            <div className="h-56 bg-slate-50 flex items-center justify-center rounded-t-[28px] overflow-hidden">
+                                <img alt="Cocktail Mix" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANdmVyt6OXLBlgsOKPEQ6boL2nr2Fq0ofpVtMqWqE47vRu0DQYbMCZKJX7zGFT59Kihrdcb1AwhOBC6GFly6DKltJ7QIjrwEdAoz3T8mm5JFSKhzQtP6oYvG2ONB7l0k52VZStwSthVzFRMjQ02KYe2pkQvRMKb3wPX-lYPKmPt0oeasCKj8jSQTLzpV4qbwjGzAX5jUyyDQZv7_YUjiQ1mK4CTNey6ghpGodJeKxmUmER6hzUURjuthN0PEGDrtQKwKckz8kvcgWu" />
+                            </div>
+                            <div className="absolute -bottom-3 left-6 z-10">
+                                <span className="bg-[#94e339] text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm border-[3px] border-white">IN STOCK</span>
+                            </div>
                         </div>
-                        <div className="p-4">
-                            <h3 className="font-bold text-fresqo-charcoal dark:text-white">Watermelon Mint Punch</h3>
-                            <p className="text-sm text-gray-500 mt-1">Pack of 4 Sensation Mixes</p>
-                            <div className="mt-4 flex items-center justify-between">
-                                <span className="text-lg font-extrabold">$24.00</span>
-                                <button className="bg-primary text-fresqo-charcoal p-2 rounded-full flex items-center justify-center hover:shadow-lg transition-shadow">
-                                    <span className="material-icons text-xl">add_shopping_cart</span>
+
+                        <div className="p-6 flex flex-col flex-grow pt-8">
+                            <div className="flex-grow">
+                                <p className="text-[11px] text-[#94e339] font-bold uppercase tracking-widest mb-1.5">BEVERAGES</p>
+                                <h3 className="font-extrabold text-[18px] text-[#1e293b] leading-tight line-clamp-2 min-h-[44px]">Watermelon Mint Punch</h3>
+
+                                <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
+                                    <div className="flex flex-col min-w-0">
+                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">$0.00</span>
+                                        <div className="flex items-baseline gap-1 flex-wrap">
+                                            <span className="text-2xl font-black text-[#1e293b]">$24.00</span>
+                                            <span className="text-sm text-slate-400 font-medium italic">/pack</span>
+                                        </div>
+                                    </div>
+                                    <div className="bg-[#f0fdf4] text-[#84cc16] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shrink-0">
+                                        <span className="material-icons-round text-[14px]">star</span>
+                                        <span className="text-sm font-bold">4.8</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <button className="w-full bg-[#94e339] hover:bg-[#86d02e] text-[#1e293b] py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+                                    <span className="material-icons-round text-[20px]">shopping_cart</span>
+                                    <span className="text-[15px]">Add to Cart</span>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div className="group bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-                        <div className="relative h-48 overflow-hidden">
-                            <img alt="Zesty Lemon" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdSe2uRXyItlHClo4A3hFbmuOsPW0h_gqBEVV2mUbHVXiykzyaxREnvAZs4wjUz-uwXIhyDkLdNsimzXaL71AYdSHtOKgmcL3FZKtpyoRv6FLSTlX-UD1s808h6dveJjgRQGxAxMjqHHJBFAQj23KXxHJxXTkWOvMoUfNVUKUl_IcPQ7zyDq3sS2dbiL-9f-DgiXay7XF8nQdrAQtcOYR47Alo3xaOv1rLQGAiquPSoaq25yYKAucojw8CJ9JVthGSzMOHmpwEU_bG" />
+                    {/* Rec 2 */}
+                    <div className="group bg-white rounded-[28px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full relative border border-slate-100 dark:border-slate-800">
+                        <div className="relative">
+                            <div className="h-56 bg-slate-50 flex items-center justify-center rounded-t-[28px] overflow-hidden">
+                                <img alt="Zesty Lemon" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdSe2uRXyItlHClo4A3hFbmuOsPW0h_gqBEVV2mUbHVXiykzyaxREnvAZs4wjUz-uwXIhyDkLdNsimzXaL71AYdSHtOKgmcL3FZKtpyoRv6FLSTlX-UD1s808h6dveJjgRQGxAxMjqHHJBFAQj23KXxHJxXTkWOvMoUfNVUKUl_IcPQ7zyDq3sS2dbiL-9f-DgiXay7XF8nQdrAQtcOYR47Alo3xaOv1rLQGAiquPSoaq25yYKAucojw8CJ9JVthGSzMOHmpwEU_bG" />
+                            </div>
+                            <div className="absolute -bottom-3 left-6 z-10">
+                                <span className="bg-[#94e339] text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm border-[3px] border-white">IN STOCK</span>
+                            </div>
                         </div>
-                        <div className="p-4">
-                            <h3 className="font-bold text-fresqo-charcoal dark:text-white">Zesty Lemon Squeeze</h3>
-                            <p className="text-sm text-gray-500 mt-1">Natural Citrus Infusion</p>
-                            <div className="mt-4 flex items-center justify-between">
-                                <span className="text-lg font-extrabold">$18.50</span>
-                                <button className="bg-primary text-fresqo-charcoal p-2 rounded-full flex items-center justify-center hover:shadow-lg transition-shadow">
-                                    <span className="material-icons text-xl">add_shopping_cart</span>
+
+                        <div className="p-6 flex flex-col flex-grow pt-8">
+                            <div className="flex-grow">
+                                <p className="text-[11px] text-[#94e339] font-bold uppercase tracking-widest mb-1.5">CITRUS</p>
+                                <h3 className="font-extrabold text-[18px] text-[#1e293b] leading-tight line-clamp-2 min-h-[44px]">Zesty Lemon Squeeze</h3>
+
+                                <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
+                                    <div className="flex flex-col min-w-0">
+                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">$0.00</span>
+                                        <div className="flex items-baseline gap-1 flex-wrap">
+                                            <span className="text-2xl font-black text-[#1e293b]">$18.50</span>
+                                            <span className="text-sm text-slate-400 font-medium italic">/pack</span>
+                                        </div>
+                                    </div>
+                                    <div className="bg-[#f0fdf4] text-[#84cc16] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shrink-0">
+                                        <span className="material-icons-round text-[14px]">star</span>
+                                        <span className="text-sm font-bold">4.6</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <button className="w-full bg-[#94e339] hover:bg-[#86d02e] text-[#1e293b] py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+                                    <span className="material-icons-round text-[20px]">shopping_cart</span>
+                                    <span className="text-[15px]">Add to Cart</span>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div className="group bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-                        <div className="relative h-48 overflow-hidden">
-                            <img alt="Variety Pack" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQQ0QOxehJd6Zaf5oexaQYPW4dwu5NUeKADCkQOpj9y0O0pnIMh9t3JVfCKaYHU0GrXqH8fIlRGVaIwN7QYbfyiCsVjjA19AfJk4jKu90r0-zkJo9rJDYZqYf62E_4sBot30riNoYZNu5tVUoVgqmFQEHREBFmXPWgZWz_Iu--Vp7GnBfigoACovbRjxsAgCZbHsR6yKYihASzWnMTvmYWzEbZU1JS40KSXnQMTc822iXt1-zDRd46bXE8sfUU4Zdf95NMh6Mn52-" />
-                            <span className="absolute top-2 left-2 bg-primary text-fresqo-charcoal text-[10px] font-bold px-2 py-1 rounded uppercase">New</span>
+                    {/* Rec 3 */}
+                    <div className="group bg-white rounded-[28px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full relative border border-slate-100 dark:border-slate-800">
+                        <div className="relative">
+                            <div className="h-56 bg-slate-50 flex items-center justify-center rounded-t-[28px] overflow-hidden">
+                                <img alt="Variety Pack" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQQ0QOxehJd6Zaf5oexaQYPW4dwu5NUeKADCkQOpj9y0O0pnIMh9t3JVfCKaYHU0GrXqH8fIlRGVaIwN7QYbfyiCsVjjA19AfJk4jKu90r0-zkJo9rJDYZqYf62E_4sBot30riNoYZNu5tVUoVgqmFQEHREBFmXPWgZWz_Iu--Vp7GnBfigoACovbRjxsAgCZbHsR6yKYihASzWnMTvmYWzEbZU1JS40KSXnQMTc822iXt1-zDRd46bXE8sfUU4Zdf95NMh6Mn52-" />
+                            </div>
+                            <div className="absolute -bottom-3 left-6 z-10">
+                                <span className="bg-[#94e339] text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm border-[3px] border-white">IN STOCK</span>
+                            </div>
                         </div>
-                        <div className="p-4">
-                            <h3 className="font-bold text-fresqo-charcoal dark:text-white">Variety Pack of 4</h3>
-                            <p className="text-sm text-gray-500 mt-1">The Ultimate Party Starter</p>
-                            <div className="mt-4 flex items-center justify-between">
-                                <span className="text-lg font-extrabold">$42.00</span>
-                                <button className="bg-primary text-fresqo-charcoal p-2 rounded-full flex items-center justify-center hover:shadow-lg transition-shadow">
-                                    <span className="material-icons text-xl">add_shopping_cart</span>
+
+                        <div className="p-6 flex flex-col flex-grow pt-8">
+                            <div className="flex-grow">
+                                <p className="text-[11px] text-[#94e339] font-bold uppercase tracking-widest mb-1.5">ASSORTED</p>
+                                <h3 className="font-extrabold text-[18px] text-[#1e293b] leading-tight line-clamp-2 min-h-[44px]">Variety Pack of 4</h3>
+
+                                <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
+                                    <div className="flex flex-col min-w-0">
+                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">$0.00</span>
+                                        <div className="flex items-baseline gap-1 flex-wrap">
+                                            <span className="text-2xl font-black text-[#1e293b]">$42.00</span>
+                                            <span className="text-sm text-slate-400 font-medium italic">/pack</span>
+                                        </div>
+                                    </div>
+                                    <div className="bg-[#f0fdf4] text-[#84cc16] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shrink-0">
+                                        <span className="material-icons-round text-[14px]">star</span>
+                                        <span className="text-sm font-bold">4.9</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <button className="w-full bg-[#94e339] hover:bg-[#86d02e] text-[#1e293b] py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+                                    <span className="material-icons-round text-[20px]">shopping_cart</span>
+                                    <span className="text-[15px]">Add to Cart</span>
                                 </button>
                             </div>
                         </div>

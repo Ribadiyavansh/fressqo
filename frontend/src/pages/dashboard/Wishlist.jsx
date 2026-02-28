@@ -24,113 +24,150 @@ function Wishlist() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
                 {/* Item 1 */}
-                <div className="group bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 flex flex-col h-full relative">
-                    <button className="absolute top-3 right-3 z-10 p-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-sm">
-                        <span className="material-icons-round text-[20px]">delete_outline</span>
+                <div className="group bg-white rounded-[28px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full relative border border-slate-100 dark:border-slate-800">
+                    <button className="absolute top-4 right-4 z-20 p-2.5 bg-white/90 backdrop-blur-sm rounded-full text-slate-400 hover:text-red-500 transition-all shadow-sm">
+                        <span className="material-icons-round text-[18px]">delete_outline</span>
                     </button>
-                    <div className="relative h-48 overflow-hidden bg-slate-50 dark:bg-slate-800/50">
-                        <img
-                            alt="Watermelon Mint Punch"
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANdmVyt6OXLBlgsOKPEQ6boL2nr2Fq0ofpVtMqWqE47vRu0DQYbMCZKJX7zGFT59Kihrdcb1AwhOBC6GFly6DKltJ7QIjrwEdAoz3T8mm5JFSKhzQtP6oYvG2ONB7l0k52VZStwSthVzFRMjQ02KYe2pkQvRMKb3wPX-lYPKmPt0oeasCKj8jSQTLzpV4qbwjGzAX5jUyyDQZv7_YUjiQ1mK4CTNey6ghpGodJeKxmUmER6hzUURjuthN0PEGDrtQKwKckz8kvcgWu"
-                        />
-                        <div className="absolute top-3 left-3 flex gap-2">
-                            <span className="bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">In Stock</span>
-                            <span className="bg-fresqo-yellow text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-sm">
-                                <span className="material-icons-round text-[12px]">star</span> Best Seller
-                            </span>
+                    <div className="relative">
+                        <div className="h-56 bg-slate-50 flex items-center justify-center rounded-t-[28px] overflow-hidden">
+                            <img
+                                alt="Watermelon Mint Punch"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuANdmVyt6OXLBlgsOKPEQ6boL2nr2Fq0ofpVtMqWqE47vRu0DQYbMCZKJX7zGFT59Kihrdcb1AwhOBC6GFly6DKltJ7QIjrwEdAoz3T8mm5JFSKhzQtP6oYvG2ONB7l0k52VZStwSthVzFRMjQ02KYe2pkQvRMKb3wPX-lYPKmPt0oeasCKj8jSQTLzpV4qbwjGzAX5jUyyDQZv7_YUjiQ1mK4CTNey6ghpGodJeKxmUmER6hzUURjuthN0PEGDrtQKwKckz8kvcgWu"
+                            />
+                        </div>
+                        <div className="absolute -bottom-3 left-6 z-10">
+                            <span className="bg-[#94e339] text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm border-[3px] border-white">IN STOCK</span>
                         </div>
                     </div>
 
-                    <div className="p-5 flex flex-col flex-grow">
+                    <div className="p-6 flex flex-col flex-grow pt-8">
                         <div className="flex-grow">
-                            <Link to="/shop" className="hover:text-primary transition-colors">
-                                <h3 className="font-bold text-lg text-slate-900 dark:text-white line-clamp-2">Watermelon Mint Punch</h3>
+                            <p className="text-[11px] text-[#94e339] font-bold uppercase tracking-widest mb-1.5">BEVERAGES</p>
+                            <Link to="/shop">
+                                <h3 className="font-extrabold text-[18px] text-[#1e293b] leading-tight line-clamp-2 min-h-[44px]">Watermelon Mint Punch</h3>
                             </Link>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Pack of 4 Sensation Mixes</p>
+
+                            <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
+                                <div className="flex flex-col min-w-0">
+                                    <span className="text-sm text-slate-400 line-through font-medium">$28.00</span>
+                                    <div className="flex items-baseline gap-1 flex-wrap">
+                                        <span className="text-2xl font-black text-[#1e293b]">$24.00</span>
+                                        <span className="text-sm text-slate-400 font-medium italic">/pack</span>
+                                    </div>
+                                </div>
+                                <div className="bg-[#f0fdf4] text-[#84cc16] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shrink-0">
+                                    <span className="material-icons-round text-[14px]">star</span>
+                                    <span className="text-sm font-bold">4.8</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/50 flex items-end justify-between">
-                            <div>
-                                <span className="text-xs text-slate-400 dark:text-slate-500 line-through mr-2">$28.00</span>
-                                <span className="text-2xl font-black text-slate-900 dark:text-white">$24.00</span>
-                            </div>
-                            <button className="bg-slate-100 hover:bg-primary dark:bg-slate-800 dark:hover:bg-primary text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-900 w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:shadow-lg">
-                                <span className="material-icons-round">add_shopping_cart</span>
+                        <div className="mt-6">
+                            <button className="w-full bg-[#94e339] hover:bg-[#86d02e] text-[#1e293b] py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+                                <span className="material-icons-round text-[20px]">shopping_cart</span>
+                                <span className="text-[15px]">Add to Cart</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
                 {/* Item 2 */}
-                <div className="group bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 flex flex-col h-full relative">
-                    <button className="absolute top-3 right-3 z-10 p-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-sm">
-                        <span className="material-icons-round text-[20px]">delete_outline</span>
+                <div className="group bg-white rounded-[28px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full relative border border-slate-100 dark:border-slate-800">
+                    <button className="absolute top-4 right-4 z-20 p-2.5 bg-white/90 backdrop-blur-sm rounded-full text-slate-400 hover:text-red-500 transition-all shadow-sm">
+                        <span className="material-icons-round text-[18px]">delete_outline</span>
                     </button>
-                    <div className="relative h-48 overflow-hidden bg-slate-50 dark:bg-slate-800/50">
-                        <img
-                            alt="Variety Pack"
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQQ0QOxehJd6Zaf5oexaQYPW4dwu5NUeKADCkQOpj9y0O0pnIMh9t3JVfCKaYHU0GrXqH8fIlRGVaIwN7QYbfyiCsVjjA19AfJk4jKu90r0-zkJo9rJDYZqYf62E_4sBot30riNoYZNu5tVUoVgqmFQEHREBFmXPWgZWz_Iu--Vp7GnBfigoACovbRjxsAgCZbHsR6yKYihASzWnMTvmYWzEbZU1JS40KSXnQMTc822iXt1-zDRd46bXE8sfUU4Zdf95NMh6Mn52-"
-                        />
-                        <div className="absolute top-3 left-3 flex gap-2">
-                            <span className="bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">In Stock</span>
-                            <span className="bg-primary text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">New</span>
+                    <div className="relative">
+                        <div className="h-56 bg-slate-50 flex items-center justify-center rounded-t-[28px] overflow-hidden">
+                            <img
+                                alt="Variety Pack"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQQ0QOxehJd6Zaf5oexaQYPW4dwu5NUeKADCkQOpj9y0O0pnIMh9t3JVfCKaYHU0GrXqH8fIlRGVaIwN7QYbfyiCsVjjA19AfJk4jKu90r0-zkJo9rJDYZqYf62E_4sBot30riNoYZNu5tVUoVgqmFQEHREBFmXPWgZWz_Iu--Vp7GnBfigoACovbRjxsAgCZbHsR6yKYihASzWnMTvmYWzEbZU1JS40KSXnQMTc822iXt1-zDRd46bXE8sfUU4Zdf95NMh6Mn52-"
+                            />
+                        </div>
+                        <div className="absolute -bottom-3 left-6 z-10">
+                            <span className="bg-[#94e339] text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm border-[3px] border-white">IN STOCK</span>
                         </div>
                     </div>
 
-                    <div className="p-5 flex flex-col flex-grow">
+                    <div className="p-6 flex flex-col flex-grow pt-8">
                         <div className="flex-grow">
-                            <Link to="/shop" className="hover:text-primary transition-colors">
-                                <h3 className="font-bold text-lg text-slate-900 dark:text-white line-clamp-2">Party Variety Pack</h3>
+                            <p className="text-[11px] text-[#94e339] font-bold uppercase tracking-widest mb-1.5">ASSORTED KITS</p>
+                            <Link to="/shop">
+                                <h3 className="font-extrabold text-[18px] text-[#1e293b] leading-tight line-clamp-2 min-h-[44px]">Party Variety Pack</h3>
                             </Link>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">12-Pack Assorted Flavors</p>
+
+                            <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
+                                <div className="flex flex-col min-w-0">
+                                    <span className="text-sm text-slate-400 line-through font-medium opacity-0">$0.00</span>
+                                    <div className="flex items-baseline gap-1 flex-wrap">
+                                        <span className="text-2xl font-black text-[#1e293b]">$42.00</span>
+                                        <span className="text-sm text-slate-400 font-medium italic">/pack</span>
+                                    </div>
+                                </div>
+                                <div className="bg-[#f0fdf4] text-[#84cc16] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shrink-0">
+                                    <span className="material-icons-round text-[14px]">star</span>
+                                    <span className="text-sm font-bold">4.9</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/50 flex items-end justify-between">
-                            <div>
-                                <span className="text-2xl font-black text-slate-900 dark:text-white">$42.00</span>
-                            </div>
-                            <button className="bg-primary text-slate-900 w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg shadow-primary/30 hover:scale-110">
-                                <span className="material-icons-round">add_shopping_cart</span>
+                        <div className="mt-6">
+                            <button className="w-full bg-[#94e339] hover:bg-[#86d02e] text-[#1e293b] py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+                                <span className="material-icons-round text-[20px]">shopping_cart</span>
+                                <span className="text-[15px]">Add to Cart</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
                 {/* Item 3 */}
-                <div className="group bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col h-full relative opacity-75">
-                    <button className="absolute top-3 right-3 z-10 p-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-sm">
-                        <span className="material-icons-round text-[20px]">delete_outline</span>
+                <div className="group bg-white rounded-[28px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full relative border border-slate-100 dark:border-slate-800 opacity-80">
+                    <button className="absolute top-4 right-4 z-20 p-2.5 bg-white/90 backdrop-blur-sm rounded-full text-slate-400 hover:text-red-500 transition-all shadow-sm">
+                        <span className="material-icons-round text-[18px]">delete_outline</span>
                     </button>
-                    <div className="relative h-48 overflow-hidden bg-slate-50 dark:bg-slate-800/50">
-                        <img
-                            alt="Mango Tango"
-                            className="w-full h-full object-cover grayscale mix-blend-luminosity"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdSe2uRXyItlHClo4A3hFbmuOsPW0h_gqBEVV2mUbHVXiykzyaxREnvAZs4wjUz-uwXIhyDkLdNsimzXaL71AYdSHtOKgmcL3FZKtpyoRv6FLSTlX-UD1s808h6dveJjgRQGxAxMjqHHJBFAQj23KXxHJxXTkWOvMoUfNVUKUl_IcPQ7zyDq3sS2dbiL-9f-DgiXay7XF8nQdrAQtcOYR47Alo3xaOv1rLQGAiquPSoaq25yYKAucojw8CJ9JVthGSzMOHmpwEU_bG"
-                        />
-                        <div className="absolute inset-0 bg-slate-900/10 dark:bg-slate-900/40"></div>
-                        <div className="absolute top-3 left-3 flex gap-2">
-                            <span className="bg-red-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">Out of Stock</span>
+                    <div className="relative">
+                        <div className="h-56 bg-slate-50 flex items-center justify-center rounded-t-[28px] overflow-hidden relative">
+                            <img
+                                alt="Mango Tango Splash"
+                                className="w-full h-full object-cover grayscale mix-blend-luminosity group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdSe2uRXyItlHClo4A3hFbmuOsPW0h_gqBEVV2mUbHVXiykzyaxREnvAZs4wjUz-uwXIhyDkLdNsimzXaL71AYdSHtOKgmcL3FZKtpyoRv6FLSTlX-UD1s808h6dveJjgRQGxAxMjqHHJBFAQj23KXxHJxXTkWOvMoUfNVUKUl_IcPQ7zyDq3sS2dbiL-9f-DgiXay7XF8nQdrAQtcOYR47Alo3xaOv1rLQGAiquPSoaq25yYKAucojw8CJ9JVthGSzMOHmpwEU_bG"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/60 backdrop-blur-[2px]">
+                                <button className="bg-white text-slate-900 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">Notify Me</button>
+                            </div>
                         </div>
-                        {/* Notify Me Overlay */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/60 backdrop-blur-[2px]">
-                            <button className="bg-white text-slate-900 px-4 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">Notify Me</button>
+                        <div className="absolute -bottom-3 left-6 z-10">
+                            <span className="bg-slate-400 text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm border-[3px] border-white">OUT OF STOCK</span>
                         </div>
                     </div>
 
-                    <div className="p-5 flex flex-col flex-grow">
+                    <div className="p-6 flex flex-col flex-grow pt-8">
                         <div className="flex-grow">
-                            <h3 className="font-bold text-lg text-slate-900 dark:text-white line-clamp-2">Mango Tango Splash</h3>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Tropical Limited Edition</p>
+                            <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest mb-1.5">LIMITED EDITION</p>
+                            <Link to="/shop">
+                                <h3 className="font-extrabold text-[18px] text-slate-600 leading-tight line-clamp-2 min-h-[44px]">Mango Tango Splash</h3>
+                            </Link>
+
+                            <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
+                                <div className="flex flex-col min-w-0">
+                                    <span className="text-sm text-slate-300 line-through font-medium opacity-0">$0.00</span>
+                                    <div className="flex items-baseline gap-1 flex-wrap">
+                                        <span className="text-2xl font-black text-slate-600">$18.50</span>
+                                        <span className="text-sm text-slate-400 font-medium italic">/pack</span>
+                                    </div>
+                                </div>
+                                <div className="bg-slate-100 text-slate-400 px-2.5 py-1.5 rounded-xl flex items-center gap-1 shrink-0">
+                                    <span className="material-icons-round text-[14px]">star</span>
+                                    <span className="text-sm font-bold">4.7</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/50 flex items-end justify-between">
-                            <div>
-                                <span className="text-2xl font-black text-slate-900 dark:text-white">$18.50</span>
-                            </div>
-                            <button disabled className="bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600 w-10 h-10 rounded-full flex items-center justify-center cursor-not-allowed">
-                                <span className="material-icons-round">remove_shopping_cart</span>
+                        <div className="mt-6">
+                            <button disabled className="w-full bg-slate-100 text-slate-400 py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 cursor-not-allowed">
+                                <span className="material-icons-round text-[20px]">remove_shopping_cart</span>
+                                <span className="text-[15px]">Out of Stock</span>
                             </button>
                         </div>
                     </div>
