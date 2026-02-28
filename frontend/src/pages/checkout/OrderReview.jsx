@@ -159,12 +159,7 @@ function OrderReview() {
                             </div>
                         </div>
 
-                        <div className="mt-8 text-center sticky top-[600px]">
-                            <Link to="/checkout/payment" className="inline-flex items-center justify-center gap-2 text-slate-500 hover:text-primary transition-colors py-2 font-bold text-sm bg-white border border-slate-200 rounded-xl px-6 w-full shadow-sm">
-                                <span className="material-icons text-sm">arrow_back</span>
-                                Back to Payment Information
-                            </Link>
-                        </div>
+
                     </div>
                 </div>
             </div>
