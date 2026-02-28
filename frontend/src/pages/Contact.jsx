@@ -1,7 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Contact() {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitted(true);
+    };
+
     const toggleDarkTheme = () => {
         document.documentElement.classList.toggle('dark');
     };
@@ -12,7 +19,7 @@ function Contact() {
 
     return (
         <div className="flex-1 w-full">
-            
+
             <main className="flex-1 px-6 md:px-20 lg:px-40 py-12">
                 <div className="max-w-6xl mx-auto mb-12">
                     <h1 className="text-charcoal dark:text-slate-100 text-5xl font-black leading-tight tracking-[-0.033em] mb-4">Contact &amp; Support</h1>
@@ -74,31 +81,51 @@ function Contact() {
                         </div>
                     </div>
                     <div className="lg:col-span-7">
-                        <div className="bg-white dark:bg-slate-900/80 p-8 rounded-xl border border-border-light shadow-sm">
-                            <h2 className="text-2xl font-bold text-charcoal dark:text-slate-100 mb-6">Send us a Message</h2>
-                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="flex flex-col gap-2">
-                                        <label className="text-sm font-bold text-charcoal dark:text-slate-300">Full Name</label>
-                                        <input className="rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary" placeholder="John Doe" type="text" />
+                        <div className="bg-white dark:bg-slate-900/80 p-8 rounded-xl border border-border-light shadow-sm h-full flex flex-col justify-center">
+                            {isSubmitted ? (
+                                <div className="text-center py-12 animate-fade-in">
+                                    <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <span className="material-symbols-outlined text-primary text-4xl">check_circle</span>
                                     </div>
-                                    <div className="flex flex-col gap-2">
-                                        <label className="text-sm font-bold text-charcoal dark:text-slate-300">Email Address</label>
-                                        <input className="rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary" placeholder="john@example.com" type="email" />
-                                    </div>
+                                    <h2 className="text-3xl font-black text-charcoal dark:text-slate-100 mb-4 tracking-tight">Thank you for contacting us!</h2>
+                                    <p className="text-sage dark:text-slate-400 text-lg mb-8 max-w-sm mx-auto">
+                                        Our team will reach out to you soon.
+                                    </p>
+                                    <button
+                                        onClick={() => setIsSubmitted(false)}
+                                        className="px-8 py-3 bg-charcoal dark:bg-slate-800 text-white font-bold rounded-xl hover:bg-sage dark:hover:bg-slate-700 transition-colors shadow-sm"
+                                    >
+                                        Send Another Message
+                                    </button>
                                 </div>
-                                <div className="flex flex-col gap-2">
-                                    <label className="text-sm font-bold text-charcoal dark:text-slate-300">Subject</label>
-                                    <input className="rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary" placeholder="How can we help?" type="text" />
-                                </div>
-                                <div className="flex flex-col gap-2">
-                                    <label className="text-sm font-bold text-charcoal dark:text-slate-300">Message</label>
-                                    <textarea className="rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary" placeholder="Your message here..." rows="5"></textarea>
-                                </div>
-                                <button className="w-full md:w-auto px-10 py-4 bg-primary text-charcoal font-black rounded-xl hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]" type="submit">
-                                    Submit Message
-                                </button>
-                            </form>
+                            ) : (
+                                <>
+                                    <h2 className="text-2xl font-bold text-charcoal dark:text-slate-100 mb-6">Send us a Message</h2>
+                                    <form className="space-y-6" onSubmit={handleSubmit}>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="flex flex-col gap-2">
+                                                <label className="text-sm font-bold text-charcoal dark:text-slate-300">Full Name</label>
+                                                <input required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="John Doe" type="text" />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <label className="text-sm font-bold text-charcoal dark:text-slate-300">Email Address</label>
+                                                <input required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="john@example.com" type="email" />
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-charcoal dark:text-slate-300">Subject</label>
+                                            <input required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="How can we help?" type="text" />
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-charcoal dark:text-slate-300">Message</label>
+                                            <textarea required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="Your message here..." rows="5"></textarea>
+                                        </div>
+                                        <button className="w-full md:w-auto px-10 py-4 bg-primary text-charcoal font-black rounded-xl hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]" type="submit">
+                                            Submit Message
+                                        </button>
+                                    </form>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -115,7 +142,7 @@ function Contact() {
                     </div>
                 </section>
             </main>
-            
+
         </div>
     );
 }

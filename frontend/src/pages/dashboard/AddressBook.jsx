@@ -99,8 +99,8 @@ function AddressBook() {
                 {/* Recent Activity/Map Preview Section */}
                 <div className="mt-12">
                     <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Last Delivery Location</h2>
-                    <div className="bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row h-72 shadow-sm">
-                        <div className="w-full md:w-1/2 h-full relative overflow-hidden">
+                    <div className="bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row h-auto md:h-72 shadow-sm">
+                        <div className="w-full md:w-1/2 h-48 md:h-full relative overflow-hidden">
                             <img
                                 alt="Map view"
                                 className="w-full h-full object-cover grayscale opacity-50"
