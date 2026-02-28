@@ -25,8 +25,8 @@ function DashboardLayout() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="flex flex-col md:flex-row gap-8">
                     {/* Shared Sidebar Navigation */}
-                    <aside className="w-full md:w-64 flex-shrink-0 md:sticky md:top-28 md:self-start max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
-                        <nav className="space-y-1">
+                    <aside className="w-full md:w-64 flex-shrink-0 md:sticky md:top-28 md:self-start h-auto md:h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
+                        <nav className="flex flex-col h-full space-y-1">
                             <Link
                                 className={`flex items-center px-4 py-3 text-sm rounded-lg transition-all ${isActive('/dashboard/profile') ? 'font-bold sidebar-active shadow-sm' : 'font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
                                 to="/dashboard/profile"
@@ -59,7 +59,7 @@ function DashboardLayout() {
                                 Wishlist
                             </Link>
 
-                            <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-800">
+                            <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-800">
                                 {user ? (
                                     <button
                                         className="w-full flex items-center px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all"
