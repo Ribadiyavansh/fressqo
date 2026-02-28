@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Profile() {
+    const avatars = [
+        "/avatars/avatar1.png", // 1. only user icon
+        "/avatars/avatar2.png", // 2. female:with the short hair
+        "/avatars/avatar3.png", // 3. male with the short hair and the box beard
+        "/avatars/avatar4.png", // 4. female with the long hair
+        "/avatars/avatar5.png"  // 5. male with the hair and the full beard
+    ];
+
+    const [currentAvatar, setCurrentAvatar] = useState(avatars[0]);
+    const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
+
+    const handleAvatarSelect = (avatar) => {
+        setCurrentAvatar(avatar);
+        setIsAvatarModalOpen(false);
+    };
+
     return (
         <div className="max-w-4xl mx-auto">
             <header className="mb-10">
@@ -16,21 +32,21 @@ function Profile() {
                             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary/20 bg-slate-100 dark:bg-slate-800">
                                 <img
                                     alt="Profile avatar"
-                                    className="w-full h-full object-cover"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV1n-omnT7CMWnu18-dUE9UUFtKbc21G5LRpBZHYoFgKqHmm6qKgSrHpzgd3mPtB-UZvJQuM1MdzEIqsB7lbS-InntCcJ9Zi5n7q0gG1zNlj3lMpDHQjWW7hi9Ah25IYfgp0xqWjnJt9j1QTOz5AjuOqEccAGfjUmjdqjdn5wb_j657KwSzr71LPshUrxdJNyDw4KQirfySL-9dF7Yyb9bhgPeMRAGZT7OY_7dm4lriqpX9IHj9mRL5RLHG8x-ya1T-cVdocUaWvBd"
+                                    className="w-full h-full object-cover bg-white dark:bg-slate-800 scale-[1.15]"
+                                    src={currentAvatar}
                                 />
                             </div>
-                            <button className="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full shadow-lg hover:scale-110 transition-transform">
+                            <button
+                                onClick={() => setIsAvatarModalOpen(true)}
+                                className="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full shadow-lg hover:scale-110 transition-transform"
+                                type="button"
+                            >
                                 <span className="material-icons-round text-sm">photo_camera</span>
                             </button>
                         </div>
                         <div className="text-center md:text-left">
                             <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Profile Picture</h3>
                             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">JPG, GIF or PNG. Max size of 800K</p>
-                            <div className="mt-4 flex flex-wrap gap-3 justify-center md:justify-start">
-                                <button className="px-4 py-2 bg-primary text-slate-900 font-semibold rounded-lg hover:brightness-105 transition-all">Upload New</button>
-                                <button className="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">Delete</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,6 +137,39 @@ function Profile() {
                     </button>
                 </div>
             </div>
+
+            {/* Avatar Selection Modal */}
+            {isAvatarModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in" onClick={() => setIsAvatarModalOpen(false)}>
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-lg" onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+                            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Choose Avatar</h2>
+                            <button onClick={() => setIsAvatarModalOpen(false)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-500 transition-colors">
+                                <span className="material-icons-round">close</span>
+                            </button>
+                        </div>
+
+                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 mb-6">
+                            {avatars.map((avatar, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => handleAvatarSelect(avatar)}
+                                    className={`relative aspect-square rounded-full overflow-hidden border-4 transition-all hover:scale-105 ${currentAvatar === avatar ? 'border-primary shadow-lg scale-110 z-10' : 'border-transparent hover:border-primary/50 bg-white dark:bg-slate-800'}`}
+                                >
+                                    <img src={avatar} alt={`Avatar option ${index + 1}`} className="w-full h-full object-cover bg-white dark:bg-slate-800 scale-[1.15]" />
+                                    {currentAvatar === avatar && (
+                                        <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
+                                            <span className="material-icons-round text-primary drop-shadow-md">check_circle</span>
+                                        </div>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+
+                        <p className="text-sm text-center text-slate-500 dark:text-slate-400">Select an avatar to instantly update your profile picture.</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
