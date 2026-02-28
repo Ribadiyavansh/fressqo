@@ -5,6 +5,9 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [avatar, setAvatar] = useState(() => {
+        return localStorage.getItem('fresqo_avatar') || "/avatars/avatar1.png";
+    });
 
     useEffect(() => {
         // Mock checking local storage or session
@@ -23,10 +26,16 @@ export function AuthProvider({ children }) {
     const logout = () => {
         setUser(null);
         localStorage.removeItem('fresqo_user');
+        localStorage.removeItem('fresqo_avatar');
+    };
+
+    const updateAvatar = (newAvatar) => {
+        setAvatar(newAvatar);
+        localStorage.setItem('fresqo_avatar', newAvatar);
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, avatar, updateAvatar, loading }}>
             {children}
         </AuthContext.Provider>
     );

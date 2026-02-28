@@ -24,10 +24,10 @@ function SignUp() {
         <div className="bg-[#f0fdf4] dark:bg-[#0f172a] min-h-screen flex items-center justify-center p-4 transition-colors duration-300 font-display">
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary text-slate-900 mb-4 shadow-lg shadow-primary/20">
-                        <span className="material-icons-round text-4xl">eco</span>
+                    <div className="inline-flex items-center justify-center mb-4">
+                        <img src="/fresqo-logo.png" alt="Fresqo Logo" className="w-20 h-20 object-contain" />
                     </div>
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Join Freshqo</h1>
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Join Fresqo</h1>
                     <p className="text-slate-600 dark:text-slate-400">Experience freshness like never before.</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700">

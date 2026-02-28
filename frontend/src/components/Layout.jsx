@@ -11,7 +11,7 @@ function Layout() {
     const location = useLocation();
     const navigate = useNavigate();
     const { totalItems } = useCart();
-    const { user, logout } = useAuth();
+    const { user, logout, avatar } = useAuth();
 
     const getNavLinkClass = (path) => {
         const isActive = path !== '/' && location.pathname.startsWith(path);
@@ -55,9 +55,9 @@ function Layout() {
             <nav className="fixed w-full top-0 z-50 glass-nav border-b border-gray-100 dark:border-gray-800 transition-colors">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
-                        <div className="flex-shrink-0 flex items-center gap-2">
-                            <img src="/fresqo-logo.svg" alt="Fresqo Logo" className="w-10 h-10" />
-                            <span className="text-2xl font-extrabold tracking-tight text-charcoal dark:text-white">Fresqo</span>
+                        <div className="flex-shrink-0 flex items-center gap-3">
+                            <img src="/fresqo-logo.png" alt="Fresqo Logo" className="w-16 h-16 object-contain" />
+                            <span className="text-2xl font-extrabold tracking-tight text-charcoal dark:text-white mt-1">Fresqo</span>
                         </div>
                         <div className="hidden md:flex items-center space-x-8">
                             <Link className={getNavLinkClass('/')} to="/">Home</Link>
@@ -72,9 +72,13 @@ function Layout() {
                                 <div className="relative">
                                     <button
                                         onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                                        className="w-10 h-10 rounded-full bg-primary text-slate-900 flex items-center justify-center font-bold shadow-sm hover:scale-105 transition-transform"
+                                        className="w-10 h-10 rounded-full bg-primary text-slate-900 flex items-center justify-center font-bold shadow-sm hover:scale-105 transition-transform overflow-hidden border-2 border-primary/30"
                                     >
-                                        {user.name.charAt(0).toUpperCase()}
+                                        {avatar ? (
+                                            <img src={avatar} alt="User Avatar" className="w-full h-full object-cover bg-white dark:bg-slate-800 scale-[1.15]" />
+                                        ) : (
+                                            user.name.charAt(0).toUpperCase()
+                                        )}
                                     </button>
 
                                     {isUserMenuOpen && (
@@ -155,9 +159,9 @@ function Layout() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                         <div className="space-y-6">
-                            <div className="flex items-center gap-2">
-                                <img src="/fresqo-logo.svg" alt="Fresqo Logo" className="w-8 h-8" />
-                                <span className="text-xl font-extrabold tracking-tight">Fresqo</span>
+                            <div className="flex items-center gap-3">
+                                <img src="/fresqo-logo.png" alt="Fresqo Logo" className="w-14 h-14 object-contain bg-white rounded-full p-1" />
+                                <span className="text-xl font-extrabold tracking-tight mt-1">Fresqo</span>
                             </div>
                             <p className="text-gray-400 leading-relaxed">
                                 Reinventing the way you drink. Better flavors, cleaner ingredients, zero waste.

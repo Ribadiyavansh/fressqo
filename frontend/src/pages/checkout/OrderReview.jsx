@@ -146,7 +146,7 @@ function OrderReview() {
 
                             <div className="space-y-4 pt-2">
                                 <p className="text-gray-500 text-xs text-center leading-relaxed font-medium">
-                                    By placing your order, you agree to Freshqo's
+                                    By placing your order, you agree to Fresqo's
                                     <a className="underline text-gray-400 hover:text-white mx-1" href="#">Terms of Service</a> and
                                     <a className="underline text-gray-400 hover:text-white" href="#">Privacy Policy</a>.
                                 </p>

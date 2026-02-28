@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 function Profile() {
     const avatars = [
@@ -9,11 +10,11 @@ function Profile() {
         "/avatars/avatar5.png"  // 5. male with the hair and the full beard
     ];
 
-    const [currentAvatar, setCurrentAvatar] = useState(avatars[0]);
+    const { avatar, updateAvatar } = useAuth();
     const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
 
-    const handleAvatarSelect = (avatar) => {
-        setCurrentAvatar(avatar);
+    const handleAvatarSelect = (newAvatar) => {
+        updateAvatar(newAvatar);
         setIsAvatarModalOpen(false);
     };
 
@@ -33,7 +34,7 @@ function Profile() {
                                 <img
                                     alt="Profile avatar"
                                     className="w-full h-full object-cover bg-white dark:bg-slate-800 scale-[1.15]"
-                                    src={currentAvatar}
+                                    src={avatar}
                                 />
                             </div>
                             <button
@@ -150,14 +151,14 @@ function Profile() {
                         </div>
 
                         <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 mb-6">
-                            {avatars.map((avatar, index) => (
+                            {avatars.map((av, index) => (
                                 <button
                                     key={index}
-                                    onClick={() => handleAvatarSelect(avatar)}
-                                    className={`relative aspect-square rounded-full overflow-hidden border-4 transition-all hover:scale-105 ${currentAvatar === avatar ? 'border-primary shadow-lg scale-110 z-10' : 'border-transparent hover:border-primary/50 bg-white dark:bg-slate-800'}`}
+                                    onClick={() => handleAvatarSelect(av)}
+                                    className={`relative aspect-square rounded-full overflow-hidden border-4 transition-all hover:scale-105 ${avatar === av ? 'border-primary shadow-lg scale-110 z-10' : 'border-transparent hover:border-primary/50 bg-white dark:bg-slate-800'}`}
                                 >
-                                    <img src={avatar} alt={`Avatar option ${index + 1}`} className="w-full h-full object-cover bg-white dark:bg-slate-800 scale-[1.15]" />
-                                    {currentAvatar === avatar && (
+                                    <img src={av} alt={`Avatar option ${index + 1}`} className="w-full h-full object-cover bg-white dark:bg-slate-800 scale-[1.15]" />
+                                    {avatar === av && (
                                         <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
                                             <span className="material-icons-round text-primary drop-shadow-md">check_circle</span>
                                         </div>

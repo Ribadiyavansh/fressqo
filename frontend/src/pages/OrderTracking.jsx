@@ -168,7 +168,7 @@ function OrderTracking() {
                     </div>
 
                     <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
-                        <h3 className="text-lg font-bold mb-2 font-display text-slate-900">How was your Freshqo experience?</h3>
+                        <h3 className="text-lg font-bold mb-2 font-display text-slate-900">How was your Fresqo experience?</h3>
                         <p className="text-sm text-slate-500 mb-6 font-medium">Your feedback helps us grow fresher every day.</p>
 
                         {isReviewSubmitted ? (
@@ -239,7 +239,7 @@ function OrderTracking() {
                             <div className="relative pl-10">
                                 <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-slate-300 border-4 border-white z-10 shadow-sm"></div>
                                 <p className="font-bold text-sm text-slate-700">Picked up by carrier</p>
-                                <p className="text-xs text-slate-500 mt-1 font-medium">Freshqo Warehouse • Oct 21, 04:15 PM</p>
+                                <p className="text-xs text-slate-500 mt-1 font-medium">Fresqo Warehouse • Oct 21, 04:15 PM</p>
                             </div>
                         </div>
                     </div>
@@ -274,7 +274,7 @@ function OrderTracking() {
                             </button>
                             <div className="flex items-center gap-1.5 opacity-50 select-none pt-2">
                                 <div className="w-2 h-2 rounded-full bg-primary"></div>
-                                <span className="text-xs font-bold uppercase tracking-widest text-slate-500">Freshqo Premium Delivery</span>
+                                <span className="text-xs font-bold uppercase tracking-widest text-slate-500">Fresqo Premium Delivery</span>
                             </div>
                         </div>
                         <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-primary/20 rounded-full blur-2xl pointer-events-none"></div>

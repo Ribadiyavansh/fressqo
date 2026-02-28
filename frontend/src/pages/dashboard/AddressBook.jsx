@@ -115,7 +115,7 @@ function AddressBook() {
                         <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
                             <span className="text-xs uppercase tracking-widest font-bold text-primary mb-2">Last Order Destination</span>
                             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">123 Fresh Lane, Suite 400</h3>
-                            <p className="text-slate-600 dark:text-slate-400 mb-6">Delivered on Oct 24, 2023 via Freshqo Express.</p>
+                            <p className="text-slate-600 dark:text-slate-400 mb-6">Delivered on Oct 24, 2023 via Fresqo Express.</p>
                             <div>
                                 <button className="bg-primary hover:bg-primary/90 text-slate-900 font-bold py-3 px-6 rounded-lg transition-colors shadow-sm">
                                     Reorder to this address
