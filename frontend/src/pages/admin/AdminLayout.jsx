@@ -80,7 +80,7 @@ function AdminLayout() {
                         <span className="material-icons-round">article</span>
                         <span>Blog</span>
                     </NavLink>
-                    <NavLink to="/admin/settings" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                    <NavLink to="/admin/settings" onClick={() => setIsMobileSidebarOpen(false)} className={location.pathname.startsWith('/admin/settings') ? activeLinkClass : normalLinkClass}>
                         <span className="material-icons-round">settings</span>
                         <span>Settings</span>
                     </NavLink>

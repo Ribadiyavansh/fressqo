@@ -34,7 +34,11 @@ const AdminOrders = lazy(() => import('./pages/admin/AdminOrders'));
 const AdminProducts = lazy(() => import('./pages/admin/AdminProducts'));
 const AdminUsers = lazy(() => import('./pages/admin/AdminUsers'));
 const AdminBlog = lazy(() => import('./pages/admin/AdminBlog'));
+const AdminBlogEditor = lazy(() => import('./pages/admin/AdminBlogEditor'));
 const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
+const AdminSettingsGeneral = lazy(() => import('./pages/admin/AdminSettingsGeneral'));
+const AdminSettingsSecurity = lazy(() => import('./pages/admin/AdminSettingsSecurity'));
+const AdminSettingsAppearance = lazy(() => import('./pages/admin/AdminSettingsAppearance'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -87,8 +91,15 @@ function App() {
               <Route path="orders" element={<AdminOrders />} />
               <Route path="products" element={<AdminProducts />} />
               <Route path="users" element={<AdminUsers />} />
-              <Route path="blog" element={<AdminBlog />} />
-              <Route path="settings" element={<AdminSettings />} />
+              <Route path="blog">
+                <Route index element={<AdminBlog />} />
+                <Route path="new" element={<AdminBlogEditor />} />
+              </Route>
+              <Route path="settings" element={<AdminSettings />}>
+                <Route index element={<AdminSettingsGeneral />} />
+                <Route path="security" element={<AdminSettingsSecurity />} />
+                <Route path="appearance" element={<AdminSettingsAppearance />} />
+              </Route>
             </Route>
           </Routes>
         </Suspense>

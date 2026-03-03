@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function AdminBlog() {
     return (
@@ -9,10 +10,10 @@ function AdminBlog() {
                     <p className="text-slate-500 dark:text-slate-400 mt-1">Manage your stories and articles.</p>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <button className="bg-primary hover:bg-[#94D12C] text-slate-900 px-5 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center gap-2 shadow-sm">
+                    <Link to="/admin/blog/new" className="bg-primary hover:bg-[#94D12C] text-slate-900 px-5 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center gap-2 shadow-sm">
                         <span className="material-icons-round text-lg">add</span>
                         Add New Post
-                    </button>
+                    </Link>
                 </div>
             </header>
 
