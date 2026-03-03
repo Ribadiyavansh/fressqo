@@ -11,7 +11,7 @@ const SHOP_PRODUCTS = [
         description: "4 Unique Flavors",
         rating: 5,
         reviews: 48,
-        badge: "Bestseller",
+        badge: "Best Seller",
         badgeColor: "bg-primary text-white"
     },
     {
@@ -31,7 +31,7 @@ const SHOP_PRODUCTS = [
         description: "Citrus Burst",
         rating: 5,
         reviews: 15,
-        badge: "New",
+        badge: "New Arrive",
         badgeColor: "bg-accent text-brand-dark"
     },
     {
@@ -42,6 +42,8 @@ const SHOP_PRODUCTS = [
         description: "Zesty Lime & Salt",
         rating: 4.5,
         reviews: 67,
+        badge: "Limited Adition",
+        badgeColor: "bg-red-500 text-white"
     },
     {
         id: 5,
@@ -60,6 +62,8 @@ const SHOP_PRODUCTS = [
         description: "Summer Refreshment",
         rating: 4,
         reviews: 89,
+        badge: "Popular",
+        badgeColor: "bg-purple-500 text-white"
     },
 ];
 
@@ -81,12 +85,14 @@ function Shop() {
     // Filter & Sort Logic
     let filteredProducts = [...ALL_PRODUCTS];
 
-    if (activeFilter === 'New Arrivals') {
-        filteredProducts = filteredProducts.filter(p => p.badge === 'New');
+    if (activeFilter === 'New Arrive') {
+        filteredProducts = filteredProducts.filter(p => p.badge === 'New Arrive');
     } else if (activeFilter === 'Popular') {
-        filteredProducts = filteredProducts.filter(p => p.reviews >= 40);
-    } else if (activeFilter === 'Best Sellers') {
-        filteredProducts = filteredProducts.filter(p => p.badge === 'Bestseller');
+        filteredProducts = filteredProducts.filter(p => p.badge === 'Popular' || p.reviews >= 40);
+    } else if (activeFilter === 'Best Seller') {
+        filteredProducts = filteredProducts.filter(p => p.badge === 'Best Seller');
+    } else if (activeFilter === 'Limited Adition') {
+        filteredProducts = filteredProducts.filter(p => p.badge === 'Limited Adition');
     }
 
     if (sortOption === 'Price: Low to High') {
@@ -155,9 +161,10 @@ function Shop() {
                             <div className="flex items-center gap-4">
                                 <div className="flex flex-wrap gap-2">
                                     <button onClick={() => handleFilterChange('All')} className={`px-4 py-2 rounded-full text-xs font-bold border ${activeFilter === 'All' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}>All</button>
-                                    <button onClick={() => handleFilterChange('New Arrivals')} className={`px-4 py-2 rounded-full text-xs font-bold border ${activeFilter === 'New Arrivals' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}>New Arrivals</button>
                                     <button onClick={() => handleFilterChange('Popular')} className={`px-4 py-2 rounded-full text-xs font-bold border ${activeFilter === 'Popular' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}>Popular</button>
-                                    <button onClick={() => handleFilterChange('Best Sellers')} className={`px-4 py-2 rounded-full text-xs font-bold border ${activeFilter === 'Best Sellers' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}>Best Sellers</button>
+                                    <button onClick={() => handleFilterChange('New Arrive')} className={`px-4 py-2 rounded-full text-xs font-bold border ${activeFilter === 'New Arrive' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}>New Arrive</button>
+                                    <button onClick={() => handleFilterChange('Best Seller')} className={`px-4 py-2 rounded-full text-xs font-bold border ${activeFilter === 'Best Seller' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}>Best Seller</button>
+                                    <button onClick={() => handleFilterChange('Limited Adition')} className={`px-4 py-2 rounded-full text-xs font-bold border ${activeFilter === 'Limited Adition' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}>Limited Adition</button>
                                 </div>
                             </div>
                             <div className="flex items-center gap-4">
