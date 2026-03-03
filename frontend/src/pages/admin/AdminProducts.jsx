@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 function AdminProducts() {
     const [searchParams] = useSearchParams();
-    const [showAddForm, setShowAddForm] = useState(false);
-
-    useEffect(() => {
-        if (searchParams.get('addNew') === 'true') {
-            setShowAddForm(true);
-        }
-    }, [searchParams]);
 
     return (
         <div className="p-6 lg:p-10 font-display text-slate-900 dark:text-slate-100">
@@ -20,42 +13,11 @@ function AdminProducts() {
                 </div>
                 <div className="flex items-center space-x-4">
                     {/* Search bar removed per user request */}
-                    <button onClick={() => setShowAddForm(!showAddForm)} className="bg-primary hover:bg-[#94D12C] text-slate-900 px-5 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-sm">
-                        <span className="material-icons-round">{showAddForm ? 'close' : 'add'}</span> {showAddForm ? 'Close Form' : 'Add New Product'}
-                    </button>
+                    <Link to="/admin/products/new" className="bg-primary hover:bg-[#94D12C] text-slate-900 px-5 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-sm">
+                        <span className="material-icons-round">add</span> Add New Product
+                    </Link>
                 </div>
             </header>
-
-            {showAddForm && (
-                <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 mb-8 animate-in fade-in slide-in-from-top-4">
-                    <h2 className="text-xl font-bold mb-4">Add New Product</h2>
-                    <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setShowAddForm(false); }}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-semibold mb-1">Product Name</label>
-                                <input type="text" className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg p-2.5 outline-none focus:border-primary" required />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold mb-1">SKU</label>
-                                <input type="text" className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg p-2.5 outline-none focus:border-primary" required />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold mb-1">Price (₹)</label>
-                                <input type="number" min="0" step="0.01" className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg p-2.5 outline-none focus:border-primary" required />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold mb-1">Stock Quantity</label>
-                                <input type="number" min="0" className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg p-2.5 outline-none focus:border-primary" required />
-                            </div>
-                        </div>
-                        <div className="flex justify-end pt-2">
-                            <button type="submit" className="bg-primary hover:bg-[#94D12C] text-slate-900 px-6 py-2 rounded-lg font-bold">
-                                Save Product
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            )}
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center gap-4">
