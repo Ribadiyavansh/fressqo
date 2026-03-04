@@ -47,7 +47,7 @@ function Dashboard() {
                                         Shipped
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">$124.50</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹124.50</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
                                 </td>
@@ -60,7 +60,7 @@ function Dashboard() {
                                         Delivered
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">$89.20</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹89.20</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
                                 </td>
@@ -73,7 +73,7 @@ function Dashboard() {
                                         Processing
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">$210.00</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹210.00</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
                                 </td>
@@ -86,7 +86,7 @@ function Dashboard() {
                                         Delivered
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">$45.00</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹45.00</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
                                 </td>
@@ -130,9 +130,9 @@ function Dashboard() {
 
                                 <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
                                     <div className="flex flex-col min-w-0">
-                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">$0.00</span>
+                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">₹0.00</span>
                                         <div className="flex items-baseline gap-1 flex-wrap">
-                                            <span className="text-2xl font-black text-[#1e293b]">$24.00</span>
+                                            <span className="text-2xl font-black text-[#1e293b]">₹24.00</span>
                                             <span className="text-sm text-slate-400 font-medium italic">/pack</span>
                                         </div>
                                     </div>
@@ -170,9 +170,9 @@ function Dashboard() {
 
                                 <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
                                     <div className="flex flex-col min-w-0">
-                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">$0.00</span>
+                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">₹0.00</span>
                                         <div className="flex items-baseline gap-1 flex-wrap">
-                                            <span className="text-2xl font-black text-[#1e293b]">$18.50</span>
+                                            <span className="text-2xl font-black text-[#1e293b]">₹18.50</span>
                                             <span className="text-sm text-slate-400 font-medium italic">/pack</span>
                                         </div>
                                     </div>
@@ -210,9 +210,9 @@ function Dashboard() {
 
                                 <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
                                     <div className="flex flex-col min-w-0">
-                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">$0.00</span>
+                                        <span className="text-sm text-slate-400 line-through font-medium opacity-0">₹0.00</span>
                                         <div className="flex items-baseline gap-1 flex-wrap">
-                                            <span className="text-2xl font-black text-[#1e293b]">$42.00</span>
+                                            <span className="text-2xl font-black text-[#1e293b]">₹42.00</span>
                                             <span className="text-sm text-slate-400 font-medium italic">/pack</span>
                                         </div>
                                     </div>

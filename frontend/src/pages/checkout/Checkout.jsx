@@ -95,7 +95,7 @@ function Checkout() {
                                 <div className="flex-grow">
                                     <h3 className="font-bold text-lg">Variety Pack of 4</h3>
                                     <p className="text-gray-400 text-sm">Qty: 2</p>
-                                    <p className="text-white font-bold mt-1">$42.00</p>
+                                    <p className="text-white font-bold mt-1">₹42.00</p>
                                 </div>
                             </div>
                             <div className="flex gap-4">
@@ -105,7 +105,7 @@ function Checkout() {
                                 <div className="flex-grow">
                                     <h3 className="font-bold text-lg">Watermelon Mint Punch</h3>
                                     <p className="text-gray-400 text-sm">Qty: 1</p>
-                                    <p className="text-white font-bold mt-1">$24.00</p>
+                                    <p className="text-white font-bold mt-1">₹24.00</p>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@ function Checkout() {
                         <div className="space-y-3 border-t border-gray-700 pt-6 mb-8">
                             <div className="flex justify-between text-gray-400">
                                 <span>Subtotal</span>
-                                <span>$108.00</span>
+                                <span>₹108.00</span>
                             </div>
                             <div className="flex justify-between text-gray-400">
                                 <span>Shipping</span>
@@ -124,7 +124,7 @@ function Checkout() {
                             </div>
                             <div className="flex justify-between text-xl font-display font-bold tracking-wider border-t border-gray-700 pt-4 mt-4 text-white">
                                 <span>Total Payable</span>
-                                <span>$108.00</span>
+                                <span>₹108.00</span>
                             </div>
                         </div>
                         <p className="text-center text-gray-500 text-xs mt-6 flex items-center justify-center gap-2">

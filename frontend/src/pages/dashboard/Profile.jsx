@@ -12,6 +12,8 @@ function Profile() {
 
     const { avatar, updateAvatar } = useAuth();
     const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
+    const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+    const [resetEmailSent, setResetEmailSent] = useState(false);
 
     const handleAvatarSelect = (newAvatar) => {
         updateAvatar(newAvatar);
@@ -97,34 +99,25 @@ function Profile() {
                     </form>
                 </div>
 
-                {/* Security Section */}
                 <div className="bg-white dark:bg-slate-900/50 p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
                     <div className="flex items-center gap-2 mb-6">
                         <span className="material-icons-round text-primary">security</span>
                         <h2 className="text-xl font-bold text-slate-900 dark:text-white">Security & Password</h2>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 px-1">Current Password</label>
-                            <input
-                                className="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-                                placeholder="Current password"
-                                type="password"
-                                defaultValue="••••••••••••"
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 px-1">New Password</label>
-                            <input
-                                className="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-                                placeholder="Minimum 8 characters"
-                                type="password"
-                            />
-                        </div>
-                    </div>
-                    <div className="mt-6 p-4 bg-primary/5 rounded-lg flex items-start gap-3">
-                        <span className="material-icons-round text-primary text-xl mt-0.5">info</span>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">Make sure your password is at least 8 characters long and includes a mix of letters, numbers, and symbols.</p>
+                    <div className="flex items-center gap-4">
+                        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-xl">
+                            Secure your account by resetting your password. We'll send a password reset link to your registered email address.
+                        </p>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setIsResetModalOpen(true);
+                                setResetEmailSent(false);
+                            }}
+                            className="px-6 py-2 bg-primary text-slate-900 font-bold rounded-lg hover:shadow-lg transition-all"
+                        >
+                            Reset Password
+                        </button>
                     </div>
                 </div>
 
@@ -168,6 +161,63 @@ function Profile() {
                         </div>
 
                         <p className="text-sm text-center text-slate-500 dark:text-slate-400">Select an avatar to instantly update your profile picture.</p>
+                    </div>
+                </div>
+            )}
+
+            {/* Reset Password Modal */}
+            {isResetModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in" onClick={() => setIsResetModalOpen(false)}>
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-sm" onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+                            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Reset Password</h2>
+                            <button onClick={() => setIsResetModalOpen(false)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-500 transition-colors">
+                                <span className="material-icons-round">close</span>
+                            </button>
+                        </div>
+
+                        {resetEmailSent ? (
+                            <div className="text-center py-4">
+                                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span className="material-icons-round text-primary text-3xl">mark_email_read</span>
+                                </div>
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Check Your Email</h3>
+                                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                                    We've sent password reset instructions to <strong>alex.johnson@example.com</strong>.
+                                    <br /><br />
+                                    <a href="/reset-password?email=alex.johnson@example.com" className="text-primary hover:underline">Click here to simulate reset</a>
+                                </p>
+                                <button
+                                    onClick={() => setIsResetModalOpen(false)}
+                                    className="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-white font-bold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        ) : (
+                            <div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                                    Enter your account email. If it matches our records, we'll send you a password reset link.
+                                </p>
+                                <div className="space-y-4">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
+                                        <input
+                                            className="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
+                                            value="alex.johnson@example.com"
+                                            readOnly
+                                            type="email"
+                                        />
+                                    </div>
+                                    <button
+                                        onClick={() => setResetEmailSent(true)}
+                                        className="w-full py-3 bg-primary text-slate-900 font-bold rounded-lg hover:shadow-lg transition-all"
+                                    >
+                                        Send Reset Link
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

@@ -62,7 +62,7 @@ function OrderSuccess() {
                                     <p className="text-sm text-slate-500 font-medium">Pack of 4 • Qty: 2</p>
                                 </div>
                             </div>
-                            <span className="font-bold text-lg">$84.00</span>
+                            <span className="font-bold text-lg">₹84.00</span>
                         </div>
 
                         {/* Item 2 */}
@@ -76,7 +76,7 @@ function OrderSuccess() {
                                     <p className="text-sm text-slate-500 font-medium">Pack of 4 • Qty: 1</p>
                                 </div>
                             </div>
-                            <span className="font-bold text-lg">$24.00</span>
+                            <span className="font-bold text-lg">₹24.00</span>
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@ function OrderSuccess() {
                     <div className="border-t border-dashed border-slate-300 pt-6 space-y-3">
                         <div className="flex justify-between text-sm text-slate-600 font-medium">
                             <span>Subtotal</span>
-                            <span>$108.00</span>
+                            <span>₹108.00</span>
                         </div>
                         <div className="flex justify-between text-sm text-slate-600 font-medium">
                             <span>Shipping</span>
@@ -92,7 +92,7 @@ function OrderSuccess() {
                         </div>
                         <div className="flex justify-between text-2xl font-bold text-slate-900 pt-4 font-display">
                             <span>Total Paid</span>
-                            <span>$108.00</span>
+                            <span>₹108.00</span>
                         </div>
                     </div>
                 </div>

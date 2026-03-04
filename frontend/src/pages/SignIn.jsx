@@ -4,8 +4,36 @@ import { useAuth } from '../context/AuthContext';
 
 function SignIn() {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState({});
+
     const navigate = useNavigate();
     const { login } = useAuth();
+
+    const validate = () => {
+        let newErrors = {};
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            newErrors.email = 'Please enter a valid email address';
+        }
+
+        if (!password || password.length === 0) {
+            newErrors.password = 'Password is required';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validate()) {
+            login({ name: email.split('@')[0], email });
+            navigate('/');
+        }
+    };
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -31,28 +59,27 @@ function SignIn() {
                     <p className="text-gray-600 dark:text-gray-400">Welcome back! Please enter your details.</p>
                 </div>
                 <div className="bg-white dark:bg-[#1F2937] p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
-                    <form action="#" className="space-y-6" method="POST" onSubmit={(e) => {
-                        e.preventDefault();
-                        login({ name: 'Demo User', email: 'demo@fresqo.com' });
-                        navigate('/');
-                    }}>
+                    <form action="#" className="space-y-6" method="POST" onSubmit={handleSubmit}>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="email">Email Address</label>
                             <div className="relative">
                                 <span className="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl pointer-events-none">mail</span>
                                 <input
-                                    className="block w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600"
-                                    id="email" name="email" placeholder="you@example.com" required type="email"
+                                    className={`block w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 dark:border-gray-700 focus:ring-primary focus:border-primary'} rounded-xl text-gray-900 dark:text-white transition-all outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600`}
+                                    id="email" name="email" placeholder="you@example.com" type="email"
+                                    value={email} onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
+                            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="password">Password</label>
                             <div className="relative">
                                 <span className="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl pointer-events-none">lock</span>
                                 <input
-                                    className="block w-full pl-10 pr-12 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600"
-                                    id="password" name="password" placeholder="••••••••" required type={showPassword ? "text" : "password"}
+                                    className={`block w-full pl-10 pr-12 py-3 bg-gray-50 dark:bg-gray-900 border ${errors.password ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 dark:border-gray-700 focus:ring-primary focus:border-primary'} rounded-xl text-gray-900 dark:text-white transition-all outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600`}
+                                    id="password" name="password" placeholder="••••••••" type={showPassword ? "text" : "password"}
+                                    value={password} onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <button
                                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 flex items-center justify-center p-1"
@@ -62,6 +89,7 @@ function SignIn() {
                                     <span className="material-icons-outlined text-xl">{showPassword ? "visibility_off" : "visibility"}</span>
                                 </button>
                             </div>
+                            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">

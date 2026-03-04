@@ -60,30 +60,48 @@ function AdminLayout() {
                 </div>
 
                 <nav className="flex-1 px-4 mt-2 overflow-y-auto">
-                    <NavLink to="/admin" end onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
-                        <span className="material-icons-round">dashboard</span>
-                        <span>Dashboard</span>
-                    </NavLink>
-                    <NavLink to="/admin/users" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
-                        <span className="material-icons-round">group</span>
-                        <span>Users</span>
-                    </NavLink>
-                    <NavLink to="/admin/products" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
-                        <span className="material-icons-round">inventory_2</span>
-                        <span>Products</span>
-                    </NavLink>
-                    <NavLink to="/admin/orders" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
-                        <span className="material-icons-round">shopping_bag</span>
-                        <span>Orders</span>
-                    </NavLink>
-                    <NavLink to="/admin/blog" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
-                        <span className="material-icons-round">article</span>
-                        <span>Blog</span>
-                    </NavLink>
-                    <NavLink to="/admin/settings" onClick={() => setIsMobileSidebarOpen(false)} className={location.pathname.startsWith('/admin/settings') ? activeLinkClass : normalLinkClass}>
-                        <span className="material-icons-round">settings</span>
-                        <span>Settings</span>
-                    </NavLink>
+                    {/* Overview */}
+                    <div className="mb-6">
+                        <p className="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Overview</p>
+                        <NavLink to="/admin" end onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                            <span className="material-icons-round">dashboard</span>
+                            <span>Dashboard</span>
+                        </NavLink>
+                        <NavLink to="/admin/analytics" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                            <span className="material-icons-round">analytics</span>
+                            <span>Analytics</span>
+                        </NavLink>
+                    </div>
+
+                    {/* Management */}
+                    <div className="mb-6">
+                        <p className="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Management</p>
+                        <NavLink to="/admin/orders" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                            <span className="material-icons-round">shopping_bag</span>
+                            <span>Orders</span>
+                        </NavLink>
+                        <NavLink to="/admin/products" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                            <span className="material-icons-round">inventory_2</span>
+                            <span>Products</span>
+                        </NavLink>
+                        <NavLink to="/admin/users" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                            <span className="material-icons-round">group</span>
+                            <span>Customers</span>
+                        </NavLink>
+                        <NavLink to="/admin/blog" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                            <span className="material-icons-round">article</span>
+                            <span>Blog</span>
+                        </NavLink>
+                    </div>
+
+                    {/* System */}
+                    <div className="mb-6">
+                        <p className="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">System</p>
+                        <NavLink to="/admin/settings" onClick={() => setIsMobileSidebarOpen(false)} className={location.pathname.startsWith('/admin/settings') ? activeLinkClass : normalLinkClass}>
+                            <span className="material-icons-round">settings</span>
+                            <span>Settings</span>
+                        </NavLink>
+                    </div>
                 </nav>
 
                 {/* Bottom User Profile Section */}

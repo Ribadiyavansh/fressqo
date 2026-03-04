@@ -145,7 +145,7 @@ function AdminSettingsAppearance() {
                 <div className="p-6 space-y-6">
                     <div className="space-y-2">
                         <label className="text-sm font-semibold">Banner Text</label>
-                        <input className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary transition-all text-slate-900 dark:text-white outline-none" type="text" defaultValue="Free shipping on all orders over $50! Shop now." />
+                        <input className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary transition-all text-slate-900 dark:text-white outline-none" type="text" defaultValue="Free shipping on all orders over ₹50! Shop now." />
                     </div>
                     <div className="space-y-2">
                         <label className="text-sm font-semibold">Banner Link</label>

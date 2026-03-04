@@ -34,7 +34,7 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-charcoal dark:text-slate-100">Email Us</h3>
-                                    <p className="text-sage dark:text-slate-400">support@fresqo.com</p>
+                                    <p className="text-sage dark:text-slate-400">hello@fresqo.in</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4 p-5 rounded-xl border border-border-light bg-white dark:bg-slate-900/50 hover:shadow-md transition-shadow">
@@ -43,7 +43,7 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-charcoal dark:text-slate-100">Call Us</h3>
-                                    <p className="text-sage dark:text-slate-400">+1 (555) 123-4567</p>
+                                    <p className="text-sage dark:text-slate-400">+91 97148 48011</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4 p-5 rounded-xl border border-border-light bg-white dark:bg-slate-900/50 hover:shadow-md transition-shadow">
@@ -52,7 +52,7 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-charcoal dark:text-slate-100">Visit Us</h3>
-                                    <p className="text-sage dark:text-slate-400">123 Fresh Way, Orchard City, CA 90210</p>
+                                    <p className="text-sage dark:text-slate-400">Vrajbhumi Township Part-4, Parvat Patiya, Surat, Gujarat 395010</p>
                                 </div>
                             </div>
                         </div>

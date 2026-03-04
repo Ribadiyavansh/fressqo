@@ -28,40 +28,81 @@ function ResetPassword() {
                     </h1>
                 </div>
                 <div className="bg-white dark:bg-[#1F2937] rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-800 transition-all">
-                    <div className="mb-6">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Reset Password</h2>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm">
-                            Enter your email address and we'll send you a link to reset your password.
-                        </p>
-                    </div>
-                    <form action="#" className="space-y-6" method="POST" onSubmit={(e) => { e.preventDefault(); navigate('/login'); }}>
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2" htmlFor="email">
-                                Email Address
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span className="material-icons text-gray-400 text-lg">mail_outline</span>
-                                </div>
-                                <input
-                                    className="block w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all outline-none"
-                                    id="email" name="email" placeholder="you@example.com" required type="email"
-                                />
+                    {/* Success State */}
+                    {isSuccess ? (
+                        <div className="text-center py-6">
+                            <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span className="material-icons-round text-primary text-3xl">check_circle</span>
                             </div>
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Password Updated</h2>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
+                                Your password has been successfully updated.
+                            </p>
+                            <Link
+                                to="/dashboard"
+                                className="w-full inline-block bg-primary hover:bg-[#94D12C] text-gray-900 font-bold py-3.5 px-4 rounded-lg shadow-lg"
+                            >
+                                Go to Dashboard
+                            </Link>
                         </div>
-                        <button
-                            className="w-full bg-primary hover:bg-[#94D12C] text-gray-900 font-bold py-3.5 px-4 rounded-lg shadow-lg shadow-lime-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
-                            type="submit"
-                        >
-                            Send Reset Link
-                        </button>
-                    </form>
-                    <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 text-center">
-                        <Link className="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" to="/login">
-                            <span className="material-icons text-base mr-1">arrow_back</span>
-                            Back to Login
-                        </Link>
-                    </div>
+                    ) : (
+                        <>
+                            <div className="mb-6">
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Set New Password</h2>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                    Please enter your new password below.
+                                </p>
+                            </div>
+                            {error && (
+                                <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm rounded-lg flex items-center gap-2">
+                                    <span className="material-icons-round text-base">error_outline</span>
+                                    {error}
+                                </div>
+                            )}
+                            <form action="#" className="space-y-6" onSubmit={handleSubmit}>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        New Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        value={newPassword}
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                        className="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all outline-none"
+                                        placeholder="Enter new password"
+                                        required
+                                        minLength={8}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Confirm Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        className="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all outline-none"
+                                        placeholder="Confirm new password"
+                                        required
+                                        minLength={8}
+                                    />
+                                </div>
+                                <button
+                                    className="w-full bg-primary hover:bg-[#94D12C] text-gray-900 font-bold py-3.5 px-4 rounded-lg shadow-lg shadow-lime-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                                    type="submit"
+                                >
+                                    Update Password
+                                </button>
+                            </form>
+                            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 text-center">
+                                <Link className="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" to="/dashboard">
+                                    <span className="material-icons text-base mr-1">arrow_back</span>
+                                    Back to Dashboard
+                                </Link>
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-500">
                     <p>Need help? <button onClick={() => setIsFaqOpen(true)} className="text-primary font-medium hover:underline bg-transparent border-none p-0 cursor-pointer">FAQs</button></p>

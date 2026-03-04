@@ -94,7 +94,7 @@ function OrderReview() {
                                         <p className="text-slate-500 text-sm">The Ultimate Party Starter</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-slate-900 font-bold">$42.00</p>
+                                        <p className="text-slate-900 font-bold">₹42.00</p>
                                         <p className="text-slate-500 text-sm font-medium">Qty: 2</p>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@ function OrderReview() {
                                         <p className="text-slate-500 text-sm">Pack of 4 Sensation Mixes</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-slate-900 font-bold">$24.00</p>
+                                        <p className="text-slate-900 font-bold">₹24.00</p>
                                         <p className="text-slate-500 text-sm font-medium">Qty: 1</p>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@ function OrderReview() {
                             <div className="space-y-4 pt-2">
                                 <div className="flex justify-between text-gray-400 text-sm font-medium">
                                     <span>Subtotal</span>
-                                    <span>$108.00</span>
+                                    <span>₹108.00</span>
                                 </div>
                                 <div className="flex justify-between text-gray-400 text-sm font-medium">
                                     <span>Shipping</span>
@@ -131,11 +131,11 @@ function OrderReview() {
                                 </div>
                                 <div className="flex justify-between text-gray-400 text-sm font-medium">
                                     <span>Tax</span>
-                                    <span>$0.00</span>
+                                    <span>₹0.00</span>
                                 </div>
                                 <div className="pt-4 border-t border-gray-700 flex justify-between items-center">
                                     <span className="text-white font-bold text-lg">Total</span>
-                                    <span className="text-primary font-display font-bold text-3xl tracking-tight">$108.00</span>
+                                    <span className="text-primary font-display font-bold text-3xl tracking-tight">₹108.00</span>
                                 </div>
                             </div>
 

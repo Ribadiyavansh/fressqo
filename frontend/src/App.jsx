@@ -6,6 +6,7 @@ import { AuthProvider } from './context/AuthContext';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
+const ProductDetails = lazy(() => import('./pages/ProductDetails'));
 const DashboardLayout = lazy(() => import('./components/DashboardLayout'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Profile = lazy(() => import('./pages/dashboard/Profile'));
@@ -30,6 +31,7 @@ const OrderTracking = lazy(() => import('./pages/OrderTracking'));
 const AdminAuth = lazy(() => import('./pages/admin/AdminAuth'));
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const AdminAnalytics = lazy(() => import('./pages/admin/AdminAnalytics'));
 const AdminOrders = lazy(() => import('./pages/admin/AdminOrders'));
 const AdminProducts = lazy(() => import('./pages/admin/AdminProducts'));
 const AdminProductEditor = lazy(() => import('./pages/admin/AdminProductEditor'));
@@ -65,6 +67,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="shop" element={<Shop />} />
+              <Route path="product/:id" element={<ProductDetails />} />
               <Route path="dashboard" element={<DashboardLayout />}>
                 <Route index element={<Dashboard />} />
                 <Route path="profile" element={<Profile />} />
@@ -89,6 +92,7 @@ function App() {
             <Route path="/admin-auth" element={<AdminAuth />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
+              <Route path="analytics" element={<AdminAnalytics />} />
               <Route path="orders" element={<AdminOrders />} />
               <Route path="products">
                 <Route index element={<AdminProducts />} />

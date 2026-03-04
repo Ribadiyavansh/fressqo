@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BLOG_POSTS } from '../data/blogData';
+import { referenceBlogs as BLOG_POSTS } from '../data/referenceBlogs';
 
 function Blog() {
     const [activeCategory, setActiveCategory] = React.useState('All Posts');
@@ -17,7 +17,7 @@ function Blog() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const categories = ['All Posts', 'Mixology', 'Lifestyle', 'Recipes'];
+    const categories = ['All Posts', 'Entertaining', 'Behind the Scenes', 'Recipes', 'Pairings'];
 
     const filteredPosts = activeCategory === 'All Posts'
         ? BLOG_POSTS
@@ -55,7 +55,7 @@ function Blog() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {displayedPosts.map((post) => (
                         <Link to={`/blog/${post.id}`} key={post.id} className="block group cursor-pointer">
-                            <article className={`${post.colorClass} rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1 hover:shadow-xl h-full`}>
+                            <article className={`${post.colorClass || 'bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800'} rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1 hover:shadow-xl h-full`}>
                                 <div className="relative h-64 overflow-hidden">
                                     <img alt={post.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={post.image} />
                                     <div className="absolute top-4 left-4">

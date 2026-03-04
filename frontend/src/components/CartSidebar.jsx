@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 function CartSidebar({ isOpen, onClose }) {
     const { cartItems, handleQuantityChange, handleRemoveItem, totalItems, subtotal } = useCart();
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     // Prevent body scroll when cart is open
@@ -119,7 +121,11 @@ function CartSidebar({ isOpen, onClose }) {
                     <button
                         onClick={() => {
                             onClose();
-                            navigate('/checkout');
+                            if (user) {
+                                navigate('/checkout');
+                            } else {
+                                navigate('/login');
+                            }
                         }}
                         disabled={cartItems.length === 0}
                         className="w-full bg-primary hover:bg-[#8ebf25] text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"

@@ -3,7 +3,8 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import CartSidebar from './CartSidebar';
-
+import { motion } from 'framer-motion';
+import { Instagram, Twitter, Facebook, Youtube, Mail, Phone, MapPin, ArrowUp, Sparkles } from 'lucide-react';
 function Layout() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -155,46 +156,149 @@ function Layout() {
 
             <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
-            <footer className="bg-charcoal text-white pt-12 pb-6 mt-auto">
+            <footer className="bg-charcoal text-white pt-16 pb-6 mt-auto">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-3">
-                                <img src="/fresqo-logo.png" alt="Fresqo Logo" className="w-14 h-14 object-contain bg-white rounded-full p-1" />
-                                <span className="text-xl font-extrabold tracking-tight mt-1">Fresqo</span>
-                            </div>
-                            <p className="text-gray-400 leading-relaxed">
-                                Reinventing the way you drink. Better flavors, cleaner ingredients, zero waste.
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                        {/* Brand Column */}
+                        <div className="lg:col-span-1">
+                            <Link to="/" className="inline-flex items-center gap-2 mb-6">
+                                <span className="font-serif text-3xl font-bold text-white">Fresqo</span>
+                                <Sparkles className="w-5 h-5 text-primary" />
+                            </Link>
+                            <p className="text-gray-400 mb-6 leading-relaxed text-sm">
+                                Premium cocktail & mocktail balls. Drop, fizz, and celebrate with the perfect drink every time.
                             </p>
-                            <div className="flex space-x-4">
-                                <Link className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors" to="/">
-                                    <span className="material-symbols-outlined">public</span>
-                                </Link>
-                                <Link className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors" to="/">
-                                    <span className="material-symbols-outlined">alternate_email</span>
-                                </Link>
+                            <div className="flex items-center gap-4">
+                                <a
+                                    href="https://www.instagram.com/fresqo.in?igsh=MWc4N3h6MXVkY2cyeQ=="
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-charcoal transition-colors"
+                                    aria-label="Instagram"
+                                >
+                                    <Instagram className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-charcoal transition-colors"
+                                    aria-label="Twitter"
+                                >
+                                    <Twitter className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-charcoal transition-colors"
+                                    aria-label="Facebook"
+                                >
+                                    <Facebook className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-charcoal transition-colors"
+                                    aria-label="YouTube"
+                                >
+                                    <Youtube className="w-5 h-5" />
+                                </a>
                             </div>
                         </div>
+
+                        {/* Quick Links */}
                         <div>
-                            <h4 className="font-bold mb-6">Support</h4>
-                            <ul className="space-y-4 text-gray-400 text-sm">
-                                <li><Link className="hover:text-primary transition-colors" to="/">FAQ</Link></li>
-                                <li><Link className="hover:text-primary transition-colors" to="/">Shipping Policy</Link></li>
-                                <li><Link className="hover:text-primary transition-colors" to="/">Returns &amp; Refunds</Link></li>
-                                <li><Link className="hover:text-primary transition-colors" to="/">Privacy Policy</Link></li>
+                            <h4 className="font-serif text-lg font-bold mb-6">Quick Links</h4>
+                            <ul className="space-y-3">
+                                <li>
+                                    <Link to="/" className="text-gray-400 text-sm hover:text-primary transition-colors">
+                                        Home
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/shop" className="text-gray-400 text-sm hover:text-primary transition-colors">
+                                        Our Flavours
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/#how-it-works" className="text-gray-400 text-sm hover:text-primary transition-colors">
+                                        How It Works
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/#faq" className="text-gray-400 text-sm hover:text-primary transition-colors">
+                                        FAQs
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
+
+                        {/* Contact Info */}
                         <div>
-                            <h4 className="font-bold mb-6">Stay Frizzy</h4>
-                            <p className="text-gray-400 text-sm mb-4">Join our list for exclusive releases and 10% off your first order.</p>
-                            <form className="flex flex-col space-y-3" onSubmit={(e) => e.preventDefault()}>
-                                <input className="bg-gray-800 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary" placeholder="Email Address" type="email" />
-                                <button className="bg-primary text-white font-bold py-3 rounded hover:bg-opacity-90 transition-all">Subscribe</button>
+                            <h4 className="font-serif text-lg font-bold mb-6">Contact Us</h4>
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-3">
+                                    <Mail className="w-5 h-5 text-primary" />
+                                    <span className="text-gray-400 text-sm">fresqo.in@gmail.com</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Phone className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                    <span className="text-gray-400 text-sm">+91 98765 43210</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                    <span className="text-gray-400 text-sm">
+                                        Bapa Sitaram Chowk,<br />
+                                        Mavdi, Rajkot-360004, Gujarat
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Newsletter */}
+                        <div>
+                            <h4 className="font-serif text-lg font-bold mb-6">Stay Updated</h4>
+                            <p className="text-gray-400 mb-4 text-sm">
+                                Subscribe for exclusive offers and new flavour announcements.
+                            </p>
+                            <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+                                <input
+                                    type="email"
+                                    placeholder="Your email"
+                                    className="flex-1 px-4 py-3 bg-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                                />
+                                <button
+                                    type="submit"
+                                    className="px-4 py-3 bg-primary text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm"
+                                >
+                                    Subscribe
+                                </button>
                             </form>
                         </div>
                     </div>
-                    <div className="border-t border-gray-800 pt-6 flex justify-center">
-                        <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">© 2026 Fresqo. All rights reserved.</p>
+                </div>
+
+                {/* Bottom Bar */}
+                <div className="border-t border-white/10 mt-12">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                        <p className="text-gray-400 text-sm text-center md:text-left">
+                            © {new Date().getFullYear()} Fresqo. All Rights Reserved. Made with 💚 in India
+                        </p>
+
+                        <div className="flex items-center gap-6">
+                            <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors">
+                                Privacy Policy
+                            </Link>
+                            <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors">
+                                Terms of Service
+                            </Link>
+                        </div>
+
+                        {/* Back to Top */}
+                        <motion.button
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            whileHover={{ y: -3 }}
+                            className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-90 transition-colors"
+                            aria-label="Back to top"
+                        >
+                            <ArrowUp className="w-5 h-5" />
+                        </motion.button>
                     </div>
                 </div>
             </footer>

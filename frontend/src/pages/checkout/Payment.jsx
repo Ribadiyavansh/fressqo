@@ -114,11 +114,11 @@ function Payment() {
                             <div className="flex flex-col gap-4 mb-6 pb-6 border-b border-slate-200">
                                 <div className="flex justify-between text-sm">
                                     <span className="text-slate-600 font-medium">Variety Pack (x2)</span>
-                                    <span className="font-bold">$84.00</span>
+                                    <span className="font-bold">₹84.00</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
                                     <span className="text-slate-600 font-medium">Watermelon Mint</span>
-                                    <span className="font-bold">$24.00</span>
+                                    <span className="font-bold">₹24.00</span>
                                 </div>
                             </div>
 
@@ -126,7 +126,7 @@ function Payment() {
                             <div className="flex flex-col gap-3 mb-6">
                                 <div className="flex justify-between text-base">
                                     <span className="text-slate-500">Subtotal</span>
-                                    <span className="font-bold">$108.00</span>
+                                    <span className="font-bold">₹108.00</span>
                                 </div>
                                 <div className="flex justify-between text-base">
                                     <span className="text-slate-500">Shipping</span>
@@ -136,7 +136,7 @@ function Payment() {
 
                             <div className="flex justify-between items-center mb-8 pt-4 border-t border-slate-200">
                                 <span className="text-lg font-bold">Total</span>
-                                <span className="text-3xl font-bold tracking-tight font-display text-fresqo-charcoal">$108.00</span>
+                                <span className="text-3xl font-bold tracking-tight font-display text-fresqo-charcoal">₹108.00</span>
                             </div>
 
                             <button onClick={() => document.getElementById('submit-payment').click()} className="w-full bg-primary hover:bg-primary/90 text-fresqo-charcoal font-bold h-16 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-lg shadow-primary/20 text-lg">
