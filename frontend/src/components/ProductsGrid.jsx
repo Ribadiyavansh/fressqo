@@ -80,7 +80,7 @@ export default function ProductsGrid() {
                         products.map((product) => (
                             <div
                                 key={product.id}
-                                className="product-card bg-white rounded-2xl overflow-hidden shadow-soft card-lift group cursor-pointer animate-fade-in"
+                                className="product-card bg-white rounded-2xl overflow-hidden shadow-soft card-lift group cursor-pointer fade-in"
                                 onClick={() => {
                                     navigate(`/product/${product.id}`);
                                 }}

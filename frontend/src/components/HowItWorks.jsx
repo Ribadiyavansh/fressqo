@@ -96,12 +96,11 @@ export default function HowItWorks() {
                                 </div>
 
                                 {/* Step Image */}
-                                <div className="aspect-square rounded-xl overflow-hidden mb-4 bg-gray-800">
+                                <div className="aspect-square rounded-xl overflow-hidden mb-4">
                                     <img
                                         src={step.image}
                                         alt={step.title}
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                        onError={(e) => { e.target.style.display = 'none' }}
                                     />
                                 </div>
 

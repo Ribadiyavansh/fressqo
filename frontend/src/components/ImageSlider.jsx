@@ -47,7 +47,6 @@ export default function ImageSlider({ images, productName, interval = 3000, show
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    onError={(e) => { e.target.style.display = 'none' }}
                 />
             </AnimatePresence>
 

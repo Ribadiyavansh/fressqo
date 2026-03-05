@@ -27,7 +27,7 @@ export const referenceBlogs = [
         content: "At Fresqo, the fizz isn't just for show—it's essential to the experience. When one of our cocktail balls hits the liquid, a carefully balanced reaction occurs. This effervescence helps to release the concentrated flavors more effectively. It creates a bubbling visual effect while the aroma is distributed alongside the drink, engaging your sense of smell before you even take a sip.",
         date: "Oct 28, 2023",
         readTime: "4 min read",
-        image: "/images/product-cola.jpg",
+        image: "/images/product-kalakhatta.jpg",
         category: "Behind the Scenes",
     },
     {
@@ -37,7 +37,7 @@ export const referenceBlogs = [
         content: "You don't need a heavy pour of spirits to craft an unforgettable drink. Fresqo Cocktail Balls are perfect for creating dynamic non-alcoholic beverages. Simply pair them with sparkling water, tonic, or fruit juice. The intense flavor profile ensures that the resulting drink is anything but boring. Try our Mojito flavor in a glass of soda water with fresh mint—it's refreshing and entirely alcohol-free!",
         date: "Nov 05, 2023",
         readTime: "6 min read",
-        image: "/images/product-mojito.jpg",
+        image: "/images/product-sexonthebeach.jpg",
         category: "Recipes",
     },
     {
@@ -57,7 +57,7 @@ export const referenceBlogs = [
         content: "Hosting can be stressful, but it doesn't have to be. With a bit of preparation, you can enjoy your own party. One key tip: prep your drinks ahead of time. Featuring a Fresqo DIY drink station means guests serve themselves, freeing you up to mingle. Keep plenty of ice on hand and ensure your cocktail balls are beautifully displayed!",
         date: "Nov 20, 2023",
         readTime: "5 min read",
-        image: "/images/product-pinacolada.jpg",
+        image: "/images/product-cosmopolitan.jpg",
         category: "Entertaining",
     }
 ];

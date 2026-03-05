@@ -46,12 +46,11 @@ export default function Ingredients() {
                 <div ref={contentRef} className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     {/* Left - Image */}
                     <div className="relative">
-                        <div className="relative rounded-3xl overflow-hidden shadow-lift bg-gray-200">
+                        <div className="relative rounded-3xl overflow-hidden shadow-lift">
                             <img
                                 src="/images/ingredients.jpg"
                                 alt="Fresh natural ingredients"
                                 className="w-full h-auto object-cover"
-                                onError={(e) => { e.target.style.display = 'none' }}
                             />
                         </div>
 

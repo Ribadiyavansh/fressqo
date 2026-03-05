@@ -50,8 +50,7 @@ export default function BlogSection() {
                                     <img
                                         src={post.image}
                                         alt={post.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 bg-gray-200"
-                                        onError={(e) => { e.target.style.display = 'none' }}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
                                 </div>
                                 <div className="p-6 flex flex-col flex-1">
