@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import ImageSlider from '../components/ImageSlider';
-import { ShoppingBag, ChevronRight } from 'lucide-react';
+import { ShoppingBag, ChevronRight, ChevronLeft, X, Check } from 'lucide-react';
 
 const SHOP_PRODUCTS = [
     {
@@ -241,7 +241,7 @@ function Shop() {
                                 disabled={currentPage === 1}
                                 className={`w-10 h-10 flex items-center justify-center rounded-xl border ${currentPage === 1 ? 'border-slate-100 text-slate-300 dark:border-slate-800 dark:text-slate-700 cursor-not-allowed' : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all'}`}
                             >
-                                <span className="material-symbols-rounded">chevron_left</span>
+                                <ChevronLeft className="w-6 h-6" />
                             </button>
 
                             {[...Array(totalPages)].map((_, i) => (
@@ -262,7 +262,7 @@ function Shop() {
                                 disabled={currentPage === totalPages}
                                 className={`w-10 h-10 flex items-center justify-center rounded-xl border ${currentPage === totalPages ? 'border-slate-100 text-slate-300 dark:border-slate-800 dark:text-slate-700 cursor-not-allowed' : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all'}`}
                             >
-                                <span className="material-symbols-rounded">chevron_right</span>
+                                <ChevronRight className="w-6 h-6" />
                             </button>
                         </nav>
                     )}
@@ -279,7 +279,7 @@ function Shop() {
                                 onClick={() => setIsFilterModalOpen(false)}
                                 className="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
                             >
-                                <span className="material-symbols-rounded">close</span>
+                                <X className="w-6 h-6" />
                             </button>
                         </div>
                         <div className="p-6 space-y-8 overflow-y-auto max-h-[70vh]">
@@ -302,28 +302,28 @@ function Shop() {
                                     <label className="flex items-center group cursor-pointer">
                                         <div className="relative flex items-center justify-center">
                                             <input defaultChecked className="peer appearance-none w-5 h-5 border-2 border-slate-300 rounded checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors" type="checkbox" />
-                                            <span className="material-symbols-rounded absolute text-white text-sm pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+                                            <Check className="absolute text-white w-4 h-4 pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" />
                                         </div>
                                         <span className="ml-3 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">All Flavors</span>
                                     </label>
                                     <label className="flex items-center group cursor-pointer">
                                         <div className="relative flex items-center justify-center">
                                             <input className="peer appearance-none w-5 h-5 border-2 border-slate-300 rounded checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors" type="checkbox" />
-                                            <span className="material-symbols-rounded absolute text-white text-sm pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+                                            <Check className="absolute text-white w-4 h-4 pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" />
                                         </div>
                                         <span className="ml-3 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Citrus Blends</span>
                                     </label>
                                     <label className="flex items-center group cursor-pointer">
                                         <div className="relative flex items-center justify-center">
                                             <input className="peer appearance-none w-5 h-5 border-2 border-slate-300 rounded checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors" type="checkbox" />
-                                            <span className="material-symbols-rounded absolute text-white text-sm pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+                                            <Check className="absolute text-white w-4 h-4 pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" />
                                         </div>
                                         <span className="ml-3 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Berry Infusions</span>
                                     </label>
                                     <label className="flex items-center group cursor-pointer">
                                         <div className="relative flex items-center justify-center">
                                             <input className="peer appearance-none w-5 h-5 border-2 border-slate-300 rounded checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary focus:outline-none transition-colors" type="checkbox" />
-                                            <span className="material-symbols-rounded absolute text-white text-sm pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+                                            <Check className="absolute text-white w-4 h-4 pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" />
                                         </div>
                                         <span className="ml-3 text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Tropical Hits</span>
                                     </label>

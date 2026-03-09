@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Mail, Phone, MapPin, Camera, Video, Terminal, CheckCircle2, ArrowRight } from 'lucide-react';
 
 function Contact() {
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -30,7 +31,7 @@ function Contact() {
                         <div className="space-y-4">
                             <div className="flex items-start gap-4 p-5 rounded-xl border border-border-light bg-white dark:bg-slate-900/50 hover:shadow-md transition-shadow">
                                 <div className="flex items-center justify-center size-12 rounded-lg bg-primary/10 text-charcoal dark:text-primary">
-                                    <span className="material-symbols-outlined">mail</span>
+                                    <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-charcoal dark:text-slate-100">Email Us</h3>
@@ -39,7 +40,7 @@ function Contact() {
                             </div>
                             <div className="flex items-start gap-4 p-5 rounded-xl border border-border-light bg-white dark:bg-slate-900/50 hover:shadow-md transition-shadow">
                                 <div className="flex items-center justify-center size-12 rounded-lg bg-primary/10 text-charcoal dark:text-primary">
-                                    <span className="material-symbols-outlined">call</span>
+                                    <Phone className="w-6 h-6" />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-charcoal dark:text-slate-100">Call Us</h3>
@@ -48,7 +49,7 @@ function Contact() {
                             </div>
                             <div className="flex items-start gap-4 p-5 rounded-xl border border-border-light bg-white dark:bg-slate-900/50 hover:shadow-md transition-shadow">
                                 <div className="flex items-center justify-center size-12 rounded-lg bg-primary/10 text-charcoal dark:text-primary">
-                                    <span className="material-symbols-outlined">location_on</span>
+                                    <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg text-charcoal dark:text-slate-100">Visit Us</h3>
@@ -61,19 +62,19 @@ function Contact() {
                             <div className="flex gap-4">
                                 <Link className="flex flex-col items-center gap-2 group" to="/">
                                     <div className="rounded-full bg-white dark:bg-slate-800 border border-border-light p-3 group-hover:bg-primary/20 transition-colors">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-slate-300">photo_camera</span>
+                                        <Camera className="w-6 h-6 text-charcoal dark:text-slate-300" />
                                     </div>
                                     <span className="text-xs font-semibold text-charcoal dark:text-slate-400">Instagram</span>
                                 </Link>
                                 <Link className="flex flex-col items-center gap-2 group" to="/">
                                     <div className="rounded-full bg-white dark:bg-slate-800 border border-border-light p-3 group-hover:bg-primary/20 transition-colors">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-slate-300">video_library</span>
+                                        <Video className="w-6 h-6 text-charcoal dark:text-slate-300" />
                                     </div>
                                     <span className="text-xs font-semibold text-charcoal dark:text-slate-400">TikTok</span>
                                 </Link>
                                 <Link className="flex flex-col items-center gap-2 group" to="/">
                                     <div className="rounded-full bg-white dark:bg-slate-800 border border-border-light p-3 group-hover:bg-primary/20 transition-colors">
-                                        <span className="material-symbols-outlined text-charcoal dark:text-slate-300">terminal</span>
+                                        <Terminal className="w-6 h-6 text-charcoal dark:text-slate-300" />
                                     </div>
                                     <span className="text-xs font-semibold text-charcoal dark:text-slate-400">Twitter</span>
                                 </Link>
@@ -85,7 +86,7 @@ function Contact() {
                             {isSubmitted ? (
                                 <div className="text-center py-12 animate-fade-in">
                                     <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                                        <span className="material-symbols-outlined text-primary text-4xl">check_circle</span>
+                                        <CheckCircle2 className="w-10 h-10 text-primary" />
                                     </div>
                                     <h2 className="text-3xl font-black text-charcoal dark:text-slate-100 mb-4 tracking-tight">Thank you for contacting us!</h2>
                                     <p className="text-sage dark:text-slate-400 text-lg mb-8 max-w-sm mx-auto">
@@ -137,7 +138,7 @@ function Contact() {
                         </div>
                         <Link className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 border border-border-light rounded-xl font-bold text-charcoal dark:text-slate-100 hover:bg-background-light dark:hover:bg-slate-700 transition-colors shadow-sm" to="/">
                             Visit FAQ Page
-                            <span className="material-symbols-outlined">arrow_forward</span>
+                            <ArrowRight className="w-6 h-6" />
                         </Link>
                     </div>
                 </section>

@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import CartSidebar from './CartSidebar';
 import { motion } from 'framer-motion';
-import { Instagram, Twitter, Facebook, Youtube, Mail, Phone, MapPin, ArrowUp, Sparkles } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Youtube, Mail, Phone, MapPin, ArrowUp, Sparkles, ShoppingCart, Menu, X, LogOut, User } from 'lucide-react';
 function Layout() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -96,26 +96,28 @@ function Layout() {
                                                 }}
                                                 className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors flex items-center gap-2 mt-1"
                                             >
-                                                <span className="material-symbols-outlined text-sm">logout</span>
+                                                <LogOut className="w-4 h-4" />
                                                 Log Out
                                             </button>
                                         </div>
                                     )}
                                 </div>
                             ) : (
-                                <Link className="hidden md:block text-sm font-semibold hover:text-primary transition-colors" to="/login">Login</Link>
+                                <Link className="hidden md:flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors" to="/login">
+                                    <User className="w-4 h-4" /> Login
+                                </Link>
                             )}
                             <button
                                 onClick={() => setIsCartOpen(true)}
                                 className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors flex items-center justify-center"
                             >
-                                <span className="material-symbols-outlined text-charcoal dark:text-white">shopping_cart</span>
+                                <ShoppingCart className="w-6 h-6 text-charcoal dark:text-white" />
                                 {totalItems > 0 && (
                                     <span className="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white dark:border-gray-900">{totalItems}</span>
                                 )}
                             </button>
                             <button className="md:hidden p-2 text-charcoal dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                                <span className="material-symbols-outlined">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+                                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                             </button>
                         </div>
                     </div>
@@ -140,7 +142,7 @@ function Layout() {
                                 }}
                                 className="w-full text-left px-3 py-3 rounded-xl text-base font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all flex items-center gap-3"
                             >
-                                <span className="material-symbols-outlined">logout</span>
+                                <LogOut className="w-5 h-5" />
                                 Log Out
                             </button>
                         ) : (

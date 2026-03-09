@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { ShoppingCart, X, Trash2, Minus, Plus, ArrowRight } from 'lucide-react';
 
 function CartSidebar({ isOpen, onClose }) {
     const { cartItems, handleQuantityChange, handleRemoveItem, totalItems, subtotal } = useCart();
@@ -37,7 +38,7 @@ function CartSidebar({ isOpen, onClose }) {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800">
                     <div className="flex items-center gap-3">
-                        <span className="material-symbols-rounded text-2xl text-charcoal dark:text-white">shopping_cart</span>
+                        <ShoppingCart className="w-8 h-8 text-charcoal dark:text-white" />
                         <h2 className="text-xl font-bold font-display text-charcoal dark:text-white">Your Cart</h2>
                         <span className="bg-primary/20 text-primary text-xs font-bold px-2 py-1 rounded-full">{totalItems} Items</span>
                     </div>
@@ -46,7 +47,7 @@ function CartSidebar({ isOpen, onClose }) {
                         className="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors flex items-center justify-center"
                         aria-label="Close cart"
                     >
-                        <span className="material-symbols-rounded">close</span>
+                        <X className="w-6 h-6" />
                     </button>
                 </div>
 
@@ -69,7 +70,7 @@ function CartSidebar({ isOpen, onClose }) {
                                                 className="text-slate-400 hover:text-red-500 transition-colors p-1"
                                                 aria-label="Remove item"
                                             >
-                                                <span className="material-symbols-rounded text-sm">delete</span>
+                                                <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>
                                         <p className="text-xs text-slate-500 dark:text-slate-400">{item.description}</p>
@@ -82,7 +83,7 @@ function CartSidebar({ isOpen, onClose }) {
                                                 className="w-7 h-7 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-primary transition-colors disabled:opacity-50"
                                                 aria-label="Decrease quantity"
                                             >
-                                                <span className="material-symbols-rounded text-sm">remove</span>
+                                                <Minus className="w-4 h-4" />
                                             </button>
                                             <span className="w-7 text-center text-sm font-semibold text-charcoal dark:text-white">{item.quantity}</span>
                                             <button
@@ -90,7 +91,7 @@ function CartSidebar({ isOpen, onClose }) {
                                                 className="w-7 h-7 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
                                                 aria-label="Increase quantity"
                                             >
-                                                <span className="material-symbols-rounded text-sm">add</span>
+                                                <Plus className="w-4 h-4" />
                                             </button>
                                         </div>
                                         <span className="font-bold text-charcoal dark:text-white">${item.price.toFixed(2)}</span>
@@ -131,7 +132,7 @@ function CartSidebar({ isOpen, onClose }) {
                         className="w-full bg-primary hover:bg-[#8ebf25] text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         Proceed to Checkout
-                        <span className="material-symbols-rounded text-sm">arrow_forward</span>
+                        <ArrowRight className="w-5 h-5" />
                     </button>
 
                     <button

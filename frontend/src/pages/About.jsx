@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Award, Leaf, Smile, ArrowRight } from 'lucide-react';
 
 function About() {
   const toggleDarkTheme = () => {
@@ -65,21 +66,21 @@ function About() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center p-10 bg-white dark:bg-slate-900 rounded-xl border border-primary/10 shadow-sm hover:shadow-md transition-all">
               <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-6 text-primary">
-                <span className="material-symbols-outlined text-4xl font-bold">workspace_premium</span>
+                <Award className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-charcoal dark:text-slate-100">Premium Quality</h3>
               <p className="text-sage dark:text-slate-400">Hand-selected botanical ingredients and mineral-rich bases for the finest taste profile in every bomb.</p>
             </div>
             <div className="flex flex-col items-center text-center p-10 bg-white dark:bg-slate-900 rounded-xl border border-primary/10 shadow-sm hover:shadow-md transition-all">
               <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-6 text-primary">
-                <span className="material-symbols-outlined text-4xl font-bold">eco</span>
+                <Leaf className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-charcoal dark:text-slate-100">Sustainability</h3>
               <p className="text-sage dark:text-slate-400">Zero plastic packaging and ethically conscious sourcing. We care as much about the planet as the fizz.</p>
             </div>
             <div className="flex flex-col items-center text-center p-10 bg-white dark:bg-slate-900 rounded-xl border border-primary/10 shadow-sm hover:shadow-md transition-all">
               <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-6 text-primary">
-                <span className="material-symbols-outlined text-4xl font-bold">mood</span>
+                <Smile className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-charcoal dark:text-slate-100">Instant Joy</h3>
               <p className="text-sage dark:text-slate-400">Transforming hydration into a daily celebration. A burst of refreshment whenever you need it most.</p>
@@ -94,7 +95,7 @@ function About() {
                 <p className="text-sage dark:text-slate-400 max-w-xl">Meet the innovators, flavorists, and dreamers making Fresqo happen.</p>
               </div>
               <button className="text-primary font-bold flex items-center gap-2 hover:underline">
-                See all positions <span className="material-symbols-outlined">arrow_forward</span>
+                See all positions <ArrowRight className="w-5 h-5 ml-1 inline" />
               </button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

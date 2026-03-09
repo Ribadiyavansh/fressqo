@@ -8,6 +8,7 @@ import Ingredients from '../components/Ingredients';
 import Testimonials from '../components/Testimonials';
 import ReferenceFAQ from '../components/ReferenceFAQ';
 import BlogSection from '../components/BlogSection';
+import { Sparkles } from 'lucide-react';
 
 function Home() {
     const { addToCart } = useCart();
@@ -29,7 +30,7 @@ function Home() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-8">
                             <div className="inline-flex items-center space-x-2 px-3 py-1 bg-mint dark:bg-gray-800 rounded-full">
-                                <span className="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+                                <Sparkles className="w-4 h-4 text-primary" />
                                 <span className="text-xs font-bold uppercase tracking-wider text-charcoal dark:text-primary">Premium Cocktail Balls</span>
                             </div>
                             <h1 className="text-5xl md:text-6xl lg:text-8xl font-serif font-black leading-tight">

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { referenceBlogs as BLOG_POSTS } from '../data/referenceBlogs';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 function Blog() {
     const [activeCategory, setActiveCategory] = React.useState('All Posts');
@@ -78,7 +79,7 @@ function Blog() {
 
                 <div className="mt-20 flex justify-center items-center gap-4">
                     <button className="w-12 h-12 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                        <span className="material-symbols-outlined">chevron_left</span>
+                        <ChevronLeft className="w-6 h-6" />
                     </button>
                     <div className="flex gap-2">
                         <button className="w-12 h-12 rounded-full bg-primary text-white font-bold">1</button>
@@ -86,7 +87,7 @@ function Blog() {
                         <button className="w-12 h-12 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 font-bold transition-colors">3</button>
                     </div>
                     <button className="w-12 h-12 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                        <span className="material-symbols-outlined">chevron_right</span>
+                        <ChevronRight className="w-6 h-6" />
                     </button>
                 </div>
             </main>
