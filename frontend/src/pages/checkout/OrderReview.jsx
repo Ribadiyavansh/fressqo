@@ -1,13 +1,50 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
+import api from '../../utils/api';
 
 function OrderReview() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { cartItems, getCartTotal, clearCart } = useCart();
+    const { shippingAddress, paymentMethod } = location.state || {};
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState('');
 
+    useEffect(() => {
+        if (!shippingAddress || !paymentMethod || cartItems.length === 0) {
+            navigate('/checkout');
+        }
+    }, [shippingAddress, paymentMethod, cartItems, navigate]);
 
+    if (!shippingAddress) return null;
 
-    const handleSubmit = () => {
-        navigate('/checkout/success');
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        setError('');
+        try {
+            const formattedShippingAddress = `${shippingAddress.firstName} ${shippingAddress.lastName}, ${shippingAddress.addressLine1}, ${shippingAddress.addressLine2 ? shippingAddress.addressLine2 + ', ' : ''}${shippingAddress.city}, ${shippingAddress.state} - ${shippingAddress.zipCode}. Phone: ${shippingAddress.phone}`;
+
+            const orderData = {
+                orderItems: cartItems.map(item => ({
+                    productId: item.product._id,
+                    quantity: item.quantity,
+                    price: item.product.discountPrice || item.product.price
+                })),
+                shippingAddress: formattedShippingAddress,
+                paymentStatus: paymentMethod === 'cod' ? 'Pending' : 'Paid', // Assuming COD right now
+                totalPrice: getCartTotal()
+            };
+
+            await api.post('/orders', orderData);
+            clearCart();
+            // Pass order data down logic if desired
+            navigate('/checkout/success');
+        } catch (err) {
+            setError(err.response?.data?.message || 'Failed to place order. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -26,6 +63,12 @@ function OrderReview() {
                     </div>
                 </div>
 
+                {error && (
+                    <div className="mb-6 bg-red-50 text-red-600 p-4 rounded-xl border border-red-200">
+                        {error}
+                    </div>
+                )}
+
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                     {/* Left Column: Order Details */}
                     <div className="lg:col-span-8 space-y-8">
@@ -43,14 +86,15 @@ function OrderReview() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-600">
                                 <div>
                                     <p className="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Delivery Address</p>
-                                    <p className="text-slate-900 font-bold mb-1">Alex Thompson</p>
-                                    <p>123 Fresh Lane, Green Valley</p>
-                                    <p>California, 90210</p>
+                                    <p className="text-slate-900 font-bold mb-1">{shippingAddress.firstName} {shippingAddress.lastName}</p>
+                                    <p>{shippingAddress.addressLine1}</p>
+                                    {shippingAddress.addressLine2 && <p>{shippingAddress.addressLine2}</p>}
+                                    <p>{shippingAddress.city}, {shippingAddress.state} - {shippingAddress.zipCode}</p>
                                 </div>
                                 <div>
                                     <p className="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Shipping Method</p>
-                                    <p className="text-slate-900 font-bold mb-1">Express Courier Delivery</p>
-                                    <p>Estimated: 2-3 Business Days</p>
+                                    <p className="text-slate-900 font-bold mb-1">Standard Delivery</p>
+                                    <p>Estimated: 3-5 Business Days</p>
                                 </div>
                             </div>
                         </section>
@@ -62,7 +106,7 @@ function OrderReview() {
                                     <span className="material-icons text-primary text-2xl">payments</span>
                                     <h3 className="text-slate-900 font-display text-xl font-bold">Payment Method</h3>
                                 </div>
-                                <Link to="/checkout/payment" className="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                                <Link to="/checkout/payment" state={{ shippingAddress }} className="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
                                     Edit <span className="material-icons text-[18px]">edit</span>
                                 </Link>
                             </div>
@@ -81,37 +125,24 @@ function OrderReview() {
                         <section className="space-y-4">
                             <h3 className="text-slate-900 text-xl font-bold font-display flex items-center gap-3">
                                 <span className="material-icons text-primary text-2xl">shopping_basket</span>
-                                Order Items (3)
+                                Order Items ({cartItems.length})
                             </h3>
                             <div className="divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-                                {/* Item 1 */}
-                                <div className="flex items-center gap-4 p-4">
-                                    <div className="h-20 w-20 bg-slate-50 rounded-lg overflow-hidden flex-shrink-0 border border-slate-100">
-                                        <img className="w-full h-full object-cover" data-alt="Variety Pack Fizz Bombs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQQ0QOxehJd6Zaf5oexaQYPW4dwu5NUeKADCkQOpj9y0O0pnIMh9t3JVfCKaYHU0GrXqH8fIlRGVaIwN7QYbfyiCsVjjA19AfJk4jKu90r0-zkJo9rJDYZqYf62E_4sBot30riNoYZNu5tVUoVgqmFQEHREBFmXPWgZWz_Iu--Vp7GnBfigoACovbRjxsAgCZbHsR6yKYihASzWnMTvmYWzEbZU1JS40KSXnQMTc822iXt1-zDRd46bXE8sfUU4Zdf95NMh6Mn52-" />
+                                {cartItems.map((item) => (
+                                    <div key={item.product._id} className="flex items-center gap-4 p-4">
+                                        <div className="h-20 w-20 bg-slate-50 rounded-lg overflow-hidden flex-shrink-0 border border-slate-100">
+                                            <img className="w-full h-full object-cover" alt={item.product.title} src={item.product.images?.[0] || 'https://via.placeholder.com/150'} />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="text-slate-900 font-bold truncate">{item.product.title}</h4>
+                                            <p className="text-slate-500 text-sm line-clamp-1">{item.product.description}</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-slate-900 font-bold">₹{item.product.discountPrice || item.product.price}</p>
+                                            <p className="text-slate-500 text-sm font-medium">Qty: {item.quantity}</p>
+                                        </div>
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                        <h4 className="text-slate-900 font-bold truncate">Variety Pack of 4</h4>
-                                        <p className="text-slate-500 text-sm">The Ultimate Party Starter</p>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-slate-900 font-bold">₹42.00</p>
-                                        <p className="text-slate-500 text-sm font-medium">Qty: 2</p>
-                                    </div>
-                                </div>
-                                {/* Item 2 */}
-                                <div className="flex items-center gap-4 p-4">
-                                    <div className="h-20 w-20 bg-slate-50 rounded-lg overflow-hidden flex-shrink-0 border border-slate-100">
-                                        <img className="w-full h-full object-cover" data-alt="Cosmopolitan Pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANdmVyt6OXLBlgsOKPEQ6boL2nr2Fq0ofpVtMqWqE47vRu0DQYbMCZKJX7zGFT59Kihrdcb1AwhOBC6GFly6DKltJ7QIjrwEdAoz3T8mm5JFSKhzQtP6oYvG2ONB7l0k52VZStwSthVzFRMjQ02KYe2pkQvRMKb3wPX-lYPKmPt0oeasCKj8jSQTLzpV4qbwjGzAX5jUyyDQZv7_YUjiQ1mK4CTNey6ghpGodJeKxmUmER6hzUURjuthN0PEGDrtQKwKckz8kvcgWu" />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <h4 className="text-slate-900 font-bold truncate">Watermelon Mint Punch</h4>
-                                        <p className="text-slate-500 text-sm">Pack of 4 Sensation Mixes</p>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-slate-900 font-bold">₹24.00</p>
-                                        <p className="text-slate-500 text-sm font-medium">Qty: 1</p>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </section>
                     </div>
@@ -123,7 +154,7 @@ function OrderReview() {
                             <div className="space-y-4 pt-2">
                                 <div className="flex justify-between text-gray-400 text-sm font-medium">
                                     <span>Subtotal</span>
-                                    <span>₹108.00</span>
+                                    <span>₹{getCartTotal()}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-400 text-sm font-medium">
                                     <span>Shipping</span>
@@ -135,13 +166,13 @@ function OrderReview() {
                                 </div>
                                 <div className="pt-4 border-t border-gray-700 flex justify-between items-center">
                                     <span className="text-white font-bold text-lg">Total</span>
-                                    <span className="text-primary font-display font-bold text-3xl tracking-tight">₹108.00</span>
+                                    <span className="text-primary font-display font-bold text-3xl tracking-tight">₹{getCartTotal()}</span>
                                 </div>
                             </div>
 
-                            <button onClick={handleSubmit} className="w-full bg-primary hover:bg-primary/90 text-fresqo-charcoal py-4 rounded-xl font-bold text-lg uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-2 mt-4 active:scale-[0.98]">
-                                Place Order
-                                <span className="material-icons">check_circle</span>
+                            <button onClick={handleSubmit} disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90 text-fresqo-charcoal py-4 rounded-xl font-bold text-lg uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-2 mt-4 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed">
+                                {isSubmitting ? 'Placing Order...' : 'Place Order'}
+                                {!isSubmitting && <span className="material-icons">check_circle</span>}
                             </button>
 
                             <div className="space-y-4 pt-2">

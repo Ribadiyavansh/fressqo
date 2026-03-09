@@ -92,6 +92,10 @@ function AdminLayout() {
                             <span className="material-icons-round">article</span>
                             <span>Blog</span>
                         </NavLink>
+                        <NavLink to="/admin/newsletter" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
+                            <span className="material-icons-round">mail</span>
+                            <span>Newsletter</span>
+                        </NavLink>
                     </div>
 
                     {/* System */}

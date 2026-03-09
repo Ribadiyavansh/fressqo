@@ -42,6 +42,7 @@ const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 const AdminSettingsGeneral = lazy(() => import('./pages/admin/AdminSettingsGeneral'));
 const AdminSettingsSecurity = lazy(() => import('./pages/admin/AdminSettingsSecurity'));
 const AdminSettingsAppearance = lazy(() => import('./pages/admin/AdminSettingsAppearance'));
+const AdminNewsletter = lazy(() => import('./pages/admin/AdminNewsletter'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -108,6 +109,7 @@ function App() {
                 <Route path="security" element={<AdminSettingsSecurity />} />
                 <Route path="appearance" element={<AdminSettingsAppearance />} />
               </Route>
+              <Route path="newsletter" element={<AdminNewsletter />} />
             </Route>
           </Routes>
         </Suspense>

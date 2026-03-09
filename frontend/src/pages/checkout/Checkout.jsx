@@ -1,15 +1,35 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
 
 function Checkout() {
     const navigate = useNavigate();
-
-
+    const { cartItems, getCartTotal } = useCart();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/checkout/payment');
+        const formData = new FormData(e.target);
+
+        const shippingAddress = {
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            phone: formData.get('phone'),
+            addressLine1: formData.get('addressLine1'),
+            addressLine2: formData.get('addressLine2') || '',
+            city: formData.get('city'),
+            state: formData.get('state'),
+            zipCode: formData.get('zipCode')
+        };
+
+        navigate('/checkout/payment', { state: { shippingAddress } });
     };
+
+    // If cart is empty, redirect to shop
+    useEffect(() => {
+        if (cartItems.length === 0) {
+            navigate('/shop');
+        }
+    }, [cartItems, navigate]);
 
     return (
         <main className="max-w-6xl mx-auto px-4 py-8 lg:py-12">
@@ -39,40 +59,40 @@ function Checkout() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
-                                    <input className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="John" type="text" required />
+                                    <input name="firstName" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="John" type="text" required />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
-                                    <input className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Doe" type="text" required />
+                                    <input name="lastName" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Doe" type="text" required />
                                 </div>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
-                                <input className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="+1 00000 00000" type="tel" required />
+                                <input name="phone" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="+91 00000 00000" type="tel" required />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-2">Shipping Address</label>
-                                <input className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none mb-4" placeholder="House No, Street Name" type="text" required />
-                                <input className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Landmark, Area (Optional)" type="text" />
+                                <input name="addressLine1" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none mb-4" placeholder="House No, Street Name" type="text" required />
+                                <input name="addressLine2" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Landmark, Area (Optional)" type="text" />
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-2">City</label>
-                                    <input className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="New York" type="text" required />
+                                    <input name="city" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Rajkot" type="text" required />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-2">State</label>
-                                    <select className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" required>
+                                    <select name="state" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" required>
                                         <option value="">Select State</option>
-                                        <option value="NY">New York</option>
-                                        <option value="CA">California</option>
-                                        <option value="TX">Texas</option>
-                                        <option value="FL">Florida</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Karnataka">Karnataka</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-2">Zipcode</label>
-                                    <input className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="10001" type="text" required />
+                                    <input name="zipCode" className="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="360001" type="text" required />
                                 </div>
                             </div>
                             <div className="pt-8">
@@ -87,27 +107,19 @@ function Checkout() {
                 <div className="lg:col-span-5">
                     <div className="bg-fresqo-charcoal text-white p-8 rounded-2xl shadow-xl sticky top-28">
                         <h2 className="font-display text-3xl mb-8 border-b border-gray-700 pb-4">Order Summary</h2>
-                        <div className="space-y-6 mb-8">
-                            <div className="flex gap-4">
-                                <div className="w-20 h-20 bg-white rounded-lg flex-shrink-0 overflow-hidden">
-                                    <img alt="Variety Pack Fizz Bombs" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEQQ0QOxehJd6Zaf5oexaQYPW4dwu5NUeKADCkQOpj9y0O0pnIMh9t3JVfCKaYHU0GrXqH8fIlRGVaIwN7QYbfyiCsVjjA19AfJk4jKu90r0-zkJo9rJDYZqYf62E_4sBot30riNoYZNu5tVUoVgqmFQEHREBFmXPWgZWz_Iu--Vp7GnBfigoACovbRjxsAgCZbHsR6yKYihASzWnMTvmYWzEbZU1JS40KSXnQMTc822iXt1-zDRd46bXE8sfUU4Zdf95NMh6Mn52-" />
+                        <div className="space-y-6 mb-8 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                            {cartItems.map((item) => (
+                                <div key={item.product._id} className="flex gap-4">
+                                    <div className="w-20 h-20 bg-white rounded-lg flex-shrink-0 overflow-hidden">
+                                        <img alt={item.product.title} className="w-full h-full object-cover" src={item.product.images?.[0] || 'https://via.placeholder.com/150'} />
+                                    </div>
+                                    <div className="flex-grow">
+                                        <h3 className="font-bold text-lg leading-tight line-clamp-2">{item.product.title}</h3>
+                                        <p className="text-gray-400 text-sm mt-1">Qty: {item.quantity}</p>
+                                        <p className="text-white font-bold mt-1">₹{(item.product.discountPrice || item.product.price) * item.quantity}</p>
+                                    </div>
                                 </div>
-                                <div className="flex-grow">
-                                    <h3 className="font-bold text-lg">Variety Pack of 4</h3>
-                                    <p className="text-gray-400 text-sm">Qty: 2</p>
-                                    <p className="text-white font-bold mt-1">₹42.00</p>
-                                </div>
-                            </div>
-                            <div className="flex gap-4">
-                                <div className="w-20 h-20 bg-white rounded-lg flex-shrink-0 overflow-hidden">
-                                    <img alt="Cosmopolitan Pack" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANdmVyt6OXLBlgsOKPEQ6boL2nr2Fq0ofpVtMqWqE47vRu0DQYbMCZKJX7zGFT59Kihrdcb1AwhOBC6GFly6DKltJ7QIjrwEdAoz3T8mm5JFSKhzQtP6oYvG2ONB7l0k52VZStwSthVzFRMjQ02KYe2pkQvRMKb3wPX-lYPKmPt0oeasCKj8jSQTLzpV4qbwjGzAX5jUyyDQZv7_YUjiQ1mK4CTNey6ghpGodJeKxmUmER6hzUURjuthN0PEGDrtQKwKckz8kvcgWu" />
-                                </div>
-                                <div className="flex-grow">
-                                    <h3 className="font-bold text-lg">Watermelon Mint Punch</h3>
-                                    <p className="text-gray-400 text-sm">Qty: 1</p>
-                                    <p className="text-white font-bold mt-1">₹24.00</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <div className="flex gap-2 mb-8">
                             <input className="flex-grow bg-gray-800 border bg-transparent border-gray-700 outline-none rounded-lg px-4 py-2 focus:ring-primary focus:border-primary transition-all text-white placeholder-gray-500" placeholder="Discount Code" type="text" />
@@ -116,7 +128,7 @@ function Checkout() {
                         <div className="space-y-3 border-t border-gray-700 pt-6 mb-8">
                             <div className="flex justify-between text-gray-400">
                                 <span>Subtotal</span>
-                                <span>₹108.00</span>
+                                <span>₹{getCartTotal()}</span>
                             </div>
                             <div className="flex justify-between text-gray-400">
                                 <span>Shipping</span>
@@ -124,7 +136,7 @@ function Checkout() {
                             </div>
                             <div className="flex justify-between text-xl font-display font-bold tracking-wider border-t border-gray-700 pt-4 mt-4 text-white">
                                 <span>Total Payable</span>
-                                <span>₹108.00</span>
+                                <span>₹{getCartTotal()}</span>
                             </div>
                         </div>
                         <p className="text-center text-gray-500 text-xs mt-6 flex items-center justify-center gap-2">

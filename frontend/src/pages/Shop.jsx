@@ -1,129 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import ImageSlider from '../components/ImageSlider';
 import { ShoppingBag, ChevronRight, ChevronLeft, X, Check } from 'lucide-react';
-
-const SHOP_PRODUCTS = [
-    {
-        id: 1,
-        name: 'Variety Pack',
-        description: '4 unique flavors in one pack',
-        price: 349,
-        originalPrice: 449,
-        discount: '22% OFF',
-        images: ['/images/product-variety.jpg', '/images/product-variety.jpg'],
-        badge: 'Best Seller',
-        badgeColor: 'bg-primary text-white',
-        reviews: 48,
-        rating: 5,
-    },
-    {
-        id: 2,
-        name: 'Cosmopolitan Ball',
-        description: 'Classic cranberry-citrus blend',
-        price: 349,
-        originalPrice: 449,
-        discount: '22% OFF',
-        images: ['/images/product-cosmopolitan.jpg', '/images/product-cosmopolitan.jpg'],
-        reviews: 32,
-        rating: 4,
-    },
-    {
-        id: 3,
-        name: 'Sex on the Beach',
-        description: 'Tropical peach-orange delight',
-        price: 349,
-        originalPrice: 449,
-        discount: '22% OFF',
-        images: ['/images/product-sexonthebeach.jpg', '/images/product-sexonthebeach.jpg'],
-        badge: 'New Arrive',
-        badgeColor: 'bg-accent text-brand-dark',
-        reviews: 15,
-        rating: 5,
-    },
-    {
-        id: 4,
-        name: 'Kala Khatta Ball',
-        description: 'Authentic Indian flavor',
-        price: 349,
-        originalPrice: 449,
-        discount: '22% OFF',
-        images: ['/images/product-kalakhatta.jpg', '/images/product-kalakhatta.jpg'],
-        badge: 'Limited Adition',
-        badgeColor: 'bg-red-500 text-white',
-        reviews: 67,
-        rating: 4.5,
-    },
-    {
-        id: 5,
-        name: 'Watermelon Mint',
-        description: 'Refreshing summer favorite',
-        price: 349,
-        originalPrice: 449,
-        discount: '22% OFF',
-        images: ['/images/product-watermelon.jpg', '/images/product-watermelon.jpg'],
-        badge: 'Popular',
-        badgeColor: 'bg-purple-500 text-white',
-        reviews: 89,
-        rating: 4,
-    },
-];
-
-// Duplicate products to test pagination
-const ALL_PRODUCTS = [
-    ...SHOP_PRODUCTS,
-    ...SHOP_PRODUCTS.map(p => ({ ...p, id: p.id + 10, name: p.name + ' (Pack)' })),
-    ...SHOP_PRODUCTS.map(p => ({ ...p, id: p.id + 20, name: p.name + ' (Mini)' }))
-];
+import api from '../utils/api';
 
 function Shop() {
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Kept for UI consistency, though complex filtering would need backend updates
     const [activeFilter, setActiveFilter] = useState('All');
     const [sortOption, setSortOption] = useState('Price: Low to High');
+
     const itemsPerPage = 12; // 4 columns * 3 rows
     const { addToCart } = useCart();
     const navigate = useNavigate();
 
-    // Filter & Sort Logic
-    let filteredProducts = [...ALL_PRODUCTS];
-
-    if (activeFilter === 'New Arrive') {
-        filteredProducts = filteredProducts.filter(p => p.badge === 'New Arrive');
-    } else if (activeFilter === 'Popular') {
-        filteredProducts = filteredProducts.filter(p => p.badge === 'Popular' || p.reviews >= 40);
-    } else if (activeFilter === 'Best Seller') {
-        filteredProducts = filteredProducts.filter(p => p.badge === 'Best Seller');
-    } else if (activeFilter === 'Limited Adition') {
-        filteredProducts = filteredProducts.filter(p => p.badge === 'Limited Adition');
-    }
-
-    if (sortOption === 'Price: Low to High') {
-        filteredProducts.sort((a, b) => a.price - b.price);
-    } else if (sortOption === 'Price: High to Low') {
-        filteredProducts.sort((a, b) => b.price - a.price);
-    }
-
-    // Pagination Logic
-    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
-    // Auto-adjust page if filter makes current page out of bounds
     useEffect(() => {
-        if (currentPage > totalPages && totalPages > 0) {
-            setCurrentPage(totalPages);
-        } else if (totalPages === 0 && currentPage !== 1) {
-            setCurrentPage(1);
-        }
-    }, [filteredProducts.length, totalPages, currentPage]);
+        const fetchProducts = async () => {
+            setIsLoading(true);
+            try {
+                // In a full implementation, sort & filter would be passed as query params here
+                const { data } = await api.get(`/products?pageNumber=${currentPage}`);
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+                // If we were doing frontend sort on the current page data (basic approach):
+                let pageProducts = [...data.products];
+
+                if (sortOption === 'Price: Low to High') {
+                    pageProducts.sort((a, b) => (a.discountPrice || a.price) - (b.discountPrice || b.price));
+                } else if (sortOption === 'Price: High to Low') {
+                    pageProducts.sort((a, b) => (b.discountPrice || b.price) - (a.discountPrice || a.price));
+                }
+
+                setProducts(pageProducts);
+                setTotalPages(data.pages);
+            } catch (error) {
+                console.error("Failed to fetch products", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchProducts();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentPage, sortOption, activeFilter]);
 
     const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (pageNumber >= 1 && pageNumber <= totalPages) {
+            setCurrentPage(pageNumber);
+        }
     };
 
     const handleFilterChange = (filter) => {
@@ -148,7 +77,6 @@ function Shop() {
             document.body.style.overflow = 'unset';
         }
 
-        // Cleanup function to ensure scroll is restored if component unmounts while modal is open
         return () => {
             document.body.style.overflow = 'unset';
         };
@@ -157,7 +85,6 @@ function Shop() {
     return (
         <div className="flex-1 w-full">
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
 
                 <div className="flex flex-col gap-8">
                     <div className="flex-1">
@@ -182,62 +109,80 @@ function Shop() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-                            {currentProducts.map((product) => (
-                                <div
-                                    key={product.id}
-                                    className="product-card bg-white rounded-2xl overflow-hidden shadow-soft card-lift group cursor-pointer animate-fade-in"
-                                    onClick={() => {
-                                        navigate(`/product/${product.id}`);
-                                    }}
-                                >
-                                    <div className="relative aspect-square overflow-hidden bg-fresqo-cream rounded-t-2xl">
-                                        <ImageSlider images={product.images} productName={product.name} interval={3500 + (product.id * 500)} />
-                                        {product.badge && (
-                                            <span className={`absolute top-4 left-4 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest z-30 ${product.badgeColor}`}>
-                                                {product.badge}
-                                            </span>
-                                        )}
-                                    </div>
-                                    <div className="p-6">
-                                        <h3 className="font-oswald text-xl font-bold text-fresqo-dark mb-1">
-                                            {product.name}
-                                        </h3>
-                                        <p className="text-sm text-fresqo-gray mb-4">{product.description}</p>
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-2">
-                                                <span className="font-bold text-2xl text-fresqo-dark">₹{product.price}</span>
-                                                <span className="text-sm text-fresqo-gray line-through">₹{product.originalPrice}</span>
-                                                <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">{product.discount}</span>
-                                            </div>
+                        {isLoading ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                                {Array.from({ length: 12 }).map((_, i) => (
+                                    <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-soft h-[400px]">
+                                        <div className="w-full h-1/2 bg-gray-200 animate-pulse" />
+                                        <div className="p-6 space-y-4">
+                                            <div className="w-3/4 h-6 bg-gray-200 animate-pulse rounded" />
+                                            <div className="w-full h-4 bg-gray-200 animate-pulse rounded" />
+                                            <div className="w-1/2 h-8 bg-gray-200 animate-pulse rounded" />
                                         </div>
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                alert("Pre-Orders Open | Cash on Delivery Available Across Rajkot");
-                                                addToCart({
-                                                    id: product.id,
-                                                    name: product.name,
-                                                    price: product.price,
-                                                    image: product.images[0],
-                                                    description: product.description
-                                                });
-                                            }}
-                                            className="w-full mt-4 btn-primary flex items-center justify-center gap-2"
-                                        >
-                                            <ShoppingBag className="w-4 h-4" />
-                                            Pre-Order – COD
-                                        </button>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        ) : products.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                                {products.map((product) => (
+                                    <div
+                                        key={product._id}
+                                        className="product-card bg-white rounded-2xl overflow-hidden shadow-soft card-lift group cursor-pointer animate-fade-in flex flex-col"
+                                        onClick={() => {
+                                            navigate(`/product/${product.slug || product._id}`);
+                                        }}
+                                    >
+                                        <div className="relative aspect-square overflow-hidden bg-fresqo-cream rounded-t-2xl">
+                                            <ImageSlider images={product.images} productName={product.title} interval={3500} />
+                                            {product.featured && (
+                                                <span className={`absolute top-4 left-4 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest z-30 bg-primary text-white`}>
+                                                    Best Seller
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div className="p-6 flex flex-col flex-1">
+                                            <h3 className="font-oswald text-xl font-bold text-fresqo-dark mb-1">
+                                                {product.title}
+                                            </h3>
+                                            <p className="text-sm text-fresqo-gray mb-4 line-clamp-2 flex-1">{product.description}</p>
+                                            <div className="flex items-center justify-between mt-auto">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="font-bold text-2xl text-fresqo-dark">₹{product.discountPrice || product.price}</span>
+                                                    {product.discountPrice && product.discountPrice < product.price && (
+                                                        <>
+                                                            <span className="text-sm text-fresqo-gray line-through">₹{product.price}</span>
+                                                            <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">
+                                                                {Math.round(((product.price - product.discountPrice) / product.price) * 100)}% OFF
+                                                            </span>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <button
+                                                onClick={async (e) => {
+                                                    e.stopPropagation();
+                                                    await addToCart(product);
+                                                }}
+                                                className="w-full mt-4 btn-primary flex items-center justify-center gap-2 relative z-10"
+                                            >
+                                                <ShoppingBag className="w-4 h-4" />
+                                                Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-20 text-gray-500">
+                                No products found matching criteria.
+                            </div>
+                        )}
                     </div>
 
-                    {totalPages > 1 && (
+                    {!isLoading && totalPages > 1 && (
                         <nav className="flex justify-center mt-16 space-x-2">
                             <button
-                                onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                                onClick={() => handlePageChange(currentPage - 1)}
                                 disabled={currentPage === 1}
                                 className={`w-10 h-10 flex items-center justify-center rounded-xl border ${currentPage === 1 ? 'border-slate-100 text-slate-300 dark:border-slate-800 dark:text-slate-700 cursor-not-allowed' : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all'}`}
                             >
@@ -258,7 +203,7 @@ function Shop() {
                             ))}
 
                             <button
-                                onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                                onClick={() => handlePageChange(currentPage + 1)}
                                 disabled={currentPage === totalPages}
                                 className={`w-10 h-10 flex items-center justify-center rounded-xl border ${currentPage === totalPages ? 'border-slate-100 text-slate-300 dark:border-slate-800 dark:text-slate-700 cursor-not-allowed' : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary hover:border-primary transition-all'}`}
                             >

@@ -7,9 +7,11 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
+    const [apiError, setApiError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { loginUser } = useAuth();
 
     const validate = () => {
         let newErrors = {};
@@ -27,11 +29,19 @@ function SignIn() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setApiError('');
         if (validate()) {
-            login({ name: email.split('@')[0], email });
-            navigate('/');
+            setIsLoading(true);
+            try {
+                await loginUser(email, password);
+                navigate('/');
+            } catch (error) {
+                setApiError(error.response?.data?.message || 'Failed to sign in. Please try again.');
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -59,6 +69,11 @@ function SignIn() {
                     <p className="text-gray-600 dark:text-gray-400">Welcome back! Please enter your details.</p>
                 </div>
                 <div className="bg-white dark:bg-[#1F2937] p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800">
+                    {apiError && (
+                        <div className="mb-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-3 rounded-xl text-sm border border-red-200 dark:border-red-800">
+                            {apiError}
+                        </div>
+                    )}
                     <form action="#" className="space-y-6" method="POST" onSubmit={handleSubmit}>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="email">Email Address</label>
@@ -108,29 +123,12 @@ function SignIn() {
                             </div>
                         </div>
                         <button
-                            className="w-full flex justify-center items-center py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-gray-900 bg-primary hover:bg-[#84CC16] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 transform hover:scale-[1.01] active:scale-[0.99]"
+                            disabled={isLoading}
+                            className={`w-full flex justify-center items-center py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-gray-900 bg-primary hover:bg-[#84CC16] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 transform ${isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.01] active:scale-[0.99]'}`}
                             type="submit"
                         >
-                            SIGN IN
+                            {isLoading ? 'SIGNING IN...' : 'SIGN IN'}
                         </button>
-                        <div className="relative my-8">
-                            <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
-                            </div>
-                            <div className="relative flex justify-center text-sm">
-                                <span className="px-4 bg-white dark:bg-[#1F2937] text-gray-500 dark:text-gray-400">Or continue with</span>
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <button className="flex items-center justify-center px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" type="button">
-                                <img alt="Google Logo" className="h-5 w-5 mr-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8XQpw1NEMQMBzIuivuBobNrpti4uqNwgsMpat6gggs4ZPbXlCdWWyamhlN0T-ECmDoDL43KH1XfbeXCEzZxmI4doYp0CDXQ4tbFkGapDp-2G9-XIXhd6u7NhJw38c9E3neduFJ-RmBkeNQMt5m2kRR-lFhb0lescGjs2kItDnM1D3GGiKLhQg9ylFSbmebTGqkMOb0hqAIF5igVrSXH6qgXnZM9Wl914jv9accrFzg7ARS2zFr8Ckn629xx4PRFnsSH4deH6BWFj1" />
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Google</span>
-                            </button>
-                            <button className="flex items-center justify-center px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" type="button">
-                                <img alt="Apple Logo" className="h-5 w-5 mr-2 dark:invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj0S3Ito-3Glow9XPxNVezg2pKeUXc0Q8DVmq47zntjPtlPDIqE9KwsM_Ua9crFGq5Xnjwao7c558FXjfF31ldPNaKyXWqvYTM1NYQ290RgcrTajCwnU9zRGSCDb_qeoS6deIJDvaVjQ9yaeTw9U1SEoW4dJIy6gw_wG0EsOg1-qIJOAaJZrwHCNKyml9PbCBocoXbiOouuO3SttulFHy0TxfMXXg8jnw25OMgruuKWUr_CQ0gnv6GWSaNmdD2ezkOGag-4w7MiAAq" />
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Apple</span>
-                            </button>
-                        </div>
                     </form>
                 </div>
                 <p className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">

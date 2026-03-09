@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 
 function SignUp() {
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { registerUser } = useAuth();
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -12,7 +12,10 @@ function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [isRobotChecked, setIsRobotChecked] = useState(false);
+
     const [errors, setErrors] = useState({});
+    const [apiError, setApiError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const validate = () => {
         let newErrors = {};
@@ -39,11 +42,19 @@ function SignUp() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setApiError('');
         if (validate()) {
-            login({ name, email });
-            navigate('/');
+            setIsLoading(true);
+            try {
+                await registerUser({ name, email, password });
+                navigate('/');
+            } catch (error) {
+                setApiError(error.response?.data?.message || 'Failed to create account. Please try again.');
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -62,7 +73,7 @@ function SignUp() {
     }, []);
 
     return (
-        <div className="bg-[#f0fdf4] dark:bg-[#0f172a] min-h-screen flex items-center justify-center p-4 transition-colors duration-300 font-display">
+        <div className="bg-[#f0fdf4] dark:bg-[#0f172a] min-h-screen flex items-center justify-center p-4 transition-colors duration-300 font-display py-12">
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center mb-4">
@@ -72,6 +83,11 @@ function SignUp() {
                     <p className="text-slate-600 dark:text-slate-400">Experience freshness like never before.</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700">
+                    {apiError && (
+                        <div className="mb-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-3 rounded-xl text-sm border border-red-200 dark:border-red-800">
+                            {apiError}
+                        </div>
+                    )}
                     <form action="#" className="space-y-5" method="POST" onSubmit={handleSubmit}>
                         <div>
                             <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5" htmlFor="name">Full Name</label>
@@ -154,30 +170,13 @@ function SignUp() {
                         </div>
 
                         <button
-                            className="w-full bg-primary hover:bg-[#84CC16] text-slate-900 font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-[0.98] mt-2"
+                            disabled={isLoading}
+                            className={`w-full bg-primary hover:bg-[#84CC16] text-slate-900 font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-primary/30 transition-all mt-2 ${isLoading ? 'opacity-70 cursor-not-allowed' : 'active:scale-[0.98]'}`}
                             type="submit"
                         >
-                            Create Account
+                            {isLoading ? 'CREATING ACCOUNT...' : 'Create Account'}
                         </button>
                     </form>
-                    <div className="relative my-8">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-slate-100 dark:border-slate-700"></div>
-                        </div>
-                        <div className="relative flex justify-center text-sm">
-                            <span className="px-3 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400">Or join with</span>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <button className="flex items-center justify-center py-2.5 px-4 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                            <img alt="Google" className="w-5 h-5 mr-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFp-_-waPC0sfQAtFbYOnJTaIXlZSz7xoOSX916YRYqqbOma8QYfX7GM3afIqxGRfnQNToog2SPa01lTjYMNMkCxg41vpazp7fEIEbf5EcjKeyAKZ773KMJlsAr4FPeEU7Yv1F0fzRrFxhmdCzfWprrljE3u3LTl9dewMZmM4_-JRAe2MbsmKQFikNhHZCGhtRDb51RxDQLIevUK0hUx9yQ4r7wLButmr6NlHPAM4P0HfIIqMKuCk3llPoYp0DWe1tnpz9boqWBCou" />
-                            <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">Google</span>
-                        </button>
-                        <button className="flex items-center justify-center py-2.5 px-4 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                            <img alt="Apple" className="w-5 h-5 mr-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsANz_YX3JF-y5zALC4cBO2ckqDSvPLwA8S8SLfUn_5Cv0g5jLoPcVZvZzV2fJD5XDyapt-c3fv18NL5-dHGK4FieSXdDSbD8OGUAxhp_oA_O3_FamCCCV2xFT65ofhJpK_4HYIdvxWcuMGryiiuFeEHi8K8p34l_dpJotznv7nAHIEEB69NjzexQNA9cjoFfBlDv01OO-2I1zkqwEECRWBylcX3VfBKZqc9JBvG3XFcCuQxc23hTEoE5wOzo_p5uKxBRNmAMH-bS" />
-                            <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">Apple</span>
-                        </button>
-                    </div>
                 </div>
                 <p className="text-center mt-8 text-slate-600 dark:text-slate-400 text-sm">
                     Already have an account?{' '}

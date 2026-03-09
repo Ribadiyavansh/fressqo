@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import api from '../utils/api';
 
 const AuthContext = createContext();
 
@@ -10,23 +11,50 @@ export function AuthProvider({ children }) {
     });
 
     useEffect(() => {
-        // Mock checking local storage or session
-        const storedUser = localStorage.getItem('fresqo_user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
+        const checkLoggedIn = async () => {
+            try {
+                const storedUser = localStorage.getItem('userInfo');
+                if (storedUser) {
+                    const parsedUser = JSON.parse(storedUser);
+                    setUser(parsedUser);
+
+                    // Verify token by fetching profile
+                    api.defaults.headers.common['Authorization'] = `Bearer ${parsedUser.token}`;
+                    const { data } = await api.get('/users/profile');
+                    setUser({ ...parsedUser, ...data });
+                }
+            } catch (error) {
+                console.error("Auth check failed", error);
+                localStorage.removeItem('userInfo');
+                setUser(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+        checkLoggedIn();
     }, []);
 
-    const login = (userData) => {
-        setUser(userData);
-        localStorage.setItem('fresqo_user', JSON.stringify(userData));
+    const loginUser = async (email, password) => {
+        const { data } = await api.post('/users/login', { email, password });
+        setUser(data);
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        return data;
+    };
+
+    const registerUser = async (userData) => {
+        const { data } = await api.post('/users', userData);
+        setUser(data);
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        return data;
     };
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem('fresqo_user');
+        localStorage.removeItem('userInfo');
         localStorage.removeItem('fresqo_avatar');
+        delete api.defaults.headers.common['Authorization'];
     };
 
     const updateAvatar = (newAvatar) => {
@@ -35,7 +63,7 @@ export function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, avatar, updateAvatar, loading }}>
+        <AuthContext.Provider value={{ user, loginUser, registerUser, logout, avatar, updateAvatar, loading }}>
             {children}
         </AuthContext.Provider>
     );

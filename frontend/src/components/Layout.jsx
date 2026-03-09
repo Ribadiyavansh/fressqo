@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import CartSidebar from './CartSidebar';
 import { motion } from 'framer-motion';
 import { Instagram, Twitter, Facebook, Youtube, Mail, Phone, MapPin, ArrowUp, Sparkles, ShoppingCart, Menu, X, LogOut, User } from 'lucide-react';
+import api from '../utils/api';
+
 function Layout() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -13,6 +15,27 @@ function Layout() {
     const navigate = useNavigate();
     const { totalItems } = useCart();
     const { user, logout, avatar } = useAuth();
+
+    // Newsletter State
+    const [email, setEmail] = useState('');
+    const [newsletterStatus, setNewsletterStatus] = useState({ loading: false, success: false, error: '' });
+
+    const handleNewsletterSubmit = async (e) => {
+        e.preventDefault();
+        setNewsletterStatus({ loading: true, success: false, error: '' });
+        try {
+            await api.post('/newsletter/subscribe', { email });
+            setNewsletterStatus({ loading: false, success: true, error: '' });
+            setEmail('');
+            setTimeout(() => setNewsletterStatus({ loading: false, success: false, error: '' }), 3000);
+        } catch (error) {
+            setNewsletterStatus({
+                loading: false,
+                success: false,
+                error: error.response?.data?.message || 'Subscription failed.'
+            });
+        }
+    };
 
     const getNavLinkClass = (path) => {
         const isActive = path !== '/' && location.pathname.startsWith(path);
@@ -31,9 +54,7 @@ function Layout() {
     };
 
     useEffect(() => {
-        // Automatically apply dark mode based on system preference
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
         const applyTheme = (e) => {
             if (e.matches) {
                 document.documentElement.classList.add('dark');
@@ -41,13 +62,8 @@ function Layout() {
                 document.documentElement.classList.remove('dark');
             }
         };
-
-        // Apply initially
         applyTheme(mediaQuery);
-
-        // Listen for changes
         mediaQuery.addEventListener('change', applyTheme);
-
         return () => mediaQuery.removeEventListener('change', applyTheme);
     }, []);
 
@@ -56,7 +72,7 @@ function Layout() {
             <nav className="fixed w-full top-0 z-50 glass-nav border-b border-gray-100 dark:border-gray-800 transition-colors">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
-                        <div className="flex-shrink-0 flex items-center gap-3">
+                        <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
                             <img src="/fresqo-logo.png" alt="Fresqo Logo" className="w-16 h-16 object-contain" />
                             <span className="text-2xl font-extrabold tracking-tight text-charcoal dark:text-white mt-1">Fresqo</span>
                         </div>
@@ -88,6 +104,11 @@ function Layout() {
                                                 <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
                                                 <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
                                             </div>
+                                            {(user.role === 'admin' || user.isAdmin) && (
+                                                <Link to="/admin" onClick={() => setIsUserMenuOpen(false)} className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                                                    Admin Panel
+                                                </Link>
+                                            )}
                                             <button
                                                 onClick={() => {
                                                     logout();
@@ -134,17 +155,22 @@ function Layout() {
                         <Link className={getMobileNavLinkClass('/contact')} to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
                         <hr className="border-gray-100 dark:border-gray-800 my-6" />
                         {user ? (
-                            <button
-                                onClick={() => {
-                                    logout();
-                                    setIsMobileMenuOpen(false);
-                                    navigate('/');
-                                }}
-                                className="w-full text-left px-3 py-3 rounded-xl text-base font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all flex items-center gap-3"
-                            >
-                                <LogOut className="w-5 h-5" />
-                                Log Out
-                            </button>
+                            <div className="space-y-2">
+                                {(user.role === 'admin' || user.isAdmin) && (
+                                    <Link className="block px-3 py-3 rounded-xl text-base font-bold text-slate-800 dark:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" to="/admin" onClick={() => setIsMobileMenuOpen(false)}>Admin Panel</Link>
+                                )}
+                                <button
+                                    onClick={() => {
+                                        logout();
+                                        setIsMobileMenuOpen(false);
+                                        navigate('/');
+                                    }}
+                                    className="w-full text-left px-3 py-3 rounded-xl text-base font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all flex items-center gap-3"
+                                >
+                                    <LogOut className="w-5 h-5" />
+                                    Log Out
+                                </button>
+                            </div>
                         ) : (
                             <Link className="block px-3 py-3 rounded-xl text-base font-bold text-charcoal dark:text-white bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all text-center" to="/login" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                         )}
@@ -259,18 +285,26 @@ function Layout() {
                             <p className="text-gray-400 mb-4 text-sm">
                                 Subscribe for exclusive offers and new flavour announcements.
                             </p>
-                            <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                                <input
-                                    type="email"
-                                    placeholder="Your email"
-                                    className="flex-1 px-4 py-3 bg-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-                                />
-                                <button
-                                    type="submit"
-                                    className="px-4 py-3 bg-primary text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm"
-                                >
-                                    Subscribe
-                                </button>
+                            <form className="flex flex-col gap-2" onSubmit={handleNewsletterSubmit}>
+                                <div className="flex gap-2 w-full">
+                                    <input
+                                        type="email"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="Your email"
+                                        className="flex-1 px-4 py-3 bg-white/10 border border-transparent rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary text-sm"
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={newsletterStatus.loading}
+                                        className="px-4 py-3 bg-primary text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm disabled:opacity-50"
+                                    >
+                                        {newsletterStatus.loading ? '...' : 'Subscribe'}
+                                    </button>
+                                </div>
+                                {newsletterStatus.success && <p className="text-primary text-xs font-semibold">Successfully subscribed!</p>}
+                                {newsletterStatus.error && <p className="text-red-400 text-xs">{newsletterStatus.error}</p>}
                             </form>
                         </div>
                     </div>
