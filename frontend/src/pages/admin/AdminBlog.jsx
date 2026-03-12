@@ -102,7 +102,7 @@ function AdminBlog() {
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-center">
-                                        <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-md text-xs font-medium">{blog.category || 'General'}</span>
+                                        <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-md text-xs font-medium">{blog.category?.categoryName || 'General'}</span>
                                     </td>
                                     <td className="px-6 py-4 text-center">
                                         <span className="text-sm font-medium">{blog.author?.name || 'Admin'}</span>

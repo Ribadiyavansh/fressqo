@@ -11,6 +11,10 @@ const blogPostSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
+    },
     content: {
         type: String,
         required: [true, 'Please add content']

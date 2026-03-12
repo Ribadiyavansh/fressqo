@@ -131,7 +131,7 @@ function AdminProducts() {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-sm font-medium text-slate-500 text-center tracking-tighter">{(product.category && product.category.name) || 'N/A'}</td>
+                                        <td className="px-6 py-4 text-sm font-medium text-slate-500 text-center tracking-tighter">{(product.category && product.category.categoryName) || 'N/A'}</td>
                                         <td className="px-6 py-4 text-center">
                                             <span className={`text-sm font-semibold ${product.stock < 10 ? 'text-amber-500' : ''} ${product.stock === 0 ? 'text-red-500' : ''}`}>
                                                 {product.stock}

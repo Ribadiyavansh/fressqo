@@ -10,35 +10,39 @@ function AdminBlogEditor() {
     const [formData, setFormData] = useState({
         title: '',
         content: '',
-        category: 'Sustainability',
+        category: '',
         image: ''
     });
 
+    const [categories, setCategories] = useState([]);
     const [imagePreview, setImagePreview] = useState(null);
     const [loading, setLoading] = useState(false);
     const [pageLoading, setPageLoading] = useState(isEditMode);
 
     useEffect(() => {
         const fetchInitialData = async () => {
-            if (isEditMode) {
-                try {
+            try {
+                const catsRes = await api.get('/categories');
+                setCategories(catsRes.data);
+
+                if (isEditMode) {
                     const res = await api.get(`/blogs/${id}`);
                     const blog = res.data;
                     setFormData({
                         title: blog.title || '',
                         content: blog.content || '',
-                        category: blog.category || 'Sustainability',
+                        category: blog.category?._id || blog.category || '',
                         image: blog.image || ''
                     });
                     if (blog.image) {
                         setImagePreview(blog.image);
                     }
-                } catch (err) {
-                    console.error("Failed to fetch blog:", err);
-                    alert("Error loading blog data.");
-                } finally {
-                    setPageLoading(false);
                 }
+            } catch (err) {
+                console.error("Failed to fetch data:", err);
+                alert("Error loading data.");
+            } finally {
+                setPageLoading(false);
             }
         };
         fetchInitialData();
@@ -183,10 +187,10 @@ function AdminBlogEditor() {
                             <div>
                                 <label className="block text-sm font-bold text-charcoal dark:text-white mb-2">Category</label>
                                 <select name="category" value={formData.category} onChange={handleChange} className="w-full bg-white dark:bg-slate-900 border-border-light dark:border-slate-700 rounded-lg focus:ring-primary focus:border-primary text-sm text-charcoal dark:text-slate-200 outline-none px-3 py-2">
-                                    <option value="Mocktail Recipes">Mocktail Recipes</option>
-                                    <option value="Health & Wellness">Health & Wellness</option>
-                                    <option value="Product Updates">Product Updates</option>
-                                    <option value="Sustainability">Sustainability</option>
+                                    <option value="">Select Category</option>
+                                    {categories.map(cat => (
+                                        <option key={cat._id} value={cat._id}>{cat.categoryName}</option>
+                                    ))}
                                 </select>
                             </div>
                         </div>

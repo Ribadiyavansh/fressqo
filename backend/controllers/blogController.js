@@ -10,6 +10,7 @@ const getBlogs = async (req, res) => {
 
         const count = await BlogPost.countDocuments({});
         const blogs = await BlogPost.find({})
+            .populate('category', 'categoryName')
             .limit(pageSize)
             .skip(pageSize * (page - 1))
             .sort({ publishedDate: -1 });
@@ -27,11 +28,11 @@ const getBlogById = async (req, res) => {
     try {
         let blog;
         if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-            blog = await BlogPost.findById(req.params.id);
+            blog = await BlogPost.findById(req.params.id).populate('category', 'categoryName');
         }
 
         if (!blog) {
-            blog = await BlogPost.findOne({ slug: req.params.id });
+            blog = await BlogPost.findOne({ slug: req.params.id }).populate('category', 'categoryName');
         }
 
         if (blog) {
