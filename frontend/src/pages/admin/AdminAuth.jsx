@@ -1,35 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 function AdminAuth() {
     const navigate = useNavigate();
+    const { loginUser, user } = useAuth();
+
     const [step, setStep] = useState(1);
     const [password, setPassword] = useState('');
     const [authCode, setAuthCode] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // If already authenticated, redirect to admin
-        if (sessionStorage.getItem('isAdminAuth') === 'true') {
+        // If already authenticated and has admin rights, redirect to admin
+        if (sessionStorage.getItem('isAdminAuth') === 'true' && user?.role === 'admin') {
             navigate('/admin');
         }
-    }, [navigate]);
+    }, [navigate, user]);
 
-    const handlePasswordSubmit = (e) => {
+    const handleCredentialsSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        // Any password works for trial
-        if (password.length > 3) {
-            setStep(2);
-        } else {
-            setError('Password must be at least 4 characters.');
+        setLoading(true);
+
+        try {
+            // First hit the backend to verify password against the master admin email
+            const data = await loginUser('admin@fresqo.com', password);
+            if (data.role === 'admin') {
+                // Credentials are valid and user is admin. Move to Step 2 (MFA Mock).
+                setStep(2);
+            } else {
+                setError('Access Denied: You do not have admin privileges.');
+            }
+        } catch (err) {
+            setError(err.response?.data?.message || 'Invalid admin password.');
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleCodeSubmit = (e) => {
         e.preventDefault();
         setError('');
-        // Trial code is 123456
+        // Trial MFA code is 123456
         if (authCode === '123456') {
             sessionStorage.setItem('isAdminAuth', 'true');
             navigate('/admin');
@@ -54,7 +68,7 @@ function AdminAuth() {
                     )}
 
                     {step === 1 ? (
-                        <form onSubmit={handlePasswordSubmit} className="space-y-6">
+                        <form onSubmit={handleCredentialsSubmit} className="space-y-6">
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     Admin Password
@@ -70,9 +84,10 @@ function AdminAuth() {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full bg-primary hover:bg-[#94D12C] text-slate-900 font-bold py-3.5 px-4 rounded-lg shadow-lg shadow-lime-500/20 transition-all active:scale-[0.98]"
+                                disabled={loading}
+                                className={`w-full bg-primary hover:bg-[#94D12C] text-slate-900 font-bold py-3.5 px-4 rounded-lg shadow-lg shadow-lime-500/20 transition-all ${loading ? 'opacity-70 cursor-not-allowed' : 'active:scale-[0.98]'}`}
                             >
-                                Continue
+                                {loading ? 'Verifying...' : 'Continue'}
                             </button>
                         </form>
                     ) : (

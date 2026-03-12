@@ -67,10 +67,6 @@ function AdminLayout() {
                             <span className="material-icons-round">dashboard</span>
                             <span>Dashboard</span>
                         </NavLink>
-                        <NavLink to="/admin/analytics" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => (isActive ? activeLinkClass : normalLinkClass)}>
-                            <span className="material-icons-round">analytics</span>
-                            <span>Analytics</span>
-                        </NavLink>
                     </div>
 
                     {/* Management */}

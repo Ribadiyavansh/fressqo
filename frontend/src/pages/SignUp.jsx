@@ -88,7 +88,7 @@ function SignUp() {
                             {apiError}
                         </div>
                     )}
-                    <form action="#" className="space-y-5" method="POST" onSubmit={handleSubmit}>
+                    <form action="#" className="space-y-5" method="POST" onSubmit={handleSubmit} autoComplete="off">
                         <div>
                             <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5" htmlFor="name">Full Name</label>
                             <div className="relative">
@@ -107,7 +107,7 @@ function SignUp() {
                                 <span className="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">alternate_email</span>
                                 <input
                                     className={`w-full pl-10 pr-4 py-3 rounded-lg border ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-slate-600 focus:border-primary focus:ring-primary/20'} bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:outline-none focus:ring-4`}
-                                    id="email" name="email" placeholder="name@example.com" type="text"
+                                    id="email" name="email" placeholder="name@example.com" type="text" autoComplete="off"
                                     value={email} onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
@@ -119,7 +119,7 @@ function SignUp() {
                                 <span className="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">lock</span>
                                 <input
                                     className={`w-full pl-10 pr-4 py-3 rounded-lg border ${errors.password ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-slate-600 focus:border-primary focus:ring-primary/20'} bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:outline-none focus:ring-4`}
-                                    id="password" name="password" placeholder="••••••••" type="password"
+                                    id="password" name="password" placeholder="••••••••" type="password" autoComplete="new-password"
                                     value={password} onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
@@ -131,7 +131,7 @@ function SignUp() {
                                 <span className="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">verified_user</span>
                                 <input
                                     className={`w-full pl-10 pr-4 py-3 rounded-lg border ${errors.confirmPassword ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-slate-600 focus:border-primary focus:ring-primary/20'} bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 transition-all focus:outline-none focus:ring-4`}
-                                    id="confirm-password" name="confirm-password" placeholder="••••••••" type="password"
+                                    id="confirm-password" name="confirm-password" placeholder="••••••••" type="password" autoComplete="new-password"
                                     value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
                                 />
                             </div>

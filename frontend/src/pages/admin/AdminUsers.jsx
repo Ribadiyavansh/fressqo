@@ -70,7 +70,7 @@ function AdminUsers() {
                         <select value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)} className="bg-slate-50 dark:bg-slate-900 border-none rounded-xl text-sm py-2.5 px-4 pr-10 focus:ring-2 focus:ring-primary min-w-[140px] outline-none">
                             <option value="">All Roles</option>
                             <option value="admin">Admin</option>
-                            <option value="customer">Customer</option>
+                            <option value="user">User</option>
                         </select>
                     </div>
                 </div>
@@ -120,7 +120,7 @@ function AdminUsers() {
                                             value={user.role}
                                             onChange={(e) => handleRoleChange(user._id, e.target.value)}
                                         >
-                                            <option value="customer">Customer</option>
+                                            <option value="user">User</option>
                                             <option value="admin">Admin</option>
                                         </select>
                                     </td>

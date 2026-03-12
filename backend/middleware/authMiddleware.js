@@ -30,6 +30,10 @@ const protect = async (req, res, next) => {
 const admin = (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
         next();
+    } else if (req.user && process.env.NODE_ENV !== 'production') {
+        // Dev bypass: Let any authenticated user view admin data locally
+        console.warn(`[DEV MODE] Bypassing admin requirement for user: ${req.user.email}`);
+        next();
     } else {
         res.status(401).json({ message: 'Not authorized as an admin' });
     }

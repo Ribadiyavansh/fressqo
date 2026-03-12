@@ -74,14 +74,14 @@ function SignIn() {
                             {apiError}
                         </div>
                     )}
-                    <form action="#" className="space-y-6" method="POST" onSubmit={handleSubmit}>
+                    <form action="#" className="space-y-6" method="POST" onSubmit={handleSubmit} autoComplete="off">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" htmlFor="email">Email Address</label>
                             <div className="relative">
                                 <span className="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl pointer-events-none">mail</span>
                                 <input
                                     className={`block w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 dark:border-gray-700 focus:ring-primary focus:border-primary'} rounded-xl text-gray-900 dark:text-white transition-all outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600`}
-                                    id="email" name="email" placeholder="you@example.com" type="email"
+                                    id="email" name="email" placeholder="you@example.com" type="email" autoComplete="off"
                                     value={email} onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
@@ -93,7 +93,7 @@ function SignIn() {
                                 <span className="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl pointer-events-none">lock</span>
                                 <input
                                     className={`block w-full pl-10 pr-12 py-3 bg-gray-50 dark:bg-gray-900 border ${errors.password ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 dark:border-gray-700 focus:ring-primary focus:border-primary'} rounded-xl text-gray-900 dark:text-white transition-all outline-none placeholder:text-gray-400 dark:placeholder:text-gray-600`}
-                                    id="password" name="password" placeholder="••••••••" type={showPassword ? "text" : "password"}
+                                    id="password" name="password" placeholder="••••••••" type={showPassword ? "text" : "password"} autoComplete="new-password"
                                     value={password} onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <button
