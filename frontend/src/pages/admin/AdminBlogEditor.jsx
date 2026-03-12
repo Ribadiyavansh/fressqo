@@ -98,7 +98,7 @@ function AdminBlogEditor() {
     return (
         <div className="flex-1 flex flex-col font-display bg-background-light dark:bg-background-dark min-w-0">
             {/* Header */}
-            <header className="h-16 bg-white dark:bg-[#1E293B] border-b border-border-light dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-10 shrink-0 shadow-sm">
+            <header className="h-16 bg-white dark:bg-[#1E293B] border-b border-border-light dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-50 shrink-0 shadow-sm">
                 <div className="flex items-center gap-4">
                     <Link to="/admin/blog" className="p-2 hover:bg-background-light dark:hover:bg-slate-800 rounded-full text-neutral-green dark:text-slate-400 transition-colors">
                         <span className="material-icons-round">arrow_back</span>

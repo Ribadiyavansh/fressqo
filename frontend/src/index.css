@@ -132,6 +132,13 @@
     details[open] summary .expand-icon {
         transform: rotate(180deg);
     }
+
+    /* Global Form Input Styling */
+    input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+    textarea,
+    select {
+        @apply w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300;
+    }
 }
 
 @utility gradient-text {

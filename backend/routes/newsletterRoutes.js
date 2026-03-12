@@ -3,13 +3,17 @@ const router = express.Router();
 const {
     subscribeNewsletter,
     getSubscribers,
-    deleteSubscriber
+    deleteSubscriber,
+    sendNewsletter
 } = require('../controllers/newsletterController');
 const { protect, admin } = require('../middleware/authMiddleware');
 
 router.route('/')
     .post(subscribeNewsletter)
     .get(protect, admin, getSubscribers);
+
+router.route('/send')
+    .post(protect, admin, sendNewsletter);
 
 router.route('/:id')
     .delete(protect, admin, deleteSubscriber);

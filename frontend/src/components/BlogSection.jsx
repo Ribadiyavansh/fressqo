@@ -54,7 +54,7 @@ export default function BlogSection() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
+                        transition={{ duration: 0.3 }}
                         className="text-lg text-fresqo-gray"
                     >
                         Tips, recipes, and inspiration for making every celebration unforgettable.
@@ -82,7 +82,7 @@ export default function BlogSection() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                                    transition={{ duration: 0.3 }}
                                     key={post._id}
                                     onClick={() => navigate(`/blog/${post.slug || post._id}`)}
                                     className="bg-white rounded-3xl overflow-hidden shadow-soft card-lift flex flex-col group cursor-pointer border border-fresqo-border"

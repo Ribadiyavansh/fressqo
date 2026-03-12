@@ -94,7 +94,7 @@ function CartSidebar({ isOpen, onClose }) {
                                                 <Plus className="w-4 h-4" />
                                             </button>
                                         </div>
-                                        <span className="font-bold text-charcoal dark:text-white">${item.price.toFixed(2)}</span>
+                                        <span className="font-bold text-charcoal dark:text-white">₹{item.price.toFixed(2)}</span>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@ function CartSidebar({ isOpen, onClose }) {
                     <div className="space-y-2 mb-4">
                         <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
                             <span>Subtotal</span>
-                            <span className="font-semibold text-charcoal dark:text-white">${subtotal.toFixed(2)}</span>
+                            <span className="font-semibold text-charcoal dark:text-white">₹{subtotal.toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
                             <span>Shipping</span>
@@ -115,7 +115,7 @@ function CartSidebar({ isOpen, onClose }) {
                         </div>
                         <div className="border-t border-slate-200 dark:border-slate-700 pt-2 flex justify-between">
                             <span className="font-bold text-base text-charcoal dark:text-white">Total</span>
-                            <span className="font-bold text-xl text-charcoal dark:text-white">${subtotal.toFixed(2)}</span>
+                            <span className="font-bold text-xl text-charcoal dark:text-white">₹{subtotal.toFixed(2)}</span>
                         </div>
                     </div>
 

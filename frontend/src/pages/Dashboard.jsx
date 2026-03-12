@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../utils/api';
 
 function Dashboard() {
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [filter, setFilter] = useState('All');
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const { data } = await api.get('/orders/myorders');
+                setOrders(data);
+            } catch (error) {
+                console.error("Failed to fetch orders", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchOrders();
+    }, []);
+
+    const filteredOrders = filter === 'All' ? orders : orders.filter(o => o.orderStatus === filter);
+
     return (
         <>
             <div className="mb-8">
@@ -17,10 +38,11 @@ function Dashboard() {
                     <input className="block w-full pl-10 pr-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-fresqo-charcoal focus:ring-primary focus:border-primary text-sm" placeholder="Search orders..." type="text" />
                 </div>
                 <div className="flex gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0">
-                    <button className="px-4 py-2 text-xs font-semibold bg-primary text-fresqo-charcoal rounded-full whitespace-nowrap">All Orders</button>
-                    <button className="px-4 py-2 text-xs font-semibold bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700 rounded-full whitespace-nowrap">Processing</button>
-                    <button className="px-4 py-2 text-xs font-semibold bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700 rounded-full whitespace-nowrap">Shipped</button>
-                    <button className="px-4 py-2 text-xs font-semibold bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700 rounded-full whitespace-nowrap">Delivered</button>
+                    <button onClick={() => setFilter('All')} className={`px-4 py-2 text-xs font-semibold ${filter === 'All' ? 'bg-primary text-fresqo-charcoal' : 'bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700'} rounded-full whitespace-nowrap`}>All Orders</button>
+                    <button onClick={() => setFilter('Pending')} className={`px-4 py-2 text-xs font-semibold ${filter === 'Pending' ? 'bg-primary text-fresqo-charcoal' : 'bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700'} rounded-full whitespace-nowrap`}>Pending</button>
+                    <button onClick={() => setFilter('Processing')} className={`px-4 py-2 text-xs font-semibold ${filter === 'Processing' ? 'bg-primary text-fresqo-charcoal' : 'bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700'} rounded-full whitespace-nowrap`}>Processing</button>
+                    <button onClick={() => setFilter('Shipped')} className={`px-4 py-2 text-xs font-semibold ${filter === 'Shipped' ? 'bg-primary text-fresqo-charcoal' : 'bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700'} rounded-full whitespace-nowrap`}>Shipped</button>
+                    <button onClick={() => setFilter('Delivered')} className={`px-4 py-2 text-xs font-semibold ${filter === 'Delivered' ? 'bg-primary text-fresqo-charcoal' : 'bg-white dark:bg-fresqo-charcoal border border-gray-200 dark:border-gray-700'} rounded-full whitespace-nowrap`}>Delivered</button>
                 </div>
             </div>
 
@@ -39,64 +61,40 @@ function Dashboard() {
                             </tr>
                         </thead>
                         <tbody className="bg-white dark:bg-fresqo-charcoal divide-y divide-gray-100 dark:divide-gray-800">
-                            <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-fresqo-charcoal dark:text-white">#FQ-92841</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">Oct 24, 2023</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
-                                        Shipped
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹124.50</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
-                                </td>
-                            </tr>
-                            <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-fresqo-charcoal dark:text-white">#FQ-92750</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">Oct 18, 2023</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
-                                        Delivered
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹89.20</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
-                                </td>
-                            </tr>
-                            <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-fresqo-charcoal dark:text-white">#FQ-92102</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">Oct 05, 2023</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-                                        Processing
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹210.00</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
-                                </td>
-                            </tr>
-                            <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-fresqo-charcoal dark:text-white">#FQ-91883</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">Sep 28, 2023</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
-                                        Delivered
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹45.00</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
-                                </td>
-                            </tr>
+                            {loading ? (
+                                <tr>
+                                    <td colSpan="5" className="px-6 py-12 text-center text-gray-500">Loading orders...</td>
+                                </tr>
+                            ) : filteredOrders.length === 0 ? (
+                                <tr>
+                                    <td colSpan="5" className="px-6 py-12 text-center text-gray-500">
+                                        <span className="material-icons text-4xl mb-3 block opacity-50">inbox</span>
+                                        <p className="text-lg">No orders found.</p>
+                                    </td>
+                                </tr>
+                            ) : (
+                                filteredOrders.map(order => (
+                                    <tr key={order._id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-fresqo-charcoal dark:text-white">#{order._id.substring(0,8).toUpperCase()}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">{new Date(order.createdAt).toLocaleDateString()}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span className={`px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${order.orderStatus === 'Delivered' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' : 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'}`}>
+                                                {order.orderStatus}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-fresqo-charcoal dark:text-white">₹{order.totalPrice.toFixed(2)}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <Link className="text-primary hover:text-fresqo-charcoal dark:hover:text-white font-bold transition-colors" to="/order-tracking">View Details</Link>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
                 <div className="px-6 py-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                        Showing <span className="font-medium">1</span> to <span className="font-medium">4</span> of <span className="font-medium">24</span> results
+                        Showing <span className="font-medium">{filteredOrders.length > 0 ? 1 : 0}</span> to <span className="font-medium">{filteredOrders.length}</span> of <span className="font-medium">{filteredOrders.length}</span> results
                     </div>
                     <div className="flex gap-2">
                         <button className="px-3 py-1 border border-gray-200 dark:border-gray-700 rounded-md text-sm hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50" disabled>Previous</button>

@@ -55,14 +55,7 @@ function AdminOrders() {
 
     return (
         <div className="p-6 lg:p-10 font-display text-slate-900 dark:text-slate-100 min-h-full flex flex-col">
-            <header className="flex items-center justify-between mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
-                <div className="flex items-center flex-1 max-w-xl">
-                    <div className="relative w-full">
-                        <span className="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                        <input className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg py-2.5 pl-11 pr-4 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Search orders..." type="text" />
-                    </div>
-                </div>
-            </header>
+
 
             <div className="flex-1">
                 <div className="mb-8">

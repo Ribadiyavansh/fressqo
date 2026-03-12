@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Camera, Video, Terminal, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle2, ArrowRight, Instagram, Twitter } from 'lucide-react';
+import api from '../utils/api';
 
 function Contact() {
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-    const handleSubmit = (e) => {
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitted(true);
+        setIsLoading(true);
+        try {
+            await api.post('/contact', formData);
+            setIsSubmitted(true);
+            setFormData({ name: '', email: '', subject: '', message: '' });
+        } catch (error) {
+            console.error('Failed to send message', error);
+            alert('Failed to send message. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const toggleDarkTheme = () => {
@@ -62,19 +78,13 @@ function Contact() {
                             <div className="flex gap-4">
                                 <Link className="flex flex-col items-center gap-2 group" to="/">
                                     <div className="rounded-full bg-white dark:bg-slate-800 border border-border-light p-3 group-hover:bg-primary/20 transition-colors">
-                                        <Camera className="w-6 h-6 text-charcoal dark:text-slate-300" />
+                                        <Instagram className="w-6 h-6 text-charcoal dark:text-slate-300" />
                                     </div>
                                     <span className="text-xs font-semibold text-charcoal dark:text-slate-400">Instagram</span>
                                 </Link>
                                 <Link className="flex flex-col items-center gap-2 group" to="/">
                                     <div className="rounded-full bg-white dark:bg-slate-800 border border-border-light p-3 group-hover:bg-primary/20 transition-colors">
-                                        <Video className="w-6 h-6 text-charcoal dark:text-slate-300" />
-                                    </div>
-                                    <span className="text-xs font-semibold text-charcoal dark:text-slate-400">TikTok</span>
-                                </Link>
-                                <Link className="flex flex-col items-center gap-2 group" to="/">
-                                    <div className="rounded-full bg-white dark:bg-slate-800 border border-border-light p-3 group-hover:bg-primary/20 transition-colors">
-                                        <Terminal className="w-6 h-6 text-charcoal dark:text-slate-300" />
+                                        <Twitter className="w-6 h-6 text-charcoal dark:text-slate-300" />
                                     </div>
                                     <span className="text-xs font-semibold text-charcoal dark:text-slate-400">Twitter</span>
                                 </Link>
@@ -106,23 +116,23 @@ function Contact() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="flex flex-col gap-2">
                                                 <label className="text-sm font-bold text-charcoal dark:text-slate-300">Full Name</label>
-                                                <input required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="John Doe" type="text" />
+                                                <input name="name" value={formData.name} onChange={handleChange} required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="John Doe" type="text" />
                                             </div>
                                             <div className="flex flex-col gap-2">
                                                 <label className="text-sm font-bold text-charcoal dark:text-slate-300">Email Address</label>
-                                                <input required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="john@example.com" type="email" />
+                                                <input name="email" value={formData.email} onChange={handleChange} required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="john@example.com" type="email" />
                                             </div>
                                         </div>
                                         <div className="flex flex-col gap-2">
                                             <label className="text-sm font-bold text-charcoal dark:text-slate-300">Subject</label>
-                                            <input required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="How can we help?" type="text" />
+                                            <input name="subject" value={formData.subject} onChange={handleChange} required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="How can we help?" type="text" />
                                         </div>
                                         <div className="flex flex-col gap-2">
                                             <label className="text-sm font-bold text-charcoal dark:text-slate-300">Message</label>
-                                            <textarea required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="Your message here..." rows="5"></textarea>
+                                            <textarea name="message" value={formData.message} onChange={handleChange} required className="px-4 py-3 border rounded-lg border-border-light bg-background-light dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:ring-primary focus:border-primary focus:outline-none transition-colors" placeholder="Your message here..." rows="5"></textarea>
                                         </div>
-                                        <button className="w-full md:w-auto px-10 py-4 bg-primary text-charcoal font-black rounded-xl hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]" type="submit">
-                                            Submit Message
+                                        <button disabled={isLoading} className="w-full md:w-auto px-10 py-4 bg-primary text-charcoal font-black rounded-xl hover:shadow-lg transition-all disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]" type="submit">
+                                            {isLoading ? 'Sending...' : 'Submit Message'}
                                         </button>
                                     </form>
                                 </>
@@ -136,10 +146,10 @@ function Contact() {
                             <h3 className="text-2xl font-extrabold text-charcoal dark:text-slate-100 mb-2">Have a common question?</h3>
                             <p className="text-sage dark:text-slate-400">Our FAQ might have the answer you're looking for right now.</p>
                         </div>
-                        <Link className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 border border-border-light rounded-xl font-bold text-charcoal dark:text-slate-100 hover:bg-background-light dark:hover:bg-slate-700 transition-colors shadow-sm" to="/">
+                        <a href="/#faq" className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 border border-border-light rounded-xl font-bold text-charcoal dark:text-slate-100 hover:bg-background-light dark:hover:bg-slate-700 transition-colors shadow-sm">
                             Visit FAQ Page
                             <ArrowRight className="w-6 h-6" />
-                        </Link>
+                        </a>
                     </div>
                 </section>
             </main>

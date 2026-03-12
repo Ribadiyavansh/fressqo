@@ -26,28 +26,7 @@ function AdminSettingsGeneral() {
                 </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
-                <div className="p-6 border-b border-slate-100 dark:border-slate-700">
-                    <h2 className="text-lg font-bold">Regional Settings</h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Set your preferred currency and time formats.</p>
-                </div>
-                <div className="p-6 space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        <div className="space-y-2">
-                            <label className="block text-sm font-semibold mb-2">Base Currency</label>
-                            <p className="text-lg font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700 w-full">₹ INR</p>
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold">Timezone</label>
-                            <select className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-primary focus:border-primary transition-all outline-none">
-                                <option>(GMT+05:30) India Standard Time</option>
-                                <option>(GMT-05:00) Eastern Time</option>
-                                <option>(GMT+00:00) UTC</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <div className="flex items-center justify-end gap-4 mt-10">
                 <button className="px-6 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-all">

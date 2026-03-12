@@ -45,7 +45,7 @@ function Blog() {
         }
     };
 
-    const categories = ['All Posts', 'Entertaining', 'Behind the Scenes', 'Recipes', 'Pairings'];
+    const categories = ['All Posts', 'Entertaining', 'Behind the Scenes', 'Recipes'];
 
     const getExcerpt = (htmlString) => {
         if (!htmlString) return '';

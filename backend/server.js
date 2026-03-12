@@ -11,6 +11,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const newsletterRoutes = require('./routes/newsletterRoutes');
 const cartRoutes = require('./routes/cartRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 // Load env vars
 dotenv.config();
@@ -32,6 +33,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Analytics Endpoint (for Admin Dashboard preview)
 app.get('/api/admin/analytics', (req, res) => {

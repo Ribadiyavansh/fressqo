@@ -3,15 +3,24 @@ import { Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 function DashboardLayout() {
-    const { user, logout } = useAuth();
+    const { user, logout, loading } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-
 
     useEffect(() => {
         // Set page-wide classes for the dashboard area
         document.body.className = "bg-background-light dark:bg-background-dark text-fresqo-charcoal dark:text-gray-100 transition-colors duration-200 page-dashboard min-h-screen";
-    }, []);
+        
+        if (!loading && !user) {
+            navigate('/login');
+        }
+    }, [user, loading, navigate]);
+
+    if (loading) {
+        return <div className="min-h-[60vh] flex items-center justify-center"><div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>;
+    }
+    
+    if (!user) return null; // Wait for redirect
 
     // Helper to determine if a sidebar link is active
     const isActive = (path) => {

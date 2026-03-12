@@ -1,4 +1,5 @@
 const NewsletterSubscriber = require('../models/NewsletterSubscriber');
+const nodemailer = require('nodemailer');
 
 // @desc    Subscribe to newsletter
 // @route   POST /api/newsletter
@@ -55,8 +56,47 @@ const deleteSubscriber = async (req, res) => {
     }
 };
 
+// @desc    Send newsletter to all subscribers
+// @route   POST /api/newsletter/send
+// @access  Private/Admin
+const sendNewsletter = async (req, res) => {
+    try {
+        const { subject, message, type } = req.body;
+        const subscribers = await NewsletterSubscriber.find({});
+        const emails = subscribers.map(sub => sub.email);
+
+        if (emails.length === 0) {
+           return res.status(400).json({ message: 'No subscribers found' });
+        }
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER || 'fresqo.in@gmail.com',
+                pass: process.env.EMAIL_PASS || 'your_app_password_here'
+            }
+        });
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER || 'fresqo.in@gmail.com',
+            bcc: emails,
+            subject: subject,
+            html: `
+                <h3>Fresqo ${type ? type.charAt(0).toUpperCase() + type.slice(1) : 'News'} Update</h3>
+                <p>${message}</p>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ message: 'Newsletter sent to all subscribers' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     subscribeNewsletter,
     getSubscribers,
-    deleteSubscriber
+    deleteSubscriber,
+    sendNewsletter
 };

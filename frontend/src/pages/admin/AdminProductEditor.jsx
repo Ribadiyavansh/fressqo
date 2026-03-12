@@ -17,7 +17,6 @@ function AdminProductEditor() {
     });
 
     const [categories, setCategories] = useState([]);
-    const [imagePreview, setImagePreview] = useState(null);
     const [showToast, setShowToast] = useState(false);
     const [loading, setLoading] = useState(false);
     const [pageLoading, setPageLoading] = useState(isEditMode);
@@ -39,9 +38,6 @@ function AdminProductEditor() {
                         category: prod.category?._id || prod.category || '',
                         images: prod.images || []
                     });
-                    if (prod.images && prod.images.length > 0) {
-                        setImagePreview(prod.images[0]);
-                    }
                 }
             } catch (err) {
                 console.error("Failed to fetch data:", err);
@@ -54,15 +50,20 @@ function AdminProductEditor() {
     }, [id, isEditMode]);
 
     const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-                setFormData(prev => ({ ...prev, images: [reader.result] }));
-                setShowToast(true);
-            };
-            reader.readAsDataURL(file);
+        const files = Array.from(e.target.files);
+        if (files.length > 0) {
+            const newImages = [];
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    newImages.push(reader.result);
+                    if (newImages.length === files.length) {
+                        setFormData(prev => ({ ...prev, images: [...prev.images, ...newImages] }));
+                        setShowToast(true);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
         }
     };
 
@@ -81,8 +82,13 @@ function AdminProductEditor() {
     };
 
     const handleSave = async () => {
-        if (!formData.title || !formData.price || !formData.category) {
-            alert("Title, Price, and Category are required.");
+        if (!formData.title || !formData.price || !formData.category || !formData.description) {
+            alert("Title, Price, Category, and Description are required.");
+            return;
+        }
+
+        if (formData.images.length === 0) {
+            alert("At least one product image is required.");
             return;
         }
 
@@ -198,32 +204,32 @@ function AdminProductEditor() {
                     <div className="space-y-8">
                         {/* Media Section */}
                         <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-border-light dark:border-slate-800 shadow-sm relative">
-                            <h3 className="text-lg font-bold mb-4">Product Images</h3>
+                            <h3 className="text-lg font-bold mb-4">Product Images ({formData.images.length})</h3>
+                            
+                            {formData.images.length > 0 && (
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
+                                    {formData.images.map((img, index) => (
+                                        <div key={index} className="relative aspect-square border border-border-light dark:border-slate-700 rounded-lg overflow-hidden group">
+                                            <img src={img} alt={`Product Preview ${index}`} className="w-full h-full object-cover" />
+                                            <button 
+                                                type="button" 
+                                                onClick={() => setFormData(p => ({ ...p, images: p.images.filter((_, i) => i !== index) }))}
+                                                className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity flex items-center shadow-md"
+                                            >
+                                                <span className="material-icons-round text-[16px]">close</span>
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
                             <label className="cursor-pointer block">
-                                <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
-                                <div className="aspect-square w-full border-2 border-dashed border-border-light dark:border-slate-700 rounded-xl flex flex-col items-center justify-center text-center p-6 bg-background-light/20 dark:bg-slate-800 group hover:border-primary transition-colors overflow-hidden relative">
-                                    {imagePreview ? (
-                                        <>
-                                            <img src={imagePreview} alt="Product Preview" className="absolute inset-0 w-full h-full object-cover" />
-                                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
-                                                <span className="material-icons-round text-white text-3xl">autorenew</span>
-                                                <span className="text-white text-sm font-bold">Change Image</span>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="material-icons-round text-4xl text-neutral-green dark:text-slate-400 group-hover:text-primary transition-colors mb-3">upload_file</span>
-                                            <p className="text-sm font-semibold text-charcoal dark:text-white">Click here to upload</p>
-                                        </>
-                                    )}
+                                <input type="file" className="hidden" accept="image/*" multiple onChange={handleImageUpload} />
+                                <div className="border-2 border-dashed border-border-light dark:border-slate-700 rounded-xl flex flex-col items-center justify-center text-center p-6 bg-background-light/20 dark:bg-slate-800 hover:border-primary transition-colors cursor-pointer">
+                                    <span className="material-icons-round text-4xl text-neutral-green dark:text-slate-400 mb-3">upload_file</span>
+                                    <p className="text-sm font-semibold text-charcoal dark:text-white">Click to upload images</p>
                                 </div>
                             </label>
-                            {imagePreview && (
-                                <button type="button" onClick={() => { setImagePreview(null); setFormData(p => ({ ...p, images: [] })) }} className="mt-4 text-red-500 text-sm font-bold flex items-center justify-center w-full gap-1 hover:text-red-600 transition-colors">
-                                    <span className="material-icons-round text-[16px]">delete</span>
-                                    Remove Image
-                                </button>
-                            )}
                         </section>
                     </div>
                 </div>
